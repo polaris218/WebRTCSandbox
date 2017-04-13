@@ -1,0 +1,7 @@
+mixin svgIcon(name)
+    - idname = "#" + name
+    svg(class=name)
+        use(xlink:href=idname)
+
+svg(style="height: 0; width: 0; position: absolute; visibility: hidden")
+    include ../../build/img/sprite.svg

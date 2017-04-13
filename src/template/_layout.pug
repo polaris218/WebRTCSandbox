@@ -1,0 +1,34 @@
+doctype
+html
+    head
+        title braingines.site
+        meta(charset='utf-8')
+        meta(name="viewport", content="width=device-width, user-scalable=yes")
+        link(href='./css/main.css', type="text/css", rel="stylesheet")
+        //-script(src="./js/preload.js")
+        //- include _svg.jade
+        //- include _mixin.jade
+
+
+    body
+        //- include _svg.pug
+        .window
+            .windowTitleBar
+                .windowTitleHeader
+                    h1 GPU.AUDIO  SANDBOX
+                .windowControl
+                    .windowControlBack
+                        .windowControlTooltip
+                            | Back
+                    .windowControlHelp
+                        .windowControlTooltip
+                            | Help
+                    .windowControlZoom
+                        .windowControlTooltip
+                            | Zoom
+                    .windowControlClose
+                        .windowControlTooltip
+                            | Close
+            .windowContent
+                block content
+        script(src="./js/app.js")

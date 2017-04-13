@@ -1,0 +1,62 @@
+.trackControls
+    box horizontal middle space-between
+    padding 24px 38px 20px
+    border-bottom 1px solid rgba(255,255,255,.02)
+.trackControl
+    box vertical top center
+    cursor default
+    &:hover
+        .trackControlText
+            color #ffffff
+        .trackControlIconStop
+            background-image url('../img/track/stop-hover.png')
+        .trackControlIconUpload
+            background-image url('../img/track/upload-hover.png')
+        .trackControlIconMixdown
+            background-image url('../img/track/mixdown-hover.png')
+        .trackControlIconPlay
+            background-image url('../img/track/play-hover.png')
+        .trackControlIconCount
+            background-color #fff
+.trackControlIcon
+    position relative
+    size 24px
+    background-repeat no-repeat
+    background-position center center
+    margin-bottom 8px
+    transition all .4s
+.trackControlIconCount
+    position absolute
+    size 15px
+    border-radius 50%
+    background-color #aebaba
+    padding-top 1px
+    right -8px
+    top -8px
+    box vertical center middle
+    transition all .4s
+    .trackControlIconCountText
+        color #010101
+        font-family 'Circe', sans-serif
+        font-size 9px
+        line-height 9px
+        font-weight 700
+        box-shadow 0 1px 1px rgba(0, 0, 0, 0.12)
+
+
+.trackControlIconPlay
+    background-image url('../img/track/play.png')
+.trackControlIconStop
+    background-image url('../img/track/stop.png')
+.trackControlIconUpload
+    background-image url('../img/track/upload.png')
+.trackControlIconMixdown
+    background-image url('../img/track/mixdown.png')
+
+.trackControlText
+    color #aebaba
+    font-family 'Circe', sans-serif
+    font-size 13px
+    font-weight 400
+    transition all .4s
+    text-align center

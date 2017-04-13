@@ -1,0 +1,73 @@
+.windowControl
+    box horizontal middle right
+    position absolute
+    right 16px
+    top 13px
+.windowControlTemplate
+    width 18px
+    height 18px
+    border-radius 3px
+    background-color #282a2a
+    margin-left 3px
+    position relative
+    z-index 5
+    background-repeat no-repeat
+    background-position center center
+    transition all .3s
+    &:hover
+        .windowControlTooltip
+            opacity 1
+    .windowControlTooltip
+        position absolute
+        display inline-block
+        box-shadow 0 1px 1px rgba(0, 0, 0, 0.1)
+        border-radius 3px
+        background-color #3c4141
+        height 33px
+        padding 0 17px
+        box vertical middle center
+        color #aebaba
+        font-family 'Circe', sans-serif
+        font-size 14px
+        font-weight 400
+        top 24px
+        left 0
+        transform translateX(calc(-50% + 9px))
+        opacity 0
+        transition opacity .3s
+        z-index 10
+        pointer-events none
+        &:after
+            display block
+            position absolute
+
+            content ''
+            top -7px
+            triangle right-iso pointing-up
+            height 7px
+            background-color #3c4141
+            left calc(50% - 7px)
+.windowControlBack
+    @extend .windowControlTemplate
+    background-image url('../img/window/control/back.png')
+    &:hover
+        background-image url('../img/window/control/back-hover.png')
+.windowControlHelp
+    @extend .windowControlTemplate
+    background-image url('../img/window/control/help.png')
+    &:hover
+        background-image url('../img/window/control/help-hover.png')
+.windowControlZoom
+    @extend .windowControlTemplate
+    background-image url('../img/window/control/zoom.png')
+    &:hover
+        background-image url('../img/window/control/zoom-hover.png')
+.windowControlClose
+    @extend .windowControlTemplate
+    background-image url('../img/window/control/x-inact.png')
+    &:hover
+        background-image url('../img/window/control/x-hover.png')
+    .windowControlTooltip
+        transform translateX(calc(-100% + 25px))
+        &:after
+            left calc(100% - 23px)

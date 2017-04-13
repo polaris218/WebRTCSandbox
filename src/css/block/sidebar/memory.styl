@@ -1,0 +1,61 @@
+.trackMemory
+    padding 34px 22px 20px
+    box vertical top
+    border-bottom 1px solid rgba(0,0,0,.1)
+.trackMemoryBar
+    display block
+    margin-bottom 9px
+.trackMemoryBarProgress
+    display block
+    position relative
+    size 100% 1px
+    background-color #484e4e
+
+.trackMemoryBarProgressActive
+    display block
+    position relative
+    margin-top -1px
+    size 40% 1px
+    background-color #849393
+.trackMemoryBarProgressActiveTooltip
+    position absolute
+    display inline-block
+    box-shadow 0 1px 1px rgba(0, 0, 0, 0.1)
+    background-color #333535
+    border-radius 2px
+    height 24px
+    padding 0 6px
+    box vertical middle center
+    color #6e7474
+    font-family 'Circe', sans-serif
+    font-size 13px
+    font-weight 400
+    top -31px
+    right 0
+    transform translateX(50% - 2px)
+    z-index 10
+    cursor default
+    // opacity 0
+    // visibility hidden
+    // transition all .3s
+    &:after
+        display block
+        position absolute
+        content ''
+        bottom -5px
+        triangle right-iso pointing-down
+        height 5px
+        background-color #333535
+        left calc(50% - 4px)
+.trackMemoryBarValue
+    box horizontal middle space-between
+.trackMemoryBarValueMin
+    color #6e7474
+    font-family 'Circe', sans-serif
+    font-size 13px
+    font-weight 400
+.trackMemoryBarValueMax
+    color #6e7474
+    font-family 'Circe', sans-serif
+    font-size 13px
+    font-weight 400
