@@ -112,7 +112,25 @@ block content
                         | 1234
                         span &nbsp;ms
     main.main
-        .mainContent
+        .mainContent.mainContentDemo
+            button(data-modal="#modal-short").buttonLight Modal short
+            <br />
+            <br />
+            button(data-modal="#modal-short-long").buttonLight Modal short with long header
+            <br />
+            <br />
+            button(data-modal="#modal-short-scroll").buttonLight Modal short with scroll
+            <br />
+            <br />
+            button(data-modal="#modal-wide").buttonLight Modal wide
+            <br />
+            <br />
+            button(data-modal="#modal-wide-long").buttonLight Modal wide with long header
+            <br />
+            <br />
+            button(data-modal="#modal-wide-scroll").buttonLight Modal wide with scroll
+            <br />
+            <br />
         .mainFooter
             //- For open select add .productDropdownControlIsOpen
             .productDropdownControl

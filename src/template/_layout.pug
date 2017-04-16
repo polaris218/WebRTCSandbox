@@ -11,7 +11,18 @@ html
 
 
     body
-        //- include _svg.pug
+        svg(style="height: 0; width: 0; position: absolute; visibility: hidden")
+            <filter id="blur">
+                <feGaussianBlur stdDeviation="9" />
+            </filter>
+        include ./component/modal/modal-short
+        include ./component/modal/modal-short-long
+        include ./component/modal/modal-short-scroll
+        include ./component/modal/modal-wide
+        include ./component/modal/modal-wide-long
+        include ./component/modal/modal-wide-scroll
+        .overlay
+        //-.overlayIsShow
         .window
             .windowTitleBar
                 .windowTitleHeader
