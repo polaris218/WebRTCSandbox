@@ -10,6 +10,9 @@ Google Protobuf. На клиенте (и, возможно, на mockup-серв
 1. Исходный .proto файл
 2. Прекомпилированный .json контракт для protobuf.js
 
+Примеры использования библиотеки можно найти в ее документации и
+у нас в проекте интерфейса продуктов, например [здесь](https://git.braingines.com/projects/UI/repos/webui-dev/browse/public/js/angular/services/Serializer.js#98)
+
 ## Вызовы
 
 ```
