@@ -29,48 +29,42 @@
                     "type": "string",
                     "name": "Format",
                     "id": 4
-                }
-            ]
-        },
-        {
-            "name": "AudioFileListRqDto",
-            "syntax": "proto2",
-            "fields": [
+                },
                 {
                     "rule": "required",
                     "type": "uint32",
-                    "name": "UserId",
-                    "id": 1
+                    "name": "LengthInBytes",
+                    "id": 5
+                },
+                {
+                    "rule": "required",
+                    "type": "double",
+                    "name": "Volume",
+                    "id": 6
                 },
                 {
                     "rule": "optional",
-                    "type": "string",
-                    "name": "SharedSandboxId",
-                    "id": 2
+                    "type": "bool",
+                    "name": "IsOwned",
+                    "id": 7
                 }
             ]
         },
         {
-            "name": "AudioFileListRsDto",
+            "name": "AudioFileStateDto",
             "syntax": "proto2",
             "fields": [
                 {
                     "rule": "required",
-                    "type": "bool",
-                    "name": "IsSuccess",
+                    "type": "int32",
+                    "name": "FileId",
                     "id": 1
                 },
                 {
-                    "rule": "repeated",
-                    "type": "DtoValidationError",
-                    "name": "ErrorList",
+                    "rule": "required",
+                    "type": "double",
+                    "name": "Volume",
                     "id": 2
-                },
-                {
-                    "rule": "repeated",
-                    "type": "AudioFileInfoDto",
-                    "name": "Files",
-                    "id": 3
                 }
             ]
         },
@@ -145,6 +139,24 @@
                     "type": "MarketingProgramProto",
                     "name": "Offer",
                     "id": 3
+                },
+                {
+                    "rule": "required",
+                    "type": "uint32",
+                    "name": "BaseTotalPrice",
+                    "id": 4
+                },
+                {
+                    "rule": "required",
+                    "type": "uint32",
+                    "name": "DiscountedTotalPrice",
+                    "id": 5
+                },
+                {
+                    "rule": "required",
+                    "type": "uint32",
+                    "name": "TotalDiscount",
+                    "id": 6
                 }
             ]
         },
@@ -181,72 +193,6 @@
                     "type": "AudioFileInfoDto",
                     "name": "FileInfo",
                     "id": 3
-                }
-            ]
-        },
-        {
-            "name": "CreatePresetRqDto",
-            "syntax": "proto2",
-            "fields": [
-                {
-                    "rule": "required",
-                    "type": "string",
-                    "name": "Caption",
-                    "id": 2
-                }
-            ]
-        },
-        {
-            "name": "CreatePresetRsDto",
-            "syntax": "proto2",
-            "fields": [
-                {
-                    "rule": "repeated",
-                    "type": "DtoValidationError",
-                    "name": "ErrorList",
-                    "id": 1
-                },
-                {
-                    "rule": "required",
-                    "type": "bool",
-                    "name": "IsSuccess",
-                    "id": 2
-                },
-                {
-                    "rule": "required",
-                    "type": "int32",
-                    "name": "FileId",
-                    "id": 3
-                }
-            ]
-        },
-        {
-            "name": "DeletePresetRqDto",
-            "syntax": "proto2",
-            "fields": [
-                {
-                    "rule": "required",
-                    "type": "int32",
-                    "name": "FileId",
-                    "id": 3
-                }
-            ]
-        },
-        {
-            "name": "DeletePresetRsDto",
-            "syntax": "proto2",
-            "fields": [
-                {
-                    "rule": "repeated",
-                    "type": "DtoValidationError",
-                    "name": "ErrorList",
-                    "id": 1
-                },
-                {
-                    "rule": "required",
-                    "type": "bool",
-                    "name": "IsSuccess",
-                    "id": 2
                 }
             ]
         },
@@ -296,42 +242,6 @@
             ]
         },
         {
-            "name": "PresetFileInfoRqDto",
-            "syntax": "proto2",
-            "fields": [
-                {
-                    "rule": "required",
-                    "type": "string",
-                    "name": "PresetId",
-                    "id": 1
-                }
-            ]
-        },
-        {
-            "name": "PresetFileInfoRsDto",
-            "syntax": "proto2",
-            "fields": [
-                {
-                    "rule": "required",
-                    "type": "bool",
-                    "name": "IsSuccess",
-                    "id": 1
-                },
-                {
-                    "rule": "repeated",
-                    "type": "DtoValidationError",
-                    "name": "ErrorList",
-                    "id": 2
-                },
-                {
-                    "rule": "required",
-                    "type": "UserPresetDto",
-                    "name": "Preset",
-                    "id": 3
-                }
-            ]
-        },
-        {
             "name": "ProductInfoProto",
             "syntax": "proto2",
             "fields": [
@@ -367,9 +277,123 @@
                 },
                 {
                     "rule": "optional",
-                    "type": "int32",
+                    "type": "uint32",
                     "name": "CutOffFlat",
                     "id": 3
+                }
+            ]
+        },
+        {
+            "name": "SandboxStateDto",
+            "syntax": "proto2",
+            "fields": [
+                {
+                    "rule": "required",
+                    "type": "int32",
+                    "name": "BackgroundAudioFileId",
+                    "id": 3
+                },
+                {
+                    "rule": "required",
+                    "type": "int32",
+                    "name": "FxAudioFileId",
+                    "id": 4
+                },
+                {
+                    "rule": "repeated",
+                    "type": "AudioFileInfoDto",
+                    "name": "FileList",
+                    "id": 5
+                },
+                {
+                    "rule": "required",
+                    "type": "int32",
+                    "name": "PresetFileId",
+                    "id": 6
+                }
+            ]
+        },
+        {
+            "name": "SandboxStateRqDto",
+            "syntax": "proto2",
+            "fields": [
+                {
+                    "rule": "required",
+                    "type": "string",
+                    "name": "SandboxHash",
+                    "id": 1
+                }
+            ]
+        },
+        {
+            "name": "SandboxStateRsDto",
+            "syntax": "proto2",
+            "fields": [
+                {
+                    "rule": "required",
+                    "type": "bool",
+                    "name": "IsSuccess",
+                    "id": 1
+                },
+                {
+                    "rule": "repeated",
+                    "type": "DtoValidationError",
+                    "name": "ErrorList",
+                    "id": 2
+                },
+                {
+                    "rule": "optional",
+                    "type": "SandboxStateDto",
+                    "name": "State",
+                    "id": 3
+                }
+            ]
+        },
+        {
+            "name": "ShareSandboxRqDto",
+            "syntax": "proto2",
+            "fields": [
+                {
+                    "rule": "required",
+                    "type": "AudioFileStateDto",
+                    "name": "BackgroundFile",
+                    "id": 1
+                },
+                {
+                    "rule": "required",
+                    "type": "AudioFileStateDto",
+                    "name": "FxFile",
+                    "id": 2
+                }
+            ]
+        },
+        {
+            "name": "ShareSandboxRsDto",
+            "syntax": "proto2",
+            "fields": [
+                {
+                    "rule": "required",
+                    "type": "bool",
+                    "name": "IsSuccess",
+                    "id": 1
+                },
+                {
+                    "rule": "repeated",
+                    "type": "DtoValidationError",
+                    "name": "ErrorList",
+                    "id": 2
+                },
+                {
+                    "rule": "required",
+                    "type": "string",
+                    "name": "HashForLink",
+                    "id": 3
+                },
+                {
+                    "rule": "required",
+                    "type": "int32",
+                    "name": "PresetFileId",
+                    "id": 4
                 }
             ]
         },
@@ -411,90 +435,6 @@
                     "type": "uint32",
                     "name": "SpaceTotalInBytes",
                     "id": 5
-                }
-            ]
-        },
-        {
-            "name": "TimezoneDto",
-            "syntax": "proto2",
-            "fields": [
-                {
-                    "rule": "required",
-                    "type": "int32",
-                    "name": "DatetimeUtcOffset",
-                    "id": 1
-                }
-            ]
-        },
-        {
-            "name": "UserPresetDto",
-            "syntax": "proto2",
-            "fields": [
-                {
-                    "rule": "required",
-                    "type": "int32",
-                    "name": "Id",
-                    "id": 1
-                },
-                {
-                    "rule": "required",
-                    "type": "int32",
-                    "name": "UserId",
-                    "id": 2
-                },
-                {
-                    "rule": "required",
-                    "type": "string",
-                    "name": "CreatedOn",
-                    "id": 3
-                },
-                {
-                    "rule": "required",
-                    "type": "string",
-                    "name": "Caption",
-                    "id": 4
-                },
-                {
-                    "rule": "required",
-                    "type": "string",
-                    "name": "PresetId",
-                    "id": 5
-                }
-            ]
-        },
-        {
-            "name": "UserPresetsListRqDto",
-            "syntax": "proto2",
-            "fields": [
-                {
-                    "rule": "required",
-                    "type": "TimezoneDto",
-                    "name": "Timezone",
-                    "id": 1
-                }
-            ]
-        },
-        {
-            "name": "UserPresetsListRsDto",
-            "syntax": "proto2",
-            "fields": [
-                {
-                    "rule": "repeated",
-                    "type": "DtoValidationError",
-                    "name": "ErrorList",
-                    "id": 1
-                },
-                {
-                    "rule": "required",
-                    "type": "bool",
-                    "name": "IsSuccess",
-                    "id": 2
-                },
-                {
-                    "rule": "repeated",
-                    "type": "UserPresetDto",
-                    "name": "UserPresets",
-                    "id": 3
                 }
             ]
         }

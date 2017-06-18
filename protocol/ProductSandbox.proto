@@ -4,15 +4,13 @@ message AudioFileInfoDto {
    required string Caption = 2;
    required uint32 LengthInSeconds = 3;
    required string Format = 4;
+   required uint32 LengthInBytes = 5;
+   required double Volume = 6;
+   optional bool IsOwned = 7;
 }
-message AudioFileListRqDto {
-   required uint32 UserId = 1;
-   optional string SharedSandboxId = 2;
-}
-message AudioFileListRsDto {
-   required bool IsSuccess = 1;
-   repeated DtoValidationError ErrorList = 2;
-   repeated AudioFileInfoDto Files = 3;
+message AudioFileStateDto {
+   required int32 FileId = 1;
+   required double Volume = 2;
 }
 message BounceCounterRqDto {
 }
@@ -29,6 +27,9 @@ message CartOfferRsDto {
    required bool IsSuccess = 1;
    repeated DtoValidationError ErrorList = 2;
    required MarketingProgramProto Offer = 3;
+   required uint32 BaseTotalPrice = 4;
+   required uint32 DiscountedTotalPrice = 5;
+   required uint32 TotalDiscount = 6;
 }
 message CreateAudioFileRqDto {
    required AudioFileInfoDto FileInfo = 1;
@@ -37,21 +38,6 @@ message CreateAudioFileRsDto {
    required bool IsSuccess = 1;
    repeated DtoValidationError ErrorList = 2;
    optional AudioFileInfoDto FileInfo = 3;
-}
-message CreatePresetRqDto {
-   required string Caption = 2;
-}
-message CreatePresetRsDto {
-   repeated DtoValidationError ErrorList = 1;
-   required bool IsSuccess = 2;
-   required int32 FileId = 3;
-}
-message DeletePresetRqDto {
-   required int32 FileId = 3;
-}
-message DeletePresetRsDto {
-   repeated DtoValidationError ErrorList = 1;
-   required bool IsSuccess = 2;
 }
 message DtoValidationError {
    optional string Error = 1;
@@ -63,14 +49,6 @@ message MarketingProgramProto {
    optional int32 ReferralId = 3 [default = 0];
 }
 
-message PresetFileInfoRqDto {
-   required string PresetId = 1;
-}
-message PresetFileInfoRsDto {
-   required bool IsSuccess = 1;
-   repeated DtoValidationError ErrorList = 2;
-   required UserPresetDto Preset = 3;
-}
 message ProductInfoProto {
    required string Id = 1;
    optional uint32 Price = 2;
@@ -78,7 +56,31 @@ message ProductInfoProto {
 message ProductOfferProto {
    required ProductInfoProto Product = 1;
    optional uint32 CutOffPercent = 2;
-   optional int32 CutOffFlat = 3;
+   optional uint32 CutOffFlat = 3;
+}
+message SandboxStateDto {
+   required int32 BackgroundAudioFileId = 3;
+   required int32 FxAudioFileId = 4;
+   repeated AudioFileInfoDto FileList = 5;
+   required int32 PresetFileId = 6;
+}
+message SandboxStateRqDto {
+   required string SandboxHash = 1;
+}
+message SandboxStateRsDto {
+   required bool IsSuccess = 1;
+   repeated DtoValidationError ErrorList = 2;
+   optional SandboxStateDto State = 3;
+}
+message ShareSandboxRqDto {
+   required AudioFileStateDto BackgroundFile = 1;
+   required AudioFileStateDto FxFile = 2;
+}
+message ShareSandboxRsDto {
+   required bool IsSuccess = 1;
+   repeated DtoValidationError ErrorList = 2;
+   required string HashForLink = 3;
+   required int32 PresetFileId = 4;
 }
 message StorageLimitsRqDto {
 }
@@ -88,23 +90,5 @@ message StorageLimitsRsDto {
    optional uint32 SpaceUsedInBytes = 3;
    optional uint32 SpaceLeftInBytes = 4;
    optional uint32 SpaceTotalInBytes = 5;
-}
-message TimezoneDto {
-   required int32 DatetimeUtcOffset = 1;
-}
-message UserPresetDto {
-   required int32 Id = 1;
-   required int32 UserId = 2;
-   required string CreatedOn = 3;
-   required string Caption = 4;
-   required string PresetId = 5;
-}
-message UserPresetsListRqDto {
-   required TimezoneDto Timezone = 1;
-}
-message UserPresetsListRsDto {
-   repeated DtoValidationError ErrorList = 1;
-   required bool IsSuccess = 2;
-   repeated UserPresetDto UserPresets = 3;
 }
 
