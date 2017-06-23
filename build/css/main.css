@@ -532,6 +532,466 @@ body {
       justify-content: center;
 }
 
+.modalContent {
+  width: 100%;
+  padding: 26px 93px 26px 28px;
+}
+.modalContent h4 {
+  margin-bottom: 80px;
+  color: #fff;
+  font-family: 'Circe', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+}
+.modalContent p {
+  margin-bottom: 20px;
+  color: #fff;
+  font-family: 'Circe', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+}
+.modalContent ul {
+  padding-left: 13px;
+  list-style: disc;
+  color: #738686;
+  font-family: 'Circe', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+.modalContent ul li {
+  margin-bottom: 10px;
+}
+.modalContentCenter {
+  padding: 26px 0;
+  -js-display: flex;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: start;
+      justify-content: flex-start;
+  -ms-flex-align: center;
+      align-items: center;
+}
+.modalProgress {
+  position: relative;
+  width: 60%;
+}
+.modalProgressRail {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #3c4444;
+  width: 100%;
+  height: 1px;
+}
+.modalProgressBar {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1px;
+  background-color: #aebaba;
+}
+.modalProgressLegend {
+  padding-top: 10px;
+  color: #4e5858;
+  font-family: 'Circe', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  -js-display: flex;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+}
+
+.modalFooter {
+  border-top: 1px solid rgba(255,255,255,0.02);
+  height: 77px;
+  -js-display: flex;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+.modalFooter button {
+  margin-right: 30px;
+}
+.modalFooter button:last-child {
+  margin-right: 0;
+}
+
+.modal {
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  z-index: 300;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  border-radius: 3px;
+  background-color: #2d2f2f;
+  width: 480px;
+}
+.modalIsShow {
+  opacity: 1;
+  visibility: visible;
+}
+.modalWide {
+  width: 768px;
+}
+.modalMiddle {
+  position: relative;
+  border-top: 1px solid rgba(255,255,255,0.02);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  -js-display: flex;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: start;
+      justify-content: flex-start;
+}
+.modalMiddleScroll {
+  max-height: 200px;
+  overflow: hidden;
+  border-top: 0;
+  border-bottom: 0;
+  -js-display: flex;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-align: start;
+      align-items: flex-start;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+}
+.modalMiddleScroll:before {
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 0;
+  content: '';
+  width: 100%;
+  height: 14px;
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
+  z-index: 310;
+}
+.modalMiddleScroll:after {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  content: '';
+  width: 100%;
+  height: 14px;
+  background-image: linear-gradient(to top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
+  z-index: 310;
+}
+.modalScrollRail {
+  position: relative;
+  -ms-flex: 1 1 14px;
+      flex: 1 1 14px;
+  width: 14px;
+  min-width: 14px;
+  -ms-flex-item-align: stretch;
+      -ms-grid-row-align: stretch;
+      align-self: stretch;
+  border-left: 1px solid rgba(255,255,255,0.02);
+  border-right: 1px solid rgba(0,0,0,0.1);
+}
+.modalScrollBar {
+  position: absolute;
+  left: 2px;
+  top: 30px;
+  width: 8px;
+  height: 100px;
+  border-radius: 4px;
+  background-color: #353939;
+}
+
+.overlay {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.3);
+  z-index: 200;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s;
+}
+.overlayIsShow {
+  opacity: 1;
+  visibility: visible;
+}
+.overlayI + .window {
+  transition: all 0.3s;
+}
+.overlayIsShow + .window {
+  filter: url("#blur");
+  filter: blur(9px);
+}
+
+.modalTitle {
+  position: relative;
+  min-height: 77px;
+  padding: 15px 30px;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  z-index: 320;
+  -js-display: flex;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+}
+.modalHeader {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding-right: 40px;
+  -js-display: flex;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: start;
+      justify-content: flex-start;
+}
+.modalHeader h6 {
+  color: #8eabab;
+  font-family: 'Circe', sans-serif;
+  font-size: 30px;
+  font-weight: 400;
+  margin-right: 13px;
+}
+.modalHeaderTag {
+  margin-right: 13px;
+  height: 28px;
+  border-radius: 6px;
+  background-color: #282a2a;
+  padding: 2px 10px 0;
+  color: #435050;
+  font-family: 'Circe', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding-top: 2px;
+  -js-display: flex;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+}
+.modalClose {
+  -js-display: flex;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+}
+.modalCloseButton {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  background-image: url("../img/modal/close.png");
+  transition: all 0.4s;
+}
+.modalCloseButton:hover {
+  background-image: url("../img/modal/close-hover.png");
+}
+
+.buttonLight {
+  height: 40px;
+  min-width: 112px;
+  padding: 0 46px;
+  padding-top: 2px;
+  background-color: #3c4544;
+  border: 0;
+  border-radius: 6px;
+  color: #8eabab;
+  font-family: 'Circe', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 14px;
+  text-transform: uppercase;
+  text-decoration: none;
+  outline: 0;
+  transition: all 0.3s;
+}
+.buttonLight:hover {
+  background-color: #485554;
+  color: #fff;
+}
+.buttonLight:active {
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.35);
+}
+.buttonDark {
+  display: inline-block;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  height: 40px;
+  max-width: 112px;
+  padding: 0 46px;
+  padding-top: 2px;
+  background-color: #343a39;
+  border: 0;
+  border-radius: 6px;
+  color: #546161;
+  font-family: 'Circe', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  outline: 0;
+  transition: all 0.4s;
+  -ms-flex-align: center;
+      align-items: center;
+}
+.buttonDark:hover {
+  background-color: #3f4846;
+  color: #6f8888;
+}
+
+.productDropdownControl {
+  display: block;
+  position: relative;
+}
+.productDropdownControlIsOpen .productDropdown background-image url('../img/product-dropdown/down.png'):hover {
+  background-image: url("../img/product-dropdown/down-hover.png");
+}
+.productDropdownControlIsOpen .productDropdownPanel {
+  opacity: 1;
+  visibility: visible;
+}
+.productDropdown {
+  display: block;
+  position: relative;
+  width: 480px;
+  height: 28px;
+  color: #6a7474;
+  font-family: 'Circe', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  padding-top: 2px;
+  text-transform: uppercase;
+  z-index: 10;
+  border-radius: 3px;
+  background-color: #343a39;
+  background-repeat: no-repeat;
+  background-image: url("../img/product-dropdown/up.png");
+  background-position: right 18px center;
+  transition: all 0.3s;
+  cursor: default;
+  -js-display: flex;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+.productDropdown:hover {
+  background-image: url("../img/product-dropdown/up-hover.png");
+  color: #fff;
+  box-shadow: 0 0 3px rgba(0,0,0,0.3);
+}
+.productDropdownPanel {
+  display: block;
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 480px;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+  border-radius: 3px;
+  background-color: #343a39;
+  padding-bottom: 28px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+  -js-display: flex;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+  -ms-flex-align: center;
+      align-items: center;
+}
+.productDropdownPanelItem {
+  width: 100%;
+  color: #6a7474;
+  font-family: 'Circe', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  height: 24px;
+  cursor: default;
+  -js-display: flex;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+.productDropdownPanelItem:hover {
+  border-radius: 3px;
+  background-color: #39403f;
+  width: calc(100% - 8px);
+  margin: 0 auto;
+  color: #8f9d9f;
+}
+.productDropdownPanelItemActive {
+  color: #fff;
+  background-color: #303534;
+}
+.productDropdownPanelItemActive:hover {
+  color: #fff;
+}
+
 .cart {
   display: block;
 }
@@ -1674,408 +2134,6 @@ body {
   transition: all 0.4s;
 }
 .trackB:hover span {
-  color: #fff;
-}
-
-.modalContent {
-  padding: 26px 93px 26px 28px;
-}
-.modalContent p {
-  color: #fff;
-  font-family: 'Circe', sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  margin-bottom: 20px;
-}
-.modalContent ul {
-  list-style: disc;
-  padding-left: 13px;
-  color: #738686;
-  font-family: 'Circe', sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-}
-.modalContent ul li {
-  margin-bottom: 10px;
-}
-
-.modalFooter {
-  border-top: 1px solid rgba(255,255,255,0.02);
-  height: 77px;
-  -js-display: flex;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: row;
-      flex-direction: row;
-  -ms-flex-align: center;
-      align-items: center;
-  -ms-flex-pack: center;
-      justify-content: center;
-}
-.modalFooter button {
-  margin-right: 30px;
-}
-.modalFooter button:last-child {
-  margin-right: 0;
-}
-
-.modal {
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-  position: absolute;
-  top: 50%;
-  z-index: 300;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  border-radius: 3px;
-  background-color: #2d2f2f;
-  width: 480px;
-}
-.modalIsShow {
-  opacity: 1;
-  visibility: visible;
-}
-.modalWide {
-  width: 768px;
-}
-.modalMiddle {
-  position: relative;
-  border-top: 1px solid rgba(255,255,255,0.02);
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-  -js-display: flex;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: row;
-      flex-direction: row;
-  -ms-flex-align: center;
-      align-items: center;
-  -ms-flex-pack: start;
-      justify-content: flex-start;
-}
-.modalMiddleScroll {
-  max-height: 200px;
-  overflow: hidden;
-  border-top: 0;
-  border-bottom: 0;
-  -js-display: flex;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: row;
-      flex-direction: row;
-  -ms-flex-align: start;
-      align-items: flex-start;
-  -ms-flex-pack: justify;
-      justify-content: space-between;
-}
-.modalMiddleScroll:before {
-  display: block;
-  position: absolute;
-  top: 0px;
-  left: 0;
-  content: '';
-  width: 100%;
-  height: 14px;
-  background-image: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
-  z-index: 310;
-}
-.modalMiddleScroll:after {
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  content: '';
-  width: 100%;
-  height: 14px;
-  background-image: linear-gradient(to top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
-  z-index: 310;
-}
-.modalScrollRail {
-  position: relative;
-  -ms-flex: 1 1 14px;
-      flex: 1 1 14px;
-  width: 14px;
-  min-width: 14px;
-  -ms-flex-item-align: stretch;
-      -ms-grid-row-align: stretch;
-      align-self: stretch;
-  border-left: 1px solid rgba(255,255,255,0.02);
-  border-right: 1px solid rgba(0,0,0,0.1);
-}
-.modalScrollBar {
-  position: absolute;
-  left: 2px;
-  top: 30px;
-  width: 8px;
-  height: 100px;
-  border-radius: 4px;
-  background-color: #353939;
-}
-
-.overlay {
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.3);
-  z-index: 200;
-  top: 0;
-  left: 0;
-  visibility: hidden;
-  opacity: 0;
-  transition: all 0.3s;
-}
-.overlayIsShow {
-  opacity: 1;
-  visibility: visible;
-}
-.overlayI + .window {
-  transition: all 0.3s;
-}
-.overlayIsShow + .window {
-  filter: url("#blur");
-  filter: blur(9px);
-}
-
-.modalTitle {
-  position: relative;
-  min-height: 77px;
-  padding: 15px 30px;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-  z-index: 320;
-  -js-display: flex;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: center;
-      justify-content: center;
-  -ms-flex-pack: justify;
-      justify-content: space-between;
-}
-.modalHeader {
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  padding-right: 40px;
-  -js-display: flex;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: row;
-      flex-direction: row;
-  -ms-flex-align: center;
-      align-items: center;
-  -ms-flex-pack: start;
-      justify-content: flex-start;
-}
-.modalHeader h6 {
-  color: #8eabab;
-  font-family: 'Circe', sans-serif;
-  font-size: 30px;
-  font-weight: 400;
-  margin-right: 13px;
-}
-.modalHeaderTag {
-  margin-right: 13px;
-  height: 28px;
-  border-radius: 6px;
-  background-color: #282a2a;
-  padding: 2px 10px 0;
-  color: #435050;
-  font-family: 'Circe', sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  text-transform: uppercase;
-  padding-top: 2px;
-  -js-display: flex;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column;
-      flex-direction: column;
-  -ms-flex-pack: center;
-      justify-content: center;
-  -ms-flex-align: center;
-      align-items: center;
-}
-.modalClose {
-  -js-display: flex;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column;
-      flex-direction: column;
-  -ms-flex-pack: center;
-      justify-content: center;
-  -ms-flex-align: center;
-      align-items: center;
-}
-.modalCloseButton {
-  display: block;
-  width: 20px;
-  height: 20px;
-  border: 0;
-  outline: 0;
-  background-color: transparent;
-  background-image: url("../img/modal/close.png");
-  transition: all 0.4s;
-}
-.modalCloseButton:hover {
-  background-image: url("../img/modal/close-hover.png");
-}
-
-.buttonLight {
-  height: 40px;
-  border-radius: 6px;
-  border: 0;
-  outline: 0;
-  padding: 0 46px;
-  background-color: #3c4544;
-  color: #8eabab;
-  font-family: 'Circe', sans-serif;
-  font-size: 14px;
-  line-height: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
-  padding-top: 2px;
-  text-decoration: none;
-  transition: all 0.3s;
-  max-width: 112px;
-}
-.buttonLight:hover {
-  background-color: #485554;
-  color: #fff;
-}
-.buttonLight:active {
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.35);
-}
-.buttonDark {
-  display: inline-block;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -ms-flex-direction: column;
-      flex-direction: column;
-  -ms-flex-pack: center;
-      justify-content: center;
-  -ms-flex-align: center;
-      align-items: center;
-  height: 40px;
-  border-radius: 6px;
-  border: 0;
-  outline: 0;
-  padding: 0 46px;
-  background-color: #343a39;
-  color: #546161;
-  font-family: 'Circe', sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
-  padding-top: 2px;
-  text-decoration: none;
-  transition: all 0.4s;
-  max-width: 112px;
-}
-.buttonDark:hover {
-  background-color: #3f4846;
-  color: #6f8888;
-}
-
-.productDropdownControl {
-  display: block;
-  position: relative;
-}
-.productDropdownControlIsOpen .productDropdown background-image url('../img/product-dropdown/down.png'):hover {
-  background-image: url("../img/product-dropdown/down-hover.png");
-}
-.productDropdownControlIsOpen .productDropdownPanel {
-  opacity: 1;
-  visibility: visible;
-}
-.productDropdown {
-  display: block;
-  position: relative;
-  width: 480px;
-  height: 28px;
-  color: #6a7474;
-  font-family: 'Circe', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  padding-top: 2px;
-  text-transform: uppercase;
-  z-index: 10;
-  border-radius: 3px;
-  background-color: #343a39;
-  background-repeat: no-repeat;
-  background-image: url("../img/product-dropdown/up.png");
-  background-position: right 18px center;
-  transition: all 0.3s;
-  cursor: default;
-  -js-display: flex;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: row;
-      flex-direction: row;
-  -ms-flex-align: center;
-      align-items: center;
-  -ms-flex-pack: center;
-      justify-content: center;
-}
-.productDropdown:hover {
-  background-image: url("../img/product-dropdown/up-hover.png");
-  color: #fff;
-  box-shadow: 0 0 3px rgba(0,0,0,0.3);
-}
-.productDropdownPanel {
-  display: block;
-  position: absolute;
-  bottom: 0px;
-  left: 0;
-  width: 480px;
-  box-shadow: 0 1px 5px rgba(0,0,0,0.1);
-  border-radius: 3px;
-  background-color: #343a39;
-  padding-bottom: 28px;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s;
-  -js-display: flex;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column;
-      flex-direction: column;
-  -ms-flex-pack: end;
-      justify-content: flex-end;
-  -ms-flex-align: center;
-      align-items: center;
-}
-.productDropdownPanelItem {
-  width: 100%;
-  color: #6a7474;
-  font-family: 'Circe', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  text-transform: uppercase;
-  height: 24px;
-  cursor: default;
-  -js-display: flex;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: row;
-      flex-direction: row;
-  -ms-flex-align: center;
-      align-items: center;
-  -ms-flex-pack: center;
-      justify-content: center;
-}
-.productDropdownPanelItem:hover {
-  border-radius: 3px;
-  background-color: #39403f;
-  width: calc(100% - 8px);
-  margin: 0 auto;
-  color: #8f9d9f;
-}
-.productDropdownPanelItemActive {
-  color: #fff;
-  background-color: #303534;
-}
-.productDropdownPanelItemActive:hover {
   color: #fff;
 }
 
