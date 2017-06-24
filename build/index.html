@@ -4,7 +4,7 @@
     <title>braingines.site</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=yes">
-    <link href="./css/main.css" type="text/css" rel="stylesheet">
+    <link type="text/css" href="./css/main.css" rel="stylesheet">
   </head>
   <body>
     <svg style="height: 0; width: 0; position: absolute; visibility: hidden"><filter id="blur">
@@ -171,6 +171,33 @@
       <div class="modalFooter">
         <button class="buttonLight">Ok</button>
         <button class="buttonDark">cancel</button>
+      </div>
+    </div>
+    <div class="modal" id="modal-progress">
+      <div class="modalTitle">
+        <div class="modalHeader">
+          <h6>Attention</h6>
+        </div>
+        <div class="modalClose">
+          <button class="modalCloseButton js-modal-close"></button>
+        </div>
+      </div>
+      <div class="modalMiddle">
+        <div class="modalContent modalContentCenter">
+          <h4>Due to the sandbox concept, <br> the mixdown is limited to 2 minutes long.</h4>
+          <div class="modalProgress">
+            <div class="modalProgressRail">
+              <div class="modalProgressBar" style="width: 40%"></div>
+            </div>
+            <div class="modalProgressLegend">
+              <div class="modalProgressLegendMin">0</div>
+              <div class="modalProgressLegendMax">44 of 120 Sec</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modalFooter">
+        <button class="buttonLight">Cancel</button>
       </div>
     </div>
     <div class="overlay"></div>
@@ -429,6 +456,8 @@
             <button class="buttonLight" data-modal="#modal-wide-long">Modal wide with long header</button><br />
 <br />
             <button class="buttonLight" data-modal="#modal-wide-scroll">Modal wide with scroll</button><br />
+<br />
+            <button class="buttonLight" data-modal="#modal-progress">Modal progress</button><br />
 <br />
           </div>
           <div class="mainFooter">
