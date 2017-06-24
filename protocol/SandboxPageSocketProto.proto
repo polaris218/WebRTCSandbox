@@ -21,6 +21,19 @@ message MixdownProgressProto
 	required float TotalToProcess = 2;
 }
 
+message BounceProcessEvents
+{
+    optional bool BounceCompleteEvent = 1;
+    optional bool BounceCancelledEvent = 2;
+    optional bool BounceDialogClosedEvent = 3;
+}
+
+message AudioStreamingEvents
+{
+    optional bool PauseStream = 1;
+    optional bool PlayStream = 2;
+}
+
 // Top level message that would be send through socket
 message SandboxPageSocketProto
 {
@@ -29,4 +42,7 @@ message SandboxPageSocketProto
 	optional AudioFileChangeProto AudioFileChange = 3;
 	optional GpuServerLoadInformationProto GpuServerLoad = 4;
 	optional CartOfferRsDto CartOffer = 5; // Defined in sandbox-ui protocol
+    repeated AudioFileInfoDto FileList = 6;
+    optional BounceProcessEvents BounceEvents = 7;
+    optional AudioStreamingEvents StreamingEvents = 8;
 }

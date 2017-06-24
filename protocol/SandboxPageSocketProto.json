@@ -511,6 +511,48 @@
             ]
         },
         {
+            "name": "BounceProcessEvents",
+            "syntax": "proto2",
+            "fields": [
+                {
+                    "rule": "optional",
+                    "type": "bool",
+                    "name": "BounceCompleteEvent",
+                    "id": 1
+                },
+                {
+                    "rule": "optional",
+                    "type": "bool",
+                    "name": "BounceCancelledEvent",
+                    "id": 2
+                },
+                {
+                    "rule": "optional",
+                    "type": "bool",
+                    "name": "BounceDialogClosedEvent",
+                    "id": 3
+                }
+            ]
+        },
+        {
+            "name": "AudioStreamingEvents",
+            "syntax": "proto2",
+            "fields": [
+                {
+                    "rule": "optional",
+                    "type": "bool",
+                    "name": "PauseStream",
+                    "id": 1
+                },
+                {
+                    "rule": "optional",
+                    "type": "bool",
+                    "name": "PlayStream",
+                    "id": 2
+                }
+            ]
+        },
+        {
             "name": "SandboxPageSocketProto",
             "syntax": "proto2",
             "fields": [
@@ -543,6 +585,24 @@
                     "type": "CartOfferRsDto",
                     "name": "CartOffer",
                     "id": 5
+                },
+                {
+                    "rule": "repeated",
+                    "type": "AudioFileInfoDto",
+                    "name": "FileList",
+                    "id": 6
+                },
+                {
+                    "rule": "optional",
+                    "type": "BounceProcessEvents",
+                    "name": "BounceEvents",
+                    "id": 7
+                },
+                {
+                    "rule": "optional",
+                    "type": "AudioStreamingEvents",
+                    "name": "StreamingEvents",
+                    "id": 8
                 }
             ]
         }
