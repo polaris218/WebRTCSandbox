@@ -1,0 +1,3 @@
+[submodule "components/protocol/sandbox-protocol"]
+	path = components/protocol/sandbox-protocol
+	url = git@git.braingines.com:gpuaudio/sandbox-protocol
