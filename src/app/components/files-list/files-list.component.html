@@ -1,0 +1,39 @@
+<div class="sidebarContent">
+    <div class="sidebarScrollContainter">
+        <div *ngFor="let track of filesList; index as i">
+            <file [(file)]="filesList[i]" [fileIndex]="i"></file>
+        </div>
+        <div style="display: none;">
+            <div class="track trackActive">
+                <div class="trackDelete"></div>
+                <div class="trackLeft">
+                    <div class="trackNumber"><span>3</span></div>
+                </div>
+                <div class="trackMiddle">
+                    <div class="trackName">Guitar TV7724 Am (ligature)</div>
+                    <div class="trackVolume">
+                        <div class="trackVolumeSlider">
+                            <div class="trackVolumeSliderMin"></div>
+                            <div class="trackVolumeSliderBar">
+                                <div class="trackVolumeSliderBarActive"></div>
+                                <div class="trackVolumeSliderBarTrack"></div>
+                            </div>
+                            <div class="trackVolumeSliderMax"></div>
+                        </div>
+                        <div class="trackVolumeValue">15</div>
+                    </div>
+                </div>
+                <div class="trackRight">
+                    <div class="trackTime">03:21</div>
+                    <div class="trackControlButton">
+                        <div class="trackFX"><span>FX</span></div>
+                        <div class="trackB"><span>B</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebarScrollRail">
+        <div class="sidebarScrollBar"></div>
+    </div>
+</div>

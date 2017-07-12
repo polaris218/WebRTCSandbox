@@ -1,0 +1,10 @@
+<div class="sidebarContent">
+    <div class="sidebarScrollContainter">
+        <div *ngFor="let product of productsList; index as i">
+            <product [(product)]="productsList[i]" [productIndex]="i"></product>
+        </div>
+    </div>
+    <div class="sidebarScrollRail">
+        <div class="sidebarScrollBar"></div>
+    </div>
+</div>

@@ -1,0 +1,5 @@
+<div class="popup-overlay" [ngHide]="!popupService.state.show" (click)="onOverlayClick($event)" close-popup>
+    <div class="popup-overlay__popup-wrap" close-popup>
+        <ng-container *ngComponentOutlet="popupService.state.component"></ng-container>
+    </div>
+</div>
