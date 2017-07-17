@@ -14,6 +14,7 @@ import {Popup} from "./modules/popup/popup.module";
 import {PopupService} from "./services/popup.service";
 import {NgHide} from "./directives/ng-hide.directive";
 import {TestPopup} from "./popups/popup-test/popup-test.content";
+import {UiSliderComponent} from "./components/_ui-components/ui-slider/ui-slider.component";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {TestPopup} from "./popups/popup-test/popup-test.content";
     ProductComponent,
     Popup,
     NgHide,
-    TestPopup
+    TestPopup,
+    UiSliderComponent
   ],
   imports: [
     CommonModule,

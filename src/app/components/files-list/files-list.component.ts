@@ -35,7 +35,6 @@ export class FilesListComponent {
     getFilesList() {
         this.api.GetSandboxState(res => {
             this.filesList = res.State.FileList;
-            console.log(this.filesList);
         });
     }
 }

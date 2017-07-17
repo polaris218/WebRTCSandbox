@@ -2585,6 +2585,11 @@ url
     height: 100%;
 }
 
+files-list, products-list, ui-slider {
+    display: block;
+    width: 100%;
+}
+
 /*# sourceMappingURL=main.css.map */
 
 
