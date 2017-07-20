@@ -3,7 +3,8 @@ import {ApiService} from "../../services/api.service";
 
 @Component({
     selector: 'files-list',
-    templateUrl: './files-list.component.html'
+    templateUrl: './files-list.component.html',
+    styleUrls: ['./files-list.component.css']
 })
 
 /**
@@ -18,6 +19,9 @@ export class FilesListComponent {
         FileList: [],
         FxAudioFileId: 0,
         BAudioFileId: 0
+    };
+    scrollBarConfig: any = {
+        wheelSpeed: 1
     };
 
     constructor(private api: ApiService) {

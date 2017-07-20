@@ -16,6 +16,12 @@ import {NgHide} from "./directives/ng-hide.directive";
 import {TestPopup} from "./popups/popup-test/popup-test.content";
 import {UiSliderComponent} from "./components/_ui-components/ui-slider/ui-slider.component";
 import {FileUploadPopup} from "./popups/file-upload-popup/file-upload-popup";
+import {PerfectScrollbarModule} from 'angular2-perfect-scrollbar';
+import {PerfectScrollbarConfigInterface} from 'angular2-perfect-scrollbar';
+
+const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
 
 @NgModule({
   declarations: [
@@ -34,7 +40,8 @@ import {FileUploadPopup} from "./popups/file-upload-popup/file-upload-popup";
     CommonModule,
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG)
   ],
   providers: [
     ApiService,

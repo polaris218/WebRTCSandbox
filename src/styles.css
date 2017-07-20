@@ -2590,6 +2590,39 @@ files-list, products-list, ui-slider {
     width: 100%;
 }
 
+.sidebarContent {
+    max-height: 300px;
+}
+.ps-container {
+    -ms-touch-action: auto;
+    touch-action: auto;
+    overflow: hidden !important;
+    -ms-overflow-style: none;
+}
+
+.ps-scrollbar-y-rail {
+    position: relative;
+    -ms-flex: 1 1 14px;
+    flex: 1 1 14px;
+    width: 14px;
+    min-width: 14px;
+    -ms-flex-item-align: stretch;
+    -ms-grid-row-align: stretch;
+    align-self: stretch;
+    border-left: 1px solid rgba(255, 255, 255, 0.02);
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.ps-scrollbar-y {
+    position: absolute;
+    left: 2px;
+    top: 100px;
+    width: 8px;
+    height: 163px;
+    border-radius: 4px;
+    background-color: #353939;
+}
+
 /*# sourceMappingURL=main.css.map */
 
 
