@@ -81,6 +81,7 @@ export class ApiService {
             responseType: 'arraybuffer',
             success: function (data) {
                 if (typeof cb === 'function') {
+                    console.log(rsType.decode(data));
                     cb(rsType.decode(data));
                 }
                 //return JSON.stringify(rsType.decode(data));
@@ -102,6 +103,7 @@ export class ApiService {
             responseType: 'arraybuffer',
             success: function (data) {
                 if (typeof cb === 'function') {
+                    console.log(rsType.decode(data));
                     cb(rsType.decode(data));
                 }
                 //var resp = rsType.decode(data);

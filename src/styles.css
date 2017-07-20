@@ -2012,7 +2012,7 @@ url
     text-align: center;
 }
 
-.track {
+/*.track {
     padding: 10px;
     position: relative;
     transition: all 0.4s;
@@ -2026,9 +2026,9 @@ url
     align-items: flex-start;
     -ms-flex-pack: justify;
     justify-content: space-between;
-}
+}*/
 
-.trackActive,
+/*.trackActive,
 .track:hover {
     border-radius: 6px;
     background-color: #2E3232;
@@ -2043,9 +2043,9 @@ url
 .trackActive .trackVolumeSliderBarTrack,
 .track:hover .trackVolumeSliderBarTrack {
     background-color: #2E3232;
-}
+}*/
 
-.trackLine {
+/*.trackLine {
     display: block;
     position: absolute;
     content: '';
@@ -2069,13 +2069,13 @@ url
     opacity: 0;
     visibility: hidden;
     transition: all 0.4px;
-}
+}*/
 
-.trackDelete:hover {
+/*.trackDelete:hover {
     background-image: url("/assets/img/track/delete-hover.png");
-}
+}*/
 
-.trackLeft {
+/*.trackLeft {
     -ms-flex: 0 1 30px;
     flex: 0 1 30px;
     width: 30px;
@@ -2371,7 +2371,7 @@ url
 
 .trackB:hover span {
     color: #FFF;
-}
+}*/
 
 .windowControl {
     position: absolute;

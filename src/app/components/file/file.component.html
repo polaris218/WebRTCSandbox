@@ -9,10 +9,16 @@
         <ui-slider></ui-slider>
     </div>
     <div class="trackRight">
-        <div class="trackTime">03:21</div>
+        <div class="trackTime">{{ file.LengthInSeconds * 1000 | date: 'mm:ss' }}</div>
         <div class="trackControlButton">
-            <div class="trackFX"><span>FX</span></div>
-            <div class="trackB"><span>B</span></div>
+            <label class="trackFX" [class.trackFXActive]="file.FileId === fxSelected">
+                <input type="radio" name="fx" value="{{ file.FileId }}" (change)="selectFx(file)" />
+                <span>FX</span>
+            </label>
+            <label class="trackB" [class.trackBActive]="file.FileId === bSelected">
+                <input type="radio" name="b" value="{{ file.FileId }}" (change)="selectB(file)" />
+                <span>B</span>
+            </label>
         </div>
     </div>
 </div>

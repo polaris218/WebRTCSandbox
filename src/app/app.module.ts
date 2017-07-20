@@ -15,6 +15,7 @@ import {PopupService} from "./services/popup.service";
 import {NgHide} from "./directives/ng-hide.directive";
 import {TestPopup} from "./popups/popup-test/popup-test.content";
 import {UiSliderComponent} from "./components/_ui-components/ui-slider/ui-slider.component";
+import {FileUploadPopup} from "./popups/file-upload-popup/file-upload-popup";
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {UiSliderComponent} from "./components/_ui-components/ui-slider/ui-slider
     Popup,
     NgHide,
     TestPopup,
+    FileUploadPopup,
     UiSliderComponent
   ],
   imports: [
@@ -39,7 +41,8 @@ import {UiSliderComponent} from "./components/_ui-components/ui-slider/ui-slider
     PopupService
   ],
   entryComponents: [
-      TestPopup
+    TestPopup,
+    FileUploadPopup
   ],
   bootstrap: [AppComponent]
 })

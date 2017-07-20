@@ -1,7 +1,10 @@
 <div class="sidebarContent">
     <div class="sidebarScrollContainter">
-        <div *ngFor="let track of filesList; index as i">
-            <file [(file)]="filesList[i]" [fileIndex]="i"></file>
+        <div *ngFor="let track of filesState.FileList; index as i">
+            <file [bSelected]="filesState.BAudioFileId"
+                  [fxSelected]="filesState.FxAudioFileId"
+                  [(file)]="filesState.FileList[i]"
+                  [fileIndex]="i"></file>
         </div>
         <div style="display: none;">
             <div class="track trackActive">

@@ -6,6 +6,8 @@ export class FileModel {
     LengthInBytes: number;
     LengthInSeconds: number;
     Volume: number;
+    fx: boolean;
+    b: boolean;
 
     constructor(params) {
         for (let i in params) {

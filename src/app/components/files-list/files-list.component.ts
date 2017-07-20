@@ -14,7 +14,11 @@ import {ApiService} from "../../services/api.service";
 
 export class FilesListComponent {
     initApiInterval: any = 0;
-    filesList: any[];
+    filesState: any = {
+        FileList: [],
+        FxAudioFileId: 0,
+        BAudioFileId: 0
+    };
 
     constructor(private api: ApiService) {
         this.checkIfApiInited();
@@ -34,7 +38,7 @@ export class FilesListComponent {
 
     getFilesList() {
         this.api.GetSandboxState(res => {
-            this.filesList = res.State.FileList;
+            this.filesState = res.State;
         });
     }
 }
