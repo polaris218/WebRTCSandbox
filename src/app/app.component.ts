@@ -23,7 +23,6 @@ export class AppComponent {
     openPopup() {
         this.popupService.open(TestPopup, {})
             .subscribe(() => {
-                console.log('aasdad');
                 this.rejected = true;
                 this.onReject.emit();
             });

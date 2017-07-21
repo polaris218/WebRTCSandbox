@@ -2585,7 +2585,7 @@ url
     height: 100%;
 }
 
-files-list, products-list, ui-slider {
+files-list, products-list, ui-slider, files-controls {
     display: block;
     width: 100%;
 }
