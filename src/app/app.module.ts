@@ -19,6 +19,7 @@ import {FileUploadPopup} from "./popups/file-upload-popup/file-upload-popup";
 import {PerfectScrollbarModule} from 'angular2-perfect-scrollbar';
 import {PerfectScrollbarConfigInterface} from 'angular2-perfect-scrollbar';
 import {FilesControlsComponent} from "./components/files-controls/files-controls.component";
+import {UploadService} from "./services/upload.service";
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -47,7 +48,8 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   ],
   providers: [
     ApiService,
-    PopupService
+    PopupService,
+    UploadService
   ],
   entryComponents: [
     TestPopup,

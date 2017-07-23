@@ -9,6 +9,15 @@
     </div>
     <div class="modalMiddle">
         <div class="modalContent modalContentCenter">
+            <form #f="ngForm" (ngSubmit)="uploadFile(f)" novalidate>
+                <input type="file"
+                       name="filetoupload"
+                       (change)="prepareToUploadFile($event)"
+                       [(ngModel)]="data.filetoupload" />
+
+                <button type="submit">Send</button>
+            </form>
+
             <h4>Due to the sandbox concept, <br> the mixdown is limited to 2 minutes long.</h4>
             <div class="modalProgress">
                 <div class="modalProgressRail">

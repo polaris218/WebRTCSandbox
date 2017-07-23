@@ -20,7 +20,6 @@ export class FilesControlsComponent {
     constructor(private popupService: PopupService) {}
 
     uploadFile() {
-        console.log('POPUP');
         this.popupService.open(FileUploadPopup, {})
             .subscribe(() => {
                 this.rejected = true;
