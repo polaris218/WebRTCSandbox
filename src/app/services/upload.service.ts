@@ -1,147 +1,113 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Rx';
+import {environment} from "../../environments/environment";
+import {UploadItem} from "../interface";
 
 @Injectable()
 export class UploadService {
-    public progress: any;
-    public progressObserver: any;
+    onProgressUpload = (item: UploadItem, progress: number) => {};
+    onCompleteUpload = (item: UploadItem, response: any, status: any, headers: any) => {};
+    onSuccessUpload = (item: UploadItem, response: any, status: any, headers: any) => {};
+    onErrorUpload = (item: UploadItem, response: any, status: any, headers: any) => {};
+    onCancelUpload = (item: UploadItem, response: any, status: any, headers: any) => {};
 
-    constructor() {
-        this.progress = Observable.create(observer => {
-            this.progressObserver = observer
-        }).share();
+    constructor() { }
+
+    upload(item: UploadItem) {
+        if(this.isHTML5()) {
+            this.xhrTransport(item);
+        } else {
+            this.onErrorUpload(item, 'Unsupported browser.', null, null);
+        }
     }
 
-    uploadFiles(files: File[]) {
-        const url = 'http://localhost:3005/upload';
+    private isHTML5(): boolean {
+        return !!((<any>window).File && (<any>window).FormData);
+    }
 
-        return Observable.create(observer => {
-            let formData: FormData = new FormData(),
-                xhr: XMLHttpRequest = new XMLHttpRequest();
+    private xhrTransport(item: UploadItem) {
+        let xhr  = new (<any>window).XMLHttpRequest();
+        let form = new (<any>window).FormData();
 
-            for (let i = 0; i < files.length; i++) {
-                formData.append("uploads[]", files[i], files[i].name);
-            }
-
-            xhr.onreadystatechange = () => {
-                if (xhr.readyState === 4) {
-                    if (xhr.status === 200) {
-                        observer.next(JSON.parse(xhr.response));
-                        observer.complete();
-                    } else {
-                        observer.error(xhr.response);
-                    }
-                }
-            };
-
-            xhr.upload.onprogress = (event) => {
-                this.progress = Math.round(event.loaded / event.total * 100);
-
-                this.progressObserver.next(this.progress);
-            };
-
-            xhr.open('POST', url, true);
-            xhr.send(formData);
+        this.forEach(item.formData, (key: string, value: any) => {
+            form.append(key, value);
         });
+
+        form.append(item.alias, item.file, item.file.name);
+
+        xhr.upload.onprogress = (event: any) => {
+            let progress = Math.round(event.lengthComputable ? event.loaded * 100 / event.total : 0);
+            this.onProgressUpload(item, progress);
+        };
+
+        xhr.onload = () => {
+            let headers = this.parseHeaders(xhr.getAllResponseHeaders());
+            let response = this.parseResponse(headers['Content-Type'], xhr.response);
+            if(this.isSuccessStatus(xhr.status)) {
+                this.onSuccessUpload(item, response, xhr.status, headers);
+            } else {
+                this.onErrorUpload(item, response, xhr.status, headers);
+            }
+            this.onCompleteUpload(item, response, xhr.status, headers);
+        };
+
+        xhr.onerror = () => {
+            let headers = this.parseHeaders(xhr.getAllResponseHeaders());
+            let response = this.parseResponse(headers['Content-Type'], xhr.response);
+            this.onErrorUpload(item, response, xhr.status, headers);
+            this.onCompleteUpload(item, response, xhr.status, headers);
+        };
+
+        xhr.onabort = () => {
+            let headers = this.parseHeaders(xhr.getAllResponseHeaders());
+            let response = this.parseResponse(headers['Content-Type'], xhr.response);
+            this.onCancelUpload(item, response, xhr.status, headers);
+            this.onCompleteUpload(item, response, xhr.status, headers);
+        };
+
+        xhr.open(item.method, item.url, true);
+
+        xhr.withCredentials = item.withCredentials;
+
+        this.forEach(item.headers, (name: string, value: string) => {
+            xhr.setRequestHeader(name, value);
+        });
+
+        xhr.send(form);
     }
-}
 
-/*import {Injectable} from "@angular/core";
-import {ActivatedRoute, Router} from '@angular/router';
-import {Http, Headers, Response, Request, RequestMethod, URLSearchParams, RequestOptions} from "@angular/http";
-import {Observable} from 'rxjs/Rx';
-
-declare var $: any;
-
-@Injectable()
-export class HttpClient {
-    requestUrl: string;
-    responseData: any;
-    handleError: any;
-
-    constructor(private router: Router,
-                private http: Http) {
-        this.http = http;
+    private isSuccessStatus(status: number) {
+        return (status >= 200 && status < 300) || status === 304;
     }
 
-    postWithFile(url: string, postData: any, files: File[]) {
-
-        let headers = new Headers();
-        let formData: FormData = new FormData();
-        formData.append('files', files[0], files[0].name);
-        // For multiple files
-        // for (let i = 0; i < files.length; i++) {
-        //     formData.append(`files[]`, files[i], files[i].name);
-        // }
-
-        if (postData !== "" && postData !== undefined && postData !== null) {
-            for (var property in postData) {
-                if (postData.hasOwnProperty(property)) {
-                    formData.append(property, postData[property]);
-                }
+    private forEach(obj: any, callback: any) {
+        for (var i in obj) {
+            if (obj.hasOwnProperty(i)) {
+                callback(i, obj[i]);
             }
         }
-        var returnReponse = new Promise((resolve, reject) => {
-            this.http.post(url, formData, {
-                headers: headers
-            }).subscribe(
-                res => {
-                    this.responseData = res.json();
-                    resolve(this.responseData);
-                },
-                error => {
-                    this.router.navigate(['/login']);
-                    reject(error);
-                }
-            );
-        });
-        return returnReponse;
     }
-}*/
 
+    private parseHeaders(headers: string) {
+        let dict = {};
+        let lines = headers.split('\n');
+        for (let i = 0; i < lines.length; i++) {
+            let entry = lines[i].split(': ');
+            if(entry.length > 1) {
+                dict[entry[0]] = entry[1];
+            }
+        }
+        return dict;
+    }
 
-/*import {Injectable} from '@angular/core';
- import {Observable} from 'rxjs/Rx';
-
- @Injectable()
- export class UploadService {
- public progress: any;
- public progressObserver: any;
-
- constructor() {
- this.progress = Observable.create(observer => {
- this.progressObserver = observer
- }).share();
- }
-
- private makeFileRequest(url: string, params: string[], files: File[]) {
- return Observable.create(observer => {
- let formData: FormData = new FormData(),
- xhr: XMLHttpRequest = new XMLHttpRequest();
-
- for (let i = 0; i < files.length; i++) {
- formData.append("uploads[]", files[i], files[i].name);
- }
-
- xhr.onreadystatechange = () => {
- if (xhr.readyState === 4) {
- if (xhr.status === 200) {
- observer.next(JSON.parse(xhr.response));
- observer.complete();
- } else {
- observer.error(xhr.response);
- }
- }
- };
-
- xhr.upload.onprogress = (event) => {
- this.progress = Math.round(event.loaded / event.total * 100);
-
- this.progressObserver.next(this.progress);
- };
-
- xhr.open('POST', url, true);
- xhr.send(formData);
- });
- }
- }*/
+    private parseResponse(contentType: string, response: string) {
+        let parsed = response;
+        if(contentType && contentType.indexOf('application/json') === 0) {
+            try {
+                parsed = JSON.parse(response);
+            } catch(e) {
+            }
+        }
+        return parsed;
+    }
+}

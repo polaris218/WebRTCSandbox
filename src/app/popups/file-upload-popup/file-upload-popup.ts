@@ -4,6 +4,7 @@ import {PopupService} from "../../services/popup.service";
 import {PopupContent} from "../../modules/popup/popup.content.module";
 import {LoadState} from "../../state/load.state";
 import {UploadService} from "../../services/upload.service";
+import {UploadItem} from "../../interface";
 
 @Component({
     selector: 'file-upload-popup',
@@ -12,19 +13,19 @@ import {UploadService} from "../../services/upload.service";
 export class FileUploadPopup extends PopupContent {
     protected data: any;
     protected submitState = new LoadState();
-    filesList: File[];
+    public item: UploadItem;
 
     constructor(popupService: PopupService, private uploadService: UploadService) {
         super(popupService);
+
+        this.item = new UploadItem();
     }
 
     prepareToUploadFile($event) {
-        this.filesList = $event.srcElement.files;
+        this.item.file = $event.srcElement.files[0];
     }
 
     uploadFile(f: NgForm) {
-        this.uploadService.uploadFiles(this.filesList).subscribe(res => {
-            console.log(res);
-        });
+        this.uploadService.upload(this.item);
     }
 }
