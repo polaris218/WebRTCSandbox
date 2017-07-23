@@ -2,6 +2,7 @@ import {Component, EventEmitter, Output} from "@angular/core";
 import {PopupService} from "./services/popup.service";
 import {TestPopup} from "./popups/popup-test/popup-test.content";
 import {LoadState} from "./state/load.state";
+import {SocketService} from "./services/socket.service";
 
 @Component({
     selector: 'app',
@@ -17,7 +18,8 @@ export class AppComponent {
     @Output() onClose: EventEmitter<any> = new EventEmitter();
     @Output() onReject: EventEmitter<any> = new EventEmitter();
 
-    constructor(private popupService: PopupService) {
+    constructor(private popupService: PopupService, private socket: SocketService) {
+        console.log(this);
     }
 
     openPopup() {

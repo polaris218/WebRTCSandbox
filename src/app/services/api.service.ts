@@ -1,73 +1,11 @@
 import {Injectable} from "@angular/core";
 import {environment} from "../../environments/environment";
+import {ServerService} from "./server.service";
 
 @Injectable()
-export class ApiService {
-    /**
-     * TODO:
-     * 1. Переделать init
-     * 2. jQuery и jQueryBinary использовать в качестве ts модулей. Ну или просто прийти к работе с промисами, без callback
-     * 3.
-     *
-     * */
-    public inited: boolean = false;
-    public ProtoBuf: any;
-    public builder: any;
-    public dto: any = {
-        RequestMessage: Object,
-        ResponseMessage: Object,
-        WebsocketMessage: Object,
-        CartOfferRqDto: Object,
-        CartOfferRsDto: Object,
-        SandboxStateRqDto: Object,
-        SandboxStateRsDto: Object,
-        BounceCounterRqDto: Object,
-        BounceCounterRsDto: Object,
-        StorageLimitsRsDto: Object
-    };
-
+export class ApiService extends ServerService {
     constructor() {
-        this.ProtoBuf = window['dcodeIO'].ProtoBuf;
-        this.builder = this.ProtoBuf.newBuilder({convertFieldsToCamelCase: false});
-
-        this.initProtoBuf();
-    }
-
-    initProtoBuf() {
-        const self = this;
-
-        const secondInitStep = () => {
-            window['jQuery'].ajax({
-                url: self.getUrl('static/protocol/ProductSandbox.json'),
-                context: document.body
-            }).done(function (data) {
-                self.ProtoBuf.loadJson(JSON.stringify(data), self.builder);
-                self.dto['CartOfferRqDto'] = self.builder.build('CartOfferRqDto');
-                self.dto['CartOfferRsDto'] = self.builder.build('CartOfferRsDto');
-                self.dto['SandboxStateRqDto'] = self.builder.build('SandboxStateRqDto');
-                self.dto['SandboxStateRsDto'] = self.builder.build('SandboxStateRsDto');
-                self.dto['BounceCounterRqDto'] = self.builder.build('BounceCounterRqDto');
-                self.dto['BounceCounterRsDto'] = self.builder.build('BounceCounterRsDto');
-                self.dto['StorageLimitsRsDto'] = self.builder.build('StorageLimitsRsDto');
-
-                self.inited = true;
-
-                //console.log(self.getQuery('http://localhost:3005/service/bo/ProductSandbox/GetSandboxState/', {SandboxHash: "abcdef"}, self.dto['SandboxStateRsDto']));
-                //self.getQuery('http://localhost:3005/service/bo/ProductSandbox/GetSandboxState/', {SandboxHash: "abcdef"}, app['SandboxStateRsDto']);
-            });
-        };
-
-        window['jQuery'].ajax({
-            url: self.getUrl('static/js/proto/Example.json'),
-            context: document.body
-        }).done(function (data) {
-            self.ProtoBuf.loadJson(JSON.stringify(data), self.builder);
-            self.dto['RequestMessage'] = self.builder.build('GetRqProto');
-            self.dto['ResponseMessage'] = self.builder.build('GetRsProto');
-            self.dto['WebsocketMessage'] = self.builder.build('WebsocketProto');
-
-            secondInitStep();
-        });
+        super();
     }
 
     private getQuery(uri, msg, rsType, cb) {
@@ -84,8 +22,6 @@ export class ApiService {
                     console.log(rsType.decode(data));
                     cb(rsType.decode(data));
                 }
-                //return JSON.stringify(rsType.decode(data));
-                //alert('Got response from server: ' + JSON.stringify(resp));
             }
         });
     }
@@ -106,14 +42,8 @@ export class ApiService {
                     console.log(rsType.decode(data));
                     cb(rsType.decode(data));
                 }
-                //var resp = rsType.decode(data);
-                //alert('Got response from server: ' + JSON.stringify(resp));
             }
         });
-    }
-
-    private getUrl(url: string) {
-        return environment.api.host + url;
     }
 
     public GetSandboxState(cb: any) {

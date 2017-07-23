@@ -20,6 +20,8 @@ import {PerfectScrollbarModule} from 'angular2-perfect-scrollbar';
 import {PerfectScrollbarConfigInterface} from 'angular2-perfect-scrollbar';
 import {FilesControlsComponent} from "./components/files-controls/files-controls.component";
 import {UploadService} from "./services/upload.service";
+import {ServerService} from "./services/server.service";
+import {SocketService} from "./services/socket.service";
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -47,8 +49,10 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG)
   ],
   providers: [
+    ServerService,
     ApiService,
     PopupService,
+    SocketService,
     UploadService
   ],
   entryComponents: [

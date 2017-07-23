@@ -11,5 +11,8 @@ export const environment = {
   upload: {
     url: 'http://localhost:3005/upload',
     method: 'POST'
+  },
+  socket: {
+    url: 'ws://localhost:3005/'
   }
 };
