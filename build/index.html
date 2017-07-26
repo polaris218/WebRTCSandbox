@@ -200,6 +200,52 @@
         <button class="buttonLight">Cancel</button>
       </div>
     </div>
+    <div class="modal modalWide" id="modal-legend">
+      <div class="modalTitle">
+        <div class="modalHeader modalHeaderCenter">
+          <h6>LEGEND</h6>
+        </div>
+        <div class="modalClose">
+          <button class="modalCloseButton js-modal-close"></button>
+        </div>
+      </div>
+      <div class="modalMiddle modalMiddleScroll modalMiddleScrollLarge">
+        <div class="modalContent">
+          <div class="modalLegendItems">
+            <div class="modalLegendItem">
+              <div class="modalLegendItemLeft"><img src="img/legend/icon.png"></div>
+              <div class="modalLegendItemRight">
+                <ul>
+                  <li>Server statistics. «Load» shows percents of loaded server’s GPU cores (4 «AMD Fury Nano» cards). "Clients" shows how many site visitors use the sandbox at the moment. «Ping» shows overall latency between «what you do» and «what you hear».</li>
+                </ul>
+              </div>
+            </div>
+            <div class="modalLegendItem">
+              <div class="modalLegendItemLeft"><img src="img/legend/pic.png"></div>
+              <div class="modalLegendItemRight">
+                <ul>
+                  <li>Status icon shows link state between you and GPU server. Yellow color means good link but problem on the server, red color means no connection.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="modalLegendItem">
+              <div class="modalLegendItemLeft"><img src="img/legend/pic2.png"></div>
+              <div class="modalLegendItemRight">
+                <ul>
+                  <li>«Back» button allows you to undo last 10 actions by rolling them around in a circle. «Help» button calls this popup window. «Zoom» button changes scale of FX window from full zoom out to real size, you can use hand tool to move around the FX window. «Close» button closes Sandbox window and redirects you to the product page.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modalScrollRail">
+          <div class="modalScrollBar"></div>
+        </div>
+      </div>
+      <div class="modalFooter">
+        <button class="buttonLight">I see</button>
+      </div>
+    </div>
     <div class="overlay"></div>
     <div class="window">
       <div class="windowTitleBar">
@@ -458,6 +504,8 @@
             <button class="buttonLight" data-modal="#modal-wide-scroll">Modal wide with scroll</button><br />
 <br />
             <button class="buttonLight" data-modal="#modal-progress">Modal progress</button><br />
+<br />
+            <button class="buttonLight" data-modal="#modal-legend">Modal legend</button><br />
 <br />
           </div>
           <div class="mainFooter">

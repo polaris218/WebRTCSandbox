@@ -1,0 +1,33 @@
+.modal.modalWide#modal-legend
+    .modalTitle
+        .modalHeader.modalHeaderCenter
+            h6 LEGEND
+        .modalClose
+            button.modalCloseButton.js-modal-close
+    .modalMiddle.modalMiddleScroll.modalMiddleScrollLarge
+        .modalContent
+            .modalLegendItems
+                .modalLegendItem
+                    .modalLegendItemLeft
+                        img(src="img/legend/icon.png")
+                    .modalLegendItemRight
+                        ul
+                            li Server statistics. «Load» shows percents of loaded server’s GPU cores (4 «AMD Fury Nano» cards). "Clients" shows how many site visitors use the sandbox at the moment. «Ping» shows overall latency between «what you do» and «what you hear».
+                .modalLegendItem
+                    .modalLegendItemLeft
+                        img(src="img/legend/pic.png")
+                    .modalLegendItemRight
+                        ul
+                            li Status icon shows link state between you and GPU server. Yellow color means good link but problem on the server, red color means no connection.
+                .modalLegendItem
+                    .modalLegendItemLeft
+                        img(src="img/legend/pic2.png")
+                    .modalLegendItemRight
+                        ul
+                            li «Back» button allows you to undo last 10 actions by rolling them around in a circle. «Help» button calls this popup window. «Zoom» button changes scale of FX window from full zoom out to real size, you can use hand tool to move around the FX window. «Close» button closes Sandbox window and redirects you to the product page.
+
+        .modalScrollRail
+            .modalScrollBar
+    .modalFooter
+        button.buttonLight I see
+
