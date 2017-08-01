@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {ApiService} from "../../services/api.service";
+import {SocketService} from "../../../../src/app/services/socket.service";
 
 @Component({
     selector: 'files-list',
@@ -24,7 +25,7 @@ export class FilesListComponent {
         wheelSpeed: 1
     };
 
-    constructor(private api: ApiService) {
+    constructor(private api: ApiService, private socket: SocketService) {
         this.checkIfApiInited();
     }
 
@@ -45,10 +46,10 @@ export class FilesListComponent {
             this.filesState = res.State;
 
             this.filesState.FileList.sort((a, b) => {
-                if (a.isOwned > b.isOwned) {
-                    return 1;
-                } else if (a.isOwned < b.isOwned) {
+                if (a.IsOwned > b.IsOwned) {
                     return -1;
+                } else if (a.IsOwned < b.IsOwned) {
+                    return 1;
                 } else {
                     return a.FileId - b.FileId;
                 }
@@ -56,31 +57,15 @@ export class FilesListComponent {
         });
     }
 
-    selectFile(file, $event: MouseEvent) {
-        if (!this.preventChildElementsClick($event)) {
-            file.active = !file.active;
-
-            file.active && this.removeSelectionFromOtherFiles(file);
-            file.active && console.log('File ' + file.Caption + '  is selected now!');
-            !file.active && console.log('File ' + file.Caption + ' isn`t selected now!');
-        }
-    }
-
-    removeSelectionFromOtherFiles(activeFile) {
-        this.filesState.FileList.forEach((file) => {
-            if (file.FileId !== activeFile.FileId) {
-                file.active = false;
-            }
-        });
-    }
-
-    preventChildElementsClick($event) {
-        return (<Element>$event.target).hasAttribute('non-click-by-parent') ||
-            (<Element>$event.target.parentNode).hasAttribute('non-click-by-parent');
-    }
-
     deleteFile(file) {
-        console.log('File ' + file.Caption + ' will be removed!');
+        let msg = {
+            AudioFileListEvents: {
+                FileDelete: {
+                    FileId: file.FileId
+                }
+            }
+        };
+        this.socket.send(msg);
     }
 
     /**
@@ -98,7 +83,13 @@ export class FilesListComponent {
         }
 
         this.filesState.FxAudioFileId = file.FileId;
-        console.log('File ' + file.Caption + ' will be marked as FX!');
+
+        let msg = {
+            AudioFileListEvents: {
+                FxFileChangedId: this.filesState.FxAudioFileId
+            }
+        };
+        this.socket.send(msg);
     }
 
     selectB(file) {
@@ -112,7 +103,13 @@ export class FilesListComponent {
         }
 
         this.filesState.BackgroundAudioFileId = file.FileId;
-        console.log('File ' + file.Caption + ' will be marked as B!');
+
+        let msg = {
+            AudioFileListEvents: {
+                BackgroundFileChangedId: this.filesState.BackgroundAudioFileId
+            }
+        };
+        this.socket.send(msg);
     }
 
     /**
@@ -121,9 +118,25 @@ export class FilesListComponent {
      * */
     setVolumeToMin(file) {
         file.Volume = 0;
+
+        this.onVolumeChange(file.Volume, file);
     }
 
     setVolumeToMax(file) {
         file.Volume = 100;
+
+        this.onVolumeChange(file.Volume, file);
+    }
+
+    onVolumeChange($event, file) {
+        let msg = {
+            AudioFileListEvents: {
+                VolumeChange: {
+                    FileId: file.FileId,
+                    Volume: $event
+                }
+            }
+        };
+        this.socket.send(msg);
     }
 }

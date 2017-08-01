@@ -38,4 +38,9 @@ export class SocketService extends ServerService {
         }
         return this.gpuServerLoad.GpuServerLoad;
     }
+
+    send(msg) {
+        let data = new this.dto.SandboxPageSocketProto(msg).toBuffer();
+        this.ws.send(data);
+    }
 }

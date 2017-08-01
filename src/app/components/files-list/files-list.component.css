@@ -17,14 +17,12 @@
     justify-content: space-between;
 }
 
-.trackActive,
-.track:hover {
+.trackActive {
     border-radius: 6px;
     background-color: #2E3232;
 }
 
-.trackActive .trackDelete,
-.track:hover .trackDelete {
+.trackActive .trackDelete {
     opacity: 1;
     visibility: visible;
 }

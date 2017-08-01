@@ -1,10 +1,11 @@
 <div class="sidebarScrollContainter">
     <div class="track"
          *ngFor="let file of filesState.FileList; index as i"
-         [class.trackActive]="file.active"
-         (click)="selectFile(filesState.FileList[i], $event)">
+         [class.trackActive]="file.IsOwned">
         <div class="trackLine"></div>
-        <div class="trackDelete" (click)="deleteFile(file)"></div>
+        <div class="trackDelete"
+             *ngIf="file.IsOwned"
+             (click)="deleteFile(file)"></div>
         <div class="trackLeft">
             <div class="trackNumber"><span>{{ i + 1 }}</span></div>
         </div>
@@ -20,6 +21,7 @@
                                     [min]="0"
                                     [max]="100"
                                     [step]="1"
+                                    (ngModelChange)="onVolumeChange($event, file)"
                                     [(ngModel)]="file.Volume"></nouislider>
                     </div>
                     <div class="trackVolumeSliderMax" (click)="setVolumeToMax(file)"></div>
