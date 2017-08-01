@@ -14,7 +14,6 @@ export class PopupService {
 
     open(component: Type<any>, data?: any) {
         this.show(component, data);
-        console.log(this);
         return this.subject;
     }
 
