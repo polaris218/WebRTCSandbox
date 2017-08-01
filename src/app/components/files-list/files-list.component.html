@@ -13,7 +13,7 @@
 
             <div class="trackVolume">
                 <div class="trackVolumeSlider">
-                    <div class="trackVolumeSliderMin"></div>
+                    <div class="trackVolumeSliderMin" (click)="setVolumeToMin(file)"></div>
                     <div class="trackVolumeSliderBar">
                         <nouislider non-click-by-parent
                                     [connect]="true"
@@ -22,7 +22,7 @@
                                     [step]="1"
                                     [(ngModel)]="file.Volume"></nouislider>
                     </div>
-                    <div class="trackVolumeSliderMax"></div>
+                    <div class="trackVolumeSliderMax" (click)="setVolumeToMax(file)"></div>
                 </div>
                 <div class="trackVolumeValue">{{ file.Volume }}</div>
             </div>
@@ -33,13 +33,17 @@
                 <label class="trackFX"
                        non-click-by-parent
                        [class.trackFXActive]="file.FileId === filesState.FxAudioFileId">
-                    <input type="radio" name="fx" value="{{ file.FileId }}" (change)="selectFx(file)"/>
+                    <input type="checkbox"
+                           name="fx"
+                           (change)="selectFx(file)" />
                     <span>FX</span>
                 </label>
                 <label class="trackB"
                        non-click-by-parent
                        [class.trackBActive]="file.FileId === filesState.BackgroundAudioFileId">
-                    <input type="radio" name="b" value="{{ file.FileId }}" (change)="selectB(file)"/>
+                    <input type="checkbox"
+                           name="b"
+                           (change)="selectB(file)" />
                     <span>B</span>
                 </label>
             </div>

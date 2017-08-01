@@ -83,11 +83,47 @@ export class FilesListComponent {
         console.log('File ' + file.Caption + ' will be removed!');
     }
 
+    /**
+     * TODO: как избавиться от этой простыни?
+     *
+     * */
     selectFx(file) {
+        if (this.filesState.FxAudioFileId == file.FileId) {
+            this.filesState.FxAudioFileId = 0;
+            return;
+        }
+
+        if (this.filesState.BackgroundAudioFileId == file.FileId) {
+            return false;
+        }
+
+        this.filesState.FxAudioFileId = file.FileId;
         console.log('File ' + file.Caption + ' will be marked as FX!');
     }
 
     selectB(file) {
+        if (this.filesState.BackgroundAudioFileId == file.FileId) {
+            this.filesState.BackgroundAudioFileId = 0;
+            return;
+        }
+
+        if (this.filesState.FxAudioFileId == file.FileId) {
+            return false;
+        }
+
+        this.filesState.BackgroundAudioFileId = file.FileId;
         console.log('File ' + file.Caption + ' will be marked as B!');
+    }
+
+    /**
+     * TODO: вынести минимальное и максимальное значение в конфиг
+     *
+     * */
+    setVolumeToMin(file) {
+        file.Volume = 0;
+    }
+
+    setVolumeToMax(file) {
+        file.Volume = 100;
     }
 }
