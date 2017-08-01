@@ -19,7 +19,7 @@ export class ApiService extends ServerService {
             responseType: 'arraybuffer',
             success: function (data) {
                 if (typeof cb === 'function') {
-                    console.log(rsType.decode(data));
+                    //console.log(rsType.decode(data));
                     cb(rsType.decode(data));
                 }
             }

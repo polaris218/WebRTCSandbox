@@ -5,56 +5,37 @@ import {ServerService} from "./server.service";
 @Injectable()
 export class SocketService extends ServerService {
     private ws: WebSocket;
+    public gpuServerLoad: any = {};
 
     constructor() {
         super();
 
         this.init();
-
-        this.subScribeOnMessage();
     }
 
     init() {
         this.ws = new WebSocket(environment.socket.url);
-    }
 
-    send(data: any) {
-        //let msg = this.dto.WebsocketMessage();
-        this.ws.send(data);
-    }
-
-    subScribeOnMessage() {
         this.ws.onmessage = this.onMessage.bind(this);
     }
 
-    onMessage(msg) {
-        setInterval(() => {
-            let arrayBuffer;
-            let fileReader = new FileReader();
-            let self = this;
-            fileReader.onload = function() {
-                arrayBuffer = this.result;
-                let msg = self.dto.WebsocketMessage.decode(arrayBuffer);
-                //console.dir(msg);
-            };
-            fileReader.readAsArrayBuffer(msg.data);
-        });
+    onMessage(evt) {
+        let arrayBuffer;
+        let fileReader = new FileReader();
+        let self = this;
+        fileReader.onload = function() {
+            arrayBuffer = this.result;
+            self.gpuServerLoad = self.dto.SandboxPageSocketProto.decode(arrayBuffer);
+        };
+        fileReader.readAsArrayBuffer(evt.data);
+    }
+
+    getGpuServerLoad() {
+        for (let i in this.gpuServerLoad.GpuServerLoad) {
+            if (this.gpuServerLoad.GpuServerLoad.hasOwnProperty(i)) {
+                this.gpuServerLoad.GpuServerLoad[i] = Math.round(this.gpuServerLoad.GpuServerLoad[i]);
+            }
+        }
+        return this.gpuServerLoad.GpuServerLoad;
     }
 }
-
-/*window.websocketSend = function() {
-    window.ws.send(new window.WebsocketMessage({FirstFlag: true}).toBuffer());
-};
-
-window.ws.onmessage = function(evt) {
-    console.log('Got message from server');
-
-    var arrayBuffer;
-    var fileReader = new FileReader();
-    fileReader.onload = function() {
-        arrayBuffer = this.result;
-        var msg = window.WebsocketMessage.decode(arrayBuffer);
-        console.dir(msg);
-    };
-    fileReader.readAsArrayBuffer(evt.data);
-};*/
