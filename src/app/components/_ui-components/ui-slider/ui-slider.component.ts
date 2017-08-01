@@ -2,7 +2,8 @@ import {Component, Input} from '@angular/core';
 
 @Component({
     selector: 'ui-slider',
-    templateUrl: './ui-slider.component.html'
+    templateUrl: './ui-slider.component.html',
+    styleUrls: ['./ui-slider.component.css']
 })
 
 export class UiSliderComponent {

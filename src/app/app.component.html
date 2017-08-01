@@ -187,8 +187,8 @@
   </div>
   <div class="windowContent">
     <aside class="sidebar">
-      <files-list></files-list>
-      <files-controls></files-controls>
+      <files-list class="sidebarContent" [perfect-scrollbar]="scrollBarConfig"></files-list>
+      <files-controls [gpuServerLoad]="getGpuServerLoad()"></files-controls>
     </aside>
     <main class="main">
       <div class="mainContent mainContentDemo">
@@ -221,7 +221,7 @@
       </div>
     </main>
     <aside class="sidebar">
-      <products-list></products-list>
+      <products-list class="sidebarContent" [perfect-scrollbar]="scrollBarConfig"></products-list>
 
       <div class="sidebarFooter">
         <div class="cart">
