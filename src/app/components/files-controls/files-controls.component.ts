@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from "@angular/core";
+import {Component, EventEmitter, Output, Input} from "@angular/core";
 import {LoadState} from "../../state/load.state";
 import {PopupService} from "../../services/popup.service";
 import {FileUploadPopup} from "../../popups/file-upload-popup/file-upload-popup";
@@ -16,6 +16,8 @@ export class FilesControlsComponent {
 
     @Output() onClose: EventEmitter<any> = new EventEmitter();
     @Output() onReject: EventEmitter<any> = new EventEmitter();
+
+    @Input() gpuServerLoad: any;
 
     constructor(private popupService: PopupService) {}
 
