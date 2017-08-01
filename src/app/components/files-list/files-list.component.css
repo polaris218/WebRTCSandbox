@@ -1,0 +1,258 @@
+/**
+    File styles
+**/
+.track {
+    padding: 10px;
+    position: relative;
+    transition: all 0.4s;
+    margin-bottom: 1px;
+    -js-display: flex;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.trackActive,
+.track:hover {
+    border-radius: 6px;
+    background-color: #2E3232;
+}
+
+.trackActive .trackDelete,
+.track:hover .trackDelete {
+    opacity: 1;
+    visibility: visible;
+}
+
+.trackActive .trackVolumeSliderBarTrack,
+.track:hover .trackVolumeSliderBarTrack {
+    background-color: #2E3232;
+}
+
+.trackLine {
+    display: block;
+    position: absolute;
+    content: '';
+    width: calc(100% - 20px);
+    height: 1px;
+    left: 10px;
+    bottom: -1px;
+    background-color: #262828;
+}
+
+.trackDelete {
+    display: block;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    right: 11px;
+    top: 11px;
+    background: url("images/delete.png") center center no-repeat;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4px;
+}
+
+.trackDelete:hover {
+    background-image: url("images/delete-hover.png");
+}
+
+.trackLeft {
+    -ms-flex: 0 1 30px;
+    flex: 0 1 30px;
+    width: 30px;
+}
+
+.trackNumber {
+    width: 18px;
+    height: 18px;
+    border: 1px solid #3C4444;
+    background-color: rgba(60, 68, 68, 0);
+    border-radius: 50%;
+    padding-top: 2px;
+    -js-display: flex;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.trackNumber span {
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    color: #6A7777;
+    font-family: 'Circe', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.trackMiddle {
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+    -ms-flex-preferred-size: calc(100% - 102px);
+    flex-basis: calc(100% - 102px);
+    width: calc(100% - 102px);
+    max-width: calc(100% - 102px);
+    -js-display: flex;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+}
+
+.trackName {
+    width: calc(100% - 20px);
+    max-width: 100%;
+    overflow: hidden;
+    color: #AEBABA;
+    font-family: 'Circe', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-bottom: 15px;
+}
+
+.trackRight {
+    -ms-flex: 0 1 72px;
+    flex: 0 1 72px;
+    width: 72px;
+    -js-display: flex;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+}
+
+.trackTime {
+    color: #AEBABA;
+    font-family: 'Circe', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 12px;
+}
+
+.trackControlButton {
+    -js-display: flex;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.trackFX {
+    width: 34px;
+    height: 24px;
+    border-radius: 3px;
+    background-color: #343A39;
+    padding-top: 2px;
+    margin-right: 4px;
+    transition: all 0.4s;
+    -js-display: flex;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    align-items: center;
+    cursor: pointer;
+}
+.trackFX input, .trackB input {
+    display: none;
+}
+
+.trackFX span {
+    display: block;
+    color: #B7D0D0;
+    font-family: 'Circe', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    text-transform: uppercase;
+    transition: all 0.4s;
+}
+
+.trackFXActive {
+    background-color: #46B6F7;
+}
+
+.trackFXActive span {
+    color: #FFF;
+}
+
+.trackFX:hover {
+    background-color: #505C5B;
+}
+
+.trackFX:hover span {
+    color: #FFF;
+}
+
+.trackB {
+    width: 34px;
+    height: 24px;
+    border-radius: 3px;
+    background-color: #343A39;
+    padding-top: 2px;
+    transition: all 0.4s;
+    -js-display: flex;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.trackB span {
+    display: block;
+    color: #B7D0D0;
+    font-family: 'Circe', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.trackBActive {
+    background-color: #46B6F7;
+}
+
+.trackBActive span {
+    color: #FFF;
+}
+
+.trackB:hover {
+    background-color: #505C5B;
+    transition: all 0.4s;
+}
+
+.trackB:hover span {
+    color: #FFF;
+}

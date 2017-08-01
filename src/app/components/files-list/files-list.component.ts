@@ -18,7 +18,7 @@ export class FilesListComponent {
     filesState: any = {
         FileList: [],
         FxAudioFileId: 0,
-        BAudioFileId: 0
+        BackgroundAudioFileId: 0
     };
     scrollBarConfig: any = {
         wheelSpeed: 1
@@ -43,6 +43,51 @@ export class FilesListComponent {
     getFilesList() {
         this.api.GetSandboxState(res => {
             this.filesState = res.State;
+
+            this.filesState.FileList.sort((a, b) => {
+                if (a.isOwned > b.isOwned) {
+                    return 1;
+                } else if (a.isOwned < b.isOwned) {
+                    return -1;
+                } else {
+                    return a.FileId - b.FileId;
+                }
+            });
         });
+    }
+
+    selectFile(file, $event: MouseEvent) {
+        if (!this.preventChildElementsClick($event)) {
+            file.active = !file.active;
+
+            file.active && this.removeSelectionFromOtherFiles(file);
+            file.active && console.log('File ' + file.Caption + '  is selected now!');
+            !file.active && console.log('File ' + file.Caption + ' isn`t selected now!');
+        }
+    }
+
+    removeSelectionFromOtherFiles(activeFile) {
+        this.filesState.FileList.forEach((file) => {
+            if (file.FileId !== activeFile.FileId) {
+                file.active = false;
+            }
+        });
+    }
+
+    preventChildElementsClick($event) {
+        return (<Element>$event.target).hasAttribute('non-click-by-parent') ||
+            (<Element>$event.target.parentNode).hasAttribute('non-click-by-parent');
+    }
+
+    deleteFile(file) {
+        console.log('File ' + file.Caption + ' will be removed!');
+    }
+
+    selectFx(file) {
+        console.log('File ' + file.Caption + ' will be marked as FX!');
+    }
+
+    selectB(file) {
+        console.log('File ' + file.Caption + ' will be marked as B!');
     }
 }
