@@ -19,7 +19,7 @@ export class AppComponent {
     @Output() onReject: EventEmitter<any> = new EventEmitter();
 
     constructor(private popupService: PopupService, private socket: SocketService) {
-        console.log(this);
+        //console.log(this);
     }
 
     openPopup() {
@@ -28,5 +28,9 @@ export class AppComponent {
                 this.rejected = true;
                 this.onReject.emit();
             });
+    }
+
+    getGpuServerLoad() {
+        return this.socket.getGpuServerLoad();
     }
 }

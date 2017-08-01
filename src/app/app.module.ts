@@ -7,9 +7,7 @@ import {HttpModule} from '@angular/http';
 import {AppComponent} from './app.component';
 import {ApiService} from "./services/api.service";
 import {FilesListComponent} from "./components/files-list/files-list.component";
-import {FileComponent} from "./components/file/file.component";
 import {ProductsListComponent} from "./components/products-list/products-list.component";
-import {ProductComponent} from "./components/product/product.component";
 import {Popup} from "./modules/popup/popup.module";
 import {PopupService} from "./services/popup.service";
 import {NgHide} from "./directives/ng-hide.directive";
@@ -22,6 +20,7 @@ import {FilesControlsComponent} from "./components/files-controls/files-controls
 import {UploadService} from "./services/upload.service";
 import {ServerService} from "./services/server.service";
 import {SocketService} from "./services/socket.service";
+import {NouisliderModule} from "ng2-nouislider";
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -31,9 +30,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   declarations: [
     AppComponent,
     FilesListComponent,
-    FileComponent,
     ProductsListComponent,
-    ProductComponent,
     Popup,
     NgHide,
     TestPopup,
@@ -46,7 +43,8 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BrowserModule,
     FormsModule,
     HttpModule,
-    PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG)
+    PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG),
+    NouisliderModule
   ],
   providers: [
     ServerService,

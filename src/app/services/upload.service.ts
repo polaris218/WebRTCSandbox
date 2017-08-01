@@ -11,6 +11,8 @@ export class UploadService {
     onErrorUpload = (item: UploadItem, response: any, status: any, headers: any) => {};
     onCancelUpload = (item: UploadItem, response: any, status: any, headers: any) => {};
 
+    public progress: number;
+
     constructor() { }
 
     upload(item: UploadItem) {
@@ -19,6 +21,10 @@ export class UploadService {
         } else {
             this.onErrorUpload(item, 'Unsupported browser.', null, null);
         }
+    }
+
+    getProgress() {
+        return this.progress;
     }
 
     private isHTML5(): boolean {
@@ -36,8 +42,8 @@ export class UploadService {
         form.append(item.alias, item.file, item.file.name);
 
         xhr.upload.onprogress = (event: any) => {
-            let progress = Math.round(event.lengthComputable ? event.loaded * 100 / event.total : 0);
-            this.onProgressUpload(item, progress);
+            this.progress = Math.round(event.lengthComputable ? event.loaded * 100 / event.total : 0);
+            this.onProgressUpload(item, this.progress);
         };
 
         xhr.onload = () => {
@@ -81,7 +87,7 @@ export class UploadService {
     }
 
     private forEach(obj: any, callback: any) {
-        for (var i in obj) {
+        for (let i in obj) {
             if (obj.hasOwnProperty(i)) {
                 callback(i, obj[i]);
             }

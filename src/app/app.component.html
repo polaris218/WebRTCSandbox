@@ -166,101 +166,69 @@
 <div class="overlay"></div> -->
 
 <div class="window">
-  <div class="windowTitleBar">
-    <div class="windowTitleHeader">
-      <h1>GPU.AUDIO  SANDBOX</h1>
-    </div>
-    <div class="windowControl">
-      <div class="windowControlBack">
-        <div class="windowControlTooltip">Back</div>
-      </div>
-      <div class="windowControlHelp">
-        <div class="windowControlTooltip">Help</div>
-      </div>
-      <div class="windowControlZoom">
-        <div class="windowControlTooltip">Zoom</div>
-      </div>
-      <div class="windowControlClose">
-        <div class="windowControlTooltip">Close</div>
-      </div>
-    </div>
-  </div>
-  <div class="windowContent">
-    <aside class="sidebar">
-      <files-list class="sidebarContent" [perfect-scrollbar]="scrollBarConfig"></files-list>
-      <files-controls [gpuServerLoad]="getGpuServerLoad()"></files-controls>
-    </aside>
-    <main class="main">
-      <div class="mainContent mainContentDemo">
-        <button class="buttonLight" (click)="openPopup()">Modal short</button><br />
-        <br />
-        <button class="buttonLight" data-modal="#modal-short-long">Modal short with long header</button><br />
-        <br />
-        <button class="buttonLight" data-modal="#modal-short-scroll">Modal short with scroll</button><br />
-        <br />
-        <button class="buttonLight" data-modal="#modal-wide">Modal wide</button><br />
-        <br />
-        <button class="buttonLight" data-modal="#modal-wide-long">Modal wide with long header</button><br />
-        <br />
-        <button class="buttonLight" data-modal="#modal-wide-scroll">Modal wide with scroll</button><br />
-        <br />
-        <button class="buttonLight" data-modal="#modal-progress">Modal progress</button><br />
-        <br />
-      </div>
-      <div class="mainFooter">
-        <div class="productDropdownControl">
-          <div class="productDropdown">Name product 01</div>
-          <div class="productDropdownPanel">
-            <div class="productDropdownPanelItem">Name product 01</div>
-            <div class="productDropdownPanelItem productDropdownPanelItemActive">Name product 01</div>
-            <div class="productDropdownPanelItem">Name product 02</div>
-            <div class="productDropdownPanelItem">Name product 03</div>
-            <div class="productDropdownPanelItem">Name product 03</div>
-          </div>
+    <div class="windowTitleBar">
+        <div class="windowTitleHeader">
+            <h1>GPU.AUDIO SANDBOX</h1>
         </div>
-      </div>
-    </main>
-    <aside class="sidebar">
-      <products-list class="sidebarContent" [perfect-scrollbar]="scrollBarConfig"></products-list>
+        <div class="windowControl">
+            <div class="windowControlBack">
+                <div class="windowControlTooltip">Back</div>
+            </div>
+            <div class="windowControlHelp">
+                <div class="windowControlTooltip">Help</div>
+            </div>
+            <div class="windowControlZoom">
+                <div class="windowControlTooltip">Zoom</div>
+            </div>
+            <div class="windowControlClose">
+                <div class="windowControlTooltip">Close</div>
+            </div>
+        </div>
+    </div>
+    <div class="windowContent">
+        <aside class="sidebar">
+            <files-list class="sidebarContent" [perfect-scrollbar]="scrollBarConfig"></files-list>
+            <files-controls [gpuServerLoad]="getGpuServerLoad()"></files-controls>
+        </aside>
+        <main class="main">
+            <div class="mainContent mainContentDemo">
+                <button class="buttonLight" (click)="openPopup()">Modal short</button>
+                <br/>
+                <br/>
+                <button class="buttonLight" data-modal="#modal-short-long">Modal short with long header</button>
+                <br/>
+                <br/>
+                <button class="buttonLight" data-modal="#modal-short-scroll">Modal short with scroll</button>
+                <br/>
+                <br/>
+                <button class="buttonLight" data-modal="#modal-wide">Modal wide</button>
+                <br/>
+                <br/>
+                <button class="buttonLight" data-modal="#modal-wide-long">Modal wide with long header</button>
+                <br/>
+                <br/>
+                <button class="buttonLight" data-modal="#modal-wide-scroll">Modal wide with scroll</button>
+                <br/>
+                <br/>
+                <button class="buttonLight" data-modal="#modal-progress">Modal progress</button>
+                <br/>
+                <br/>
+            </div>
+            <div class="mainFooter">
+                <div class="productDropdownControl">
+                    <div class="productDropdown">Name product 01</div>
+                    <div class="productDropdownPanel">
+                        <div class="productDropdownPanelItem">Name product 01</div>
+                        <div class="productDropdownPanelItem productDropdownPanelItemActive">Name product 01</div>
+                        <div class="productDropdownPanelItem">Name product 02</div>
+                        <div class="productDropdownPanelItem">Name product 03</div>
+                        <div class="productDropdownPanelItem">Name product 03</div>
+                    </div>
+                </div>
+            </div>
+        </main>
 
-      <div class="sidebarFooter">
-        <div class="cart">
-          <div class="cartOffer">
-            <div class="cartOfferSlider">
-              <div class="cartOfferSliderLeft"></div>
-              <div class="cartOfferSliderSlideWrap">
-                <div class="cartOfferSliderSlide">Special Offer:<span>Christmas</span></div>
-              </div>
-              <div class="cartOfferSliderRight"></div>
-            </div>
-          </div>
-          <div class="cartTotals">
-            <div class="cartTotalSubtotal">
-              <div class="cartTotalSubtotalTitle">Subtotal:</div>
-              <div class="cartTotalSubtotalValue">654<span>$</span></div>
-            </div>
-            <div class="cartTotal">
-              <div class="cartTotalTitle">Estimated Order Total:</div>
-              <div class="cartTotalValue">622 $</div>
-            </div>
-          </div>
-          <div class="cartButtonAdd">
-            <button class="cartButton">Add current FX Chain to cart</button>
-          </div>
-        </div>
-        <div class="shares">
-          <div class="shareItems"><a class="shareItem" href="#">
-            <div class="shareItemIcon shareItemIconCopy"></div>
-            <div class="shareItemTitle">Copy link to<br> clipboard</div></a><a class="shareItem" href="#">
-            <div class="shareItemIcon shareItemIconFB"></div>
-            <div class="shareItemTitle">Share to<br> facebook</div></a><a class="shareItem" href="#">
-            <div class="shareItemIcon shareItemIconTW"></div>
-            <div class="shareItemTitle">Share to<br> twitter</div></a></div>
-          <div class="shareBottom">
-            <div class="shareWindow">http://<span>www.gpu.audio/sb/2384756</span></div>
-          </div>
-        </div>
-      </div>
-    </aside>
-  </div>
+        <products-list class="sidebar"></products-list>
+
+    </div>
 </div>

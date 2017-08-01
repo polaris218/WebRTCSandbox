@@ -14,5 +14,10 @@ export class UploadItem {
     formData: any = {};
     withCredentials = false;
     alias: string = 'file';
-    file: any = {};
+    file: File;
+    duration: number = 0;
+
+    getFileSize() {
+        return this.file.size;
+    }
 }

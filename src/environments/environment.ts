@@ -14,5 +14,8 @@ export const environment = {
   },
   socket: {
     url: 'ws://localhost:3005/'
+  },
+  media: {
+    images: '/assets/'
   }
 };
