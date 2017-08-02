@@ -1,0 +1,14 @@
+<div class="trackVolume"
+     (mousemove)="onMouseMove($event)">
+    <div class="trackVolumeSlider">
+        <div class="trackVolumeSliderMin"></div>
+        <div class="trackVolumeSliderBar">
+            <div class="trackVolumeSliderBarActive"></div>
+            <div class="trackVolumeSliderBarTrack"
+                 (mousedown)="onMouseUp($event)"
+                 (mousedown)="onMouseDown($event)"></div>
+        </div>
+        <div class="trackVolumeSliderMax"></div>
+    </div>
+    <div class="trackVolumeValue">100</div>
+</div>

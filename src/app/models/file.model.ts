@@ -6,6 +6,9 @@ export class FileModel {
     LengthInBytes: number;
     LengthInSeconds: number;
     Volume: number;
+    fx: boolean;
+    b: boolean;
+    active: boolean = false;
 
     constructor(params) {
         for (let i in params) {
@@ -13,5 +16,9 @@ export class FileModel {
                 this[i] = params[i];
             }
         }
+    }
+
+    checkIfActiveByID(id) {
+        return this.FileId === id;
     }
 }

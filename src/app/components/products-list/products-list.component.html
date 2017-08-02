@@ -1,10 +1,66 @@
-<div class="sidebarContent">
+<div class="sidebarContent" [perfect-scrollbar]="scrollBarConfig">
     <div class="sidebarScrollContainter">
-        <div *ngFor="let product of productsList; index as i">
-            <product [(product)]="productsList[i]" [productIndex]="i"></product>
+        <div class="product" *ngFor="let product of OfferState.Offer.ProductList; index as i">
+            <div class="productLine"></div>
+            <div class="productImage">
+                <img [src]="getImage(product)">
+            </div>
+            <div class="productContent">
+                <div class="productContentRow">
+                    <div class="productName">{{ product.Product.Caption }}</div>
+                    <div class="productPrice">
+                        <div class="productPriceValue">{{ getDiscount(product) }}<span>$</span></div>
+                        <div class="productPriceSale">{{ product.Product.Price }} $</div>
+                    </div>
+                </div>
+                <div class="productContentRow">
+                    <div class="productOffer">
+                        <div class="productOfferName">{{ OfferState.Offer.Id }}</div>
+                        <div class="productOfferPrice">{{ getDiscount(product) }}<em>$</em><span>OFF</span></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="sidebarScrollRail">
-        <div class="sidebarScrollBar"></div>
+</div>
+<div class="sidebarFooter">
+    <div class="cart">
+        <div class="cartOffer">
+            <div class="cartOfferSlider">
+                <div class="cartOfferSliderLeft"></div>
+                <div class="cartOfferSliderSlideWrap">
+                    <div class="cartOfferSliderSlide">Special Offer:<span>{{ OfferState.Offer.Id }}</span></div>
+                </div>
+                <div class="cartOfferSliderRight"></div>
+            </div>
+        </div>
+        <div class="cartTotals">
+            <div class="cartTotalSubtotal">
+                <div class="cartTotalSubtotalTitle">Subtotal:</div>
+                <div class="cartTotalSubtotalValue">{{ OfferState.BaseTotalPrice }}<span>$</span></div>
+            </div>
+            <div class="cartTotal">
+                <div class="cartTotalTitle">Estimated Order Total:</div>
+                <div class="cartTotalValue">{{ OfferState.BaseTotalPrice - OfferState.TotalDiscount }} $</div>
+            </div>
+        </div>
+        <div class="cartButtonAdd">
+            <button class="cartButton">Add current FX Chain to cart</button>
+        </div>
+    </div>
+    <div class="shares">
+        <div class="shareItems"><a class="shareItem" href="#">
+            <div class="shareItemIcon shareItemIconCopy"></div>
+            <div class="shareItemTitle">Copy link to<br> clipboard</div>
+        </a><a class="shareItem" href="#">
+            <div class="shareItemIcon shareItemIconFB"></div>
+            <div class="shareItemTitle">Share to<br> facebook</div>
+        </a><a class="shareItem" href="#">
+            <div class="shareItemIcon shareItemIconTW"></div>
+            <div class="shareItemTitle">Share to<br> twitter</div>
+        </a></div>
+        <div class="shareBottom">
+            <div class="shareWindow">http://<span>www.gpu.audio/sb/2384756</span></div>
+        </div>
     </div>
 </div>

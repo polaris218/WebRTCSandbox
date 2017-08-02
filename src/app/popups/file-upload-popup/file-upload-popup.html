@@ -1,0 +1,36 @@
+<div class="modal" id="modal-progress">
+    <div class="modalTitle">
+        <div class="modalHeader">
+            <h6>Attention</h6>
+        </div>
+        <div class="modalClose">
+            <button class="modalCloseButton js-modal-close"></button>
+        </div>
+    </div>
+    <div class="modalMiddle">
+        <div class="modalContent modalContentCenter">
+            <h4>Due to the sandbox concept, <br> the mixdown is limited to 2 minutes long.</h4>
+            <div class="modalProgress">
+                <div class="modalProgressRail">
+                    <div class="modalProgressBar" [ngStyle]="{'width.%': getUploadedPercent()}"></div>
+                </div>
+                <div class="modalProgressLegend" [ngHide]="item.duration === 0">
+                    <div class="modalProgressLegendMin">0</div>
+                    <div class="modalProgressLegendMax">{{ getUploadedPart() }} of {{ item.duration }} Sec</div>
+                </div>
+            </div>
+
+            <form #f="ngForm" (ngSubmit)="uploadFile(f)" novalidate>
+                <input type="file"
+                       name="filetoupload"
+                       (change)="prepareToUploadFile($event)"
+                       [(ngModel)]="data.filetoupload" />
+
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+    <div class="modalFooter">
+        <button class="buttonLight">Cancel</button>
+    </div>
+</div>

@@ -11,6 +11,12 @@ html {
     /* 2 */
 }
 
+* {
+    padding: 0;
+    margin: 0;
+    outline: 0;
+}
+
 /**
  * Remove the margin in all browsers (opinionated).
  */
@@ -2012,7 +2018,7 @@ url
     text-align: center;
 }
 
-.track {
+/*.track {
     padding: 10px;
     position: relative;
     transition: all 0.4s;
@@ -2026,9 +2032,9 @@ url
     align-items: flex-start;
     -ms-flex-pack: justify;
     justify-content: space-between;
-}
+}*/
 
-.trackActive,
+/*.trackActive,
 .track:hover {
     border-radius: 6px;
     background-color: #2E3232;
@@ -2043,9 +2049,9 @@ url
 .trackActive .trackVolumeSliderBarTrack,
 .track:hover .trackVolumeSliderBarTrack {
     background-color: #2E3232;
-}
+}*/
 
-.trackLine {
+/*.trackLine {
     display: block;
     position: absolute;
     content: '';
@@ -2069,13 +2075,13 @@ url
     opacity: 0;
     visibility: hidden;
     transition: all 0.4px;
-}
+}*/
 
-.trackDelete:hover {
+/*.trackDelete:hover {
     background-image: url("/assets/img/track/delete-hover.png");
-}
+}*/
 
-.trackLeft {
+/*.trackLeft {
     -ms-flex: 0 1 30px;
     flex: 0 1 30px;
     width: 30px;
@@ -2371,7 +2377,7 @@ url
 
 .trackB:hover span {
     color: #FFF;
-}
+}*/
 
 .windowControl {
     position: absolute;
@@ -2585,7 +2591,169 @@ url
     height: 100%;
 }
 
+files-list, products-list, nouislider, ui-slider, files-controls {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.ps-container {
+    -ms-touch-action: auto;
+    touch-action: auto;
+    overflow: hidden !important;
+    -ms-overflow-style: none;
+}
+
+.ps-scrollbar-y-rail {
+    position: relative;
+    -ms-flex: 1 1 14px;
+    flex: 1 1 14px;
+    width: 14px;
+    min-width: 14px;
+    -ms-flex-item-align: stretch;
+    -ms-grid-row-align: stretch;
+    align-self: stretch;
+    border-left: 1px solid rgba(255, 255, 255, 0.02);
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.ps-scrollbar-y {
+    position: absolute;
+    left: 2px;
+    top: 100px;
+    width: 8px;
+    height: 163px;
+    border-radius: 4px;
+    background-color: #353939;
+}
+
+/**
+    UI-slider
+**/
+/**
+    Volume UI slider
+**/
+nouislider {
+    margin: 0 !important;
+}
+.trackVolume {
+    width: calc(100% - 20px);
+    -js-display: flex;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.trackVolumeSlider {
+    width: 100%;
+    margin-right: 10px;
+    -js-display: flex;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+}
+
+.trackVolumeSlider:hover .trackVolumeSliderBarActive {
+    background-color: #3AB0E1;
+}
+
+.trackVolumeSlider:hover .trackVolumeSliderBarTrack {
+    border: 1px solid #3AB0E1;
+}
+
+.trackVolumeSliderMin {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    width: 13px;
+    height: 13px;
+    min-width: 13px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: url("/assets/img/volume-min.png");
+    transition: all 0.4s;
+    margin-right: 10px;
+}
+
+.trackVolumeSliderMin:hover {
+    background-image: url("/assets/img/volume-min-hover.png");
+}
+
+.trackVolumeSliderBar {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    width: 100%;
+    height: 1px;
+    height: 1px;
+    background-color: #3C4444;
+    position: relative;
+    font-size: 1px;
+}
+
+.trackVolumeSliderBarActive {
+    display: block;
+    position: absolute;
+    width: 60%;
+    height: 1px;
+    background-color: #AEBABA;
+}
+
+.noUi-origin {
+    position: absolute;
+}
+
+.noUi-handle {
+    display: block;
+    position: absolute;
+    top: -4px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 1px solid #AEBABA;
+    background-color: #333535;
+}
+
+.trackVolumeSliderMax {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    width: 15px;
+    height: 15px;
+    min-width: 15px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: url("/assets/img/volume-max.png");
+    transition: all 0.4s;
+    margin-left: 10px;
+}
+
+.trackVolumeSliderMax:hover {
+    background-image: url("/assets/img/volume-max-hover.png");
+}
+
+.trackVolumeValue {
+    color: #AEBABA;
+    font-family: 'Circe', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    padding-top: 2px;
+    width: 22px;
+    text-align: right;
+}
+
 /*# sourceMappingURL=main.css.map */
+
+
+
 
 
 

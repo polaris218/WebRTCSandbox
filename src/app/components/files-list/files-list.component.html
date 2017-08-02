@@ -1,39 +1,54 @@
-<div class="sidebarContent">
-    <div class="sidebarScrollContainter">
-        <div *ngFor="let track of filesList; index as i">
-            <file [(file)]="filesList[i]" [fileIndex]="i"></file>
+<div class="sidebarScrollContainter">
+    <div class="track"
+         *ngFor="let file of filesState.FileList; index as i"
+         [class.trackActive]="file.IsOwned">
+        <div class="trackLine"></div>
+        <div class="trackDelete"
+             *ngIf="file.IsOwned"
+             (click)="deleteFile(file)"></div>
+        <div class="trackLeft">
+            <div class="trackNumber"><span>{{ i + 1 }}</span></div>
         </div>
-        <div style="display: none;">
-            <div class="track trackActive">
-                <div class="trackDelete"></div>
-                <div class="trackLeft">
-                    <div class="trackNumber"><span>3</span></div>
-                </div>
-                <div class="trackMiddle">
-                    <div class="trackName">Guitar TV7724 Am (ligature)</div>
-                    <div class="trackVolume">
-                        <div class="trackVolumeSlider">
-                            <div class="trackVolumeSliderMin"></div>
-                            <div class="trackVolumeSliderBar">
-                                <div class="trackVolumeSliderBarActive"></div>
-                                <div class="trackVolumeSliderBarTrack"></div>
-                            </div>
-                            <div class="trackVolumeSliderMax"></div>
-                        </div>
-                        <div class="trackVolumeValue">15</div>
+        <div class="trackMiddle">
+            <div class="trackName">{{ file.Caption }}</div>
+
+            <div class="trackVolume">
+                <div class="trackVolumeSlider">
+                    <div class="trackVolumeSliderMin" (click)="setVolumeToMin(file)"></div>
+                    <div class="trackVolumeSliderBar">
+                        <nouislider non-click-by-parent
+                                    [connect]="true"
+                                    [min]="0"
+                                    [max]="100"
+                                    [step]="1"
+                                    (ngModelChange)="onVolumeChange($event, file)"
+                                    [(ngModel)]="file.Volume"></nouislider>
                     </div>
+                    <div class="trackVolumeSliderMax" (click)="setVolumeToMax(file)"></div>
                 </div>
-                <div class="trackRight">
-                    <div class="trackTime">03:21</div>
-                    <div class="trackControlButton">
-                        <div class="trackFX"><span>FX</span></div>
-                        <div class="trackB"><span>B</span></div>
-                    </div>
-                </div>
+                <div class="trackVolumeValue">{{ file.Volume }}</div>
             </div>
         </div>
-    </div>
-    <div class="sidebarScrollRail">
-        <div class="sidebarScrollBar"></div>
+        <div class="trackRight">
+            <div class="trackTime">{{ file.LengthInSeconds * 1000 | date: 'mm:ss' }}</div>
+            <div class="trackControlButton">
+                <label class="trackFX"
+                       non-click-by-parent
+                       [class.trackFXActive]="file.FileId === filesState.FxAudioFileId">
+                    <input type="checkbox"
+                           name="fx"
+                           (change)="selectFx(file)" />
+                    <span>FX</span>
+                </label>
+                <label class="trackB"
+                       non-click-by-parent
+                       [class.trackBActive]="file.FileId === filesState.BackgroundAudioFileId">
+                    <input type="checkbox"
+                           name="b"
+                           (change)="selectB(file)" />
+                    <span>B</span>
+                </label>
+            </div>
+        </div>
     </div>
 </div>

@@ -7,5 +7,15 @@ export const environment = {
   production: false,
   api: {
     host: 'http://localhost:3005/'
+  },
+  upload: {
+    url: 'http://localhost:3005/upload',
+    method: 'POST'
+  },
+  socket: {
+    url: 'ws://localhost:3005/'
+  },
+  media: {
+    images: '/assets/'
   }
 };
