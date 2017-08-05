@@ -478,62 +478,9 @@ body {
   font-weight: 400;
 }
 
-.main {
-  -ms-flex-positive: 1;
-      flex-grow: 1;
-  -ms-flex-negative: 1;
-      flex-shrink: 1;
-  -ms-flex-preferred-size: calc(100% - 640px);
-      flex-basis: calc(100% - 640px);
-  width: calc(100% - 640px);
-  -ms-flex-item-align: stretch;
-      align-self: stretch;
-  border-left: 1px solid rgba(255,255,255,0.02);
-  border-right: 1px solid rgba(255,255,255,0.02);
-  -js-display: flex;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column;
-      flex-direction: column;
-  -ms-flex-pack: justify;
-      justify-content: space-between;
-  -ms-flex-align: center;
-      align-items: center;
-}
-.mainContent {
-  width: 100%;
-  -ms-flex-positive: 1;
-      flex-grow: 1;
-  -ms-flex-negative: 1;
-      flex-shrink: 1;
-  -ms-flex-preferred-size: calc(100% - 43px);
-      flex-basis: calc(100% - 43px);
-}
-.mainContentDemo {
-  padding: 40px;
-}
-.mainContentDemo .buttonDark,
-.mainContentDemo .buttonLight {
-  max-width: 100%;
-}
-.mainFooter {
-  width: 100%;
-  -ms-flex: 0 1 43px;
-      flex: 0 1 43px;
-  height: 43px;
-  -js-display: flex;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: row;
-      flex-direction: row;
-  -ms-flex-align: center;
-      align-items: center;
-  -ms-flex-pack: center;
-      justify-content: center;
-}
-
 .modalContent {
   width: 100%;
+  min-height: 150px;
   padding: 26px 93px 26px 28px;
 }
 .modalContent h4 {
@@ -998,6 +945,218 @@ body {
 }
 .modalCloseButton:hover {
   background-image: url("../img/modal/close-hover.png");
+}
+
+.main {
+  -ms-flex-positive: 1;
+      flex-grow: 1;
+  -ms-flex-negative: 1;
+      flex-shrink: 1;
+  -ms-flex-preferred-size: calc(100% - 640px);
+      flex-basis: calc(100% - 640px);
+  width: calc(100% - 640px);
+  -ms-flex-item-align: stretch;
+      align-self: stretch;
+  border-left: 1px solid rgba(255,255,255,0.02);
+  border-right: 1px solid rgba(255,255,255,0.02);
+  -js-display: flex;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  -ms-flex-align: center;
+      align-items: center;
+}
+.mainContent {
+  width: 100%;
+  -ms-flex-positive: 1;
+      flex-grow: 1;
+  -ms-flex-negative: 1;
+      flex-shrink: 1;
+  -ms-flex-preferred-size: calc(100% - 43px);
+      flex-basis: calc(100% - 43px);
+}
+.mainContentDemo {
+  padding: 40px;
+}
+.mainContentDemo .buttonDark,
+.mainContentDemo .buttonLight {
+  max-width: 100%;
+}
+.mainFooter {
+  width: 100%;
+  -ms-flex: 0 1 43px;
+      flex: 0 1 43px;
+  height: 43px;
+  -js-display: flex;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+
+.buttonLight {
+  height: 40px;
+  min-width: 112px;
+  padding: 0 46px;
+  padding-top: 2px;
+  background-color: #3c4544;
+  border: 0;
+  border-radius: 6px;
+  color: #8eabab;
+  font-family: 'Circe', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 14px;
+  text-transform: uppercase;
+  text-decoration: none;
+  outline: 0;
+  transition: all 0.3s;
+}
+.buttonLight:hover {
+  background-color: #485554;
+  color: #fff;
+}
+.buttonLight:active {
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.35);
+}
+.buttonDark {
+  display: inline-block;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  height: 40px;
+  max-width: 112px;
+  padding: 0 46px;
+  padding-top: 2px;
+  background-color: #343a39;
+  border: 0;
+  border-radius: 6px;
+  color: #546161;
+  font-family: 'Circe', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  outline: 0;
+  transition: all 0.4s;
+  -ms-flex-align: center;
+      align-items: center;
+}
+.buttonDark:hover {
+  background-color: #3f4846;
+  color: #6f8888;
+}
+
+.productDropdownControl {
+  display: block;
+  position: relative;
+}
+.productDropdownControlIsOpen .productDropdown background-image url('../img/product-dropdown/down.png'):hover {
+  background-image: url("../img/product-dropdown/down-hover.png");
+}
+.productDropdownControlIsOpen .productDropdownPanel {
+  opacity: 1;
+  visibility: visible;
+}
+.productDropdown {
+  display: block;
+  position: relative;
+  width: 480px;
+  height: 28px;
+  color: #6a7474;
+  font-family: 'Circe', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  padding-top: 2px;
+  text-transform: uppercase;
+  z-index: 10;
+  border-radius: 3px;
+  background-color: #343a39;
+  background-repeat: no-repeat;
+  background-image: url("../img/product-dropdown/up.png");
+  background-position: right 18px center;
+  transition: all 0.3s;
+  cursor: default;
+  -js-display: flex;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+.productDropdown:hover {
+  background-image: url("../img/product-dropdown/up-hover.png");
+  color: #fff;
+  box-shadow: 0 0 3px rgba(0,0,0,0.3);
+}
+.productDropdownPanel {
+  display: block;
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 480px;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+  border-radius: 3px;
+  background-color: #343a39;
+  padding-bottom: 28px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+  -js-display: flex;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+  -ms-flex-align: center;
+      align-items: center;
+}
+.productDropdownPanelItem {
+  width: 100%;
+  color: #6a7474;
+  font-family: 'Circe', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  height: 24px;
+  cursor: default;
+  -js-display: flex;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+.productDropdownPanelItem:hover {
+  border-radius: 3px;
+  background-color: #39403f;
+  width: calc(100% - 8px);
+  margin: 0 auto;
+  color: #8f9d9f;
+}
+.productDropdownPanelItemActive {
+  color: #fff;
+  background-color: #303534;
+}
+.productDropdownPanelItemActive:hover {
+  color: #fff;
 }
 
 .cart {
@@ -2142,164 +2301,6 @@ body {
   transition: all 0.4s;
 }
 .trackB:hover span {
-  color: #fff;
-}
-
-.buttonLight {
-  height: 40px;
-  min-width: 112px;
-  padding: 0 46px;
-  padding-top: 2px;
-  background-color: #3c4544;
-  border: 0;
-  border-radius: 6px;
-  color: #8eabab;
-  font-family: 'Circe', sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 14px;
-  text-transform: uppercase;
-  text-decoration: none;
-  outline: 0;
-  transition: all 0.3s;
-}
-.buttonLight:hover {
-  background-color: #485554;
-  color: #fff;
-}
-.buttonLight:active {
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.35);
-}
-.buttonDark {
-  display: inline-block;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -ms-flex-direction: column;
-      flex-direction: column;
-  -ms-flex-pack: center;
-      justify-content: center;
-  height: 40px;
-  max-width: 112px;
-  padding: 0 46px;
-  padding-top: 2px;
-  background-color: #343a39;
-  border: 0;
-  border-radius: 6px;
-  color: #546161;
-  font-family: 'Circe', sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
-  text-decoration: none;
-  outline: 0;
-  transition: all 0.4s;
-  -ms-flex-align: center;
-      align-items: center;
-}
-.buttonDark:hover {
-  background-color: #3f4846;
-  color: #6f8888;
-}
-
-.productDropdownControl {
-  display: block;
-  position: relative;
-}
-.productDropdownControlIsOpen .productDropdown background-image url('../img/product-dropdown/down.png'):hover {
-  background-image: url("../img/product-dropdown/down-hover.png");
-}
-.productDropdownControlIsOpen .productDropdownPanel {
-  opacity: 1;
-  visibility: visible;
-}
-.productDropdown {
-  display: block;
-  position: relative;
-  width: 480px;
-  height: 28px;
-  color: #6a7474;
-  font-family: 'Circe', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  padding-top: 2px;
-  text-transform: uppercase;
-  z-index: 10;
-  border-radius: 3px;
-  background-color: #343a39;
-  background-repeat: no-repeat;
-  background-image: url("../img/product-dropdown/up.png");
-  background-position: right 18px center;
-  transition: all 0.3s;
-  cursor: default;
-  -js-display: flex;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: row;
-      flex-direction: row;
-  -ms-flex-align: center;
-      align-items: center;
-  -ms-flex-pack: center;
-      justify-content: center;
-}
-.productDropdown:hover {
-  background-image: url("../img/product-dropdown/up-hover.png");
-  color: #fff;
-  box-shadow: 0 0 3px rgba(0,0,0,0.3);
-}
-.productDropdownPanel {
-  display: block;
-  position: absolute;
-  bottom: 0px;
-  left: 0;
-  width: 480px;
-  box-shadow: 0 1px 5px rgba(0,0,0,0.1);
-  border-radius: 3px;
-  background-color: #343a39;
-  padding-bottom: 28px;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s;
-  -js-display: flex;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column;
-      flex-direction: column;
-  -ms-flex-pack: end;
-      justify-content: flex-end;
-  -ms-flex-align: center;
-      align-items: center;
-}
-.productDropdownPanelItem {
-  width: 100%;
-  color: #6a7474;
-  font-family: 'Circe', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  text-transform: uppercase;
-  height: 24px;
-  cursor: default;
-  -js-display: flex;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: row;
-      flex-direction: row;
-  -ms-flex-align: center;
-      align-items: center;
-  -ms-flex-pack: center;
-      justify-content: center;
-}
-.productDropdownPanelItem:hover {
-  border-radius: 3px;
-  background-color: #39403f;
-  width: calc(100% - 8px);
-  margin: 0 auto;
-  color: #8f9d9f;
-}
-.productDropdownPanelItemActive {
-  color: #fff;
-  background-color: #303534;
-}
-.productDropdownPanelItemActive:hover {
   color: #fff;
 }
 
