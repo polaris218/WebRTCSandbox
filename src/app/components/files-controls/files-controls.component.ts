@@ -1,7 +1,6 @@
-import {Component, EventEmitter, Output, Input} from "@angular/core";
-import {LoadState} from "../../state/load.state";
-import {PopupService} from "../../services/popup.service";
-import {FileUploadPopup} from "../../popups/file-upload-popup/file-upload-popup";
+import {Component, Input, Output, EventEmitter} from "@angular/core";
+import {UploadItem} from "../../interface";
+import {UploadService} from "../../services/upload.service";
 
 @Component({
     selector: 'files-controls',
@@ -10,22 +9,74 @@ import {FileUploadPopup} from "../../popups/file-upload-popup/file-upload-popup"
 })
 
 export class FilesControlsComponent {
-    private rejected: boolean = false;
-    protected rejectState = new LoadState();
-    protected submitState = new LoadState();
-
-    @Output() onClose: EventEmitter<any> = new EventEmitter();
-    @Output() onReject: EventEmitter<any> = new EventEmitter();
+    public filetoupload: any;
+    public item: UploadItem;
+    public isUploading: boolean = false;
+    public uploadIsComplete: boolean = false;
 
     @Input() gpuServerLoad: any;
 
-    constructor(private popupService: PopupService) {}
+    constructor(private uploadService: UploadService) {
+        this.init();
+    }
 
-    uploadFile() {
-        this.popupService.open(FileUploadPopup, {})
-            .subscribe(() => {
-                this.rejected = true;
-                this.onReject.emit();
-            });
+    private init() {
+        this.item = new UploadItem();
+
+        this.uploadService.onCompleteUpload = () => {
+            this.uploadIsComplete = true;
+            setTimeout(() => {
+                this.uploadIsComplete = false;
+                this.showProgressBar(false);
+            }, 2000);
+        };
+    }
+
+    public prepareToUploadFile($event) {
+        this.item.file = $event.srcElement.files[0];
+
+        this.uploadService.upload(this.item);
+
+        this.showProgressBar(true);
+    }
+
+    private showProgressBar(loop) {
+        this.isUploading = loop;
+    }
+
+    public getUploadedPercent() {
+        return this.uploadService.getProgress();
+    }
+
+    public getUploadedPart() {
+        const size = this.item.file.size;
+
+        if (size / 1048576 > 1) {
+            return Math.round(size / 104857600 * this.getUploadedPercent());
+        }
+
+        if (size / 1024 > 1) {
+            return Math.round(size / 102400 * this.getUploadedPercent());
+        }
+
+        return Math.round(size / 100 * this.getUploadedPercent());
+    }
+
+    public getFileSize() {
+        const size = this.item.file.size;
+
+        if (size / 1048576 > 1) {
+            return Math.round(size / 1048576) + ' Mb';
+        }
+
+        if (size / 1024 > 1) {
+            return Math.round(size / 1024) + ' Kb';
+        }
+
+        return size + ' B';
+    }
+
+    public getBusySpace() {
+        return Math.round((this.gpuServerLoad.TotalSpace - this.gpuServerLoad.FreeSpace) / this.gpuServerLoad.TotalSpace);
     }
 }
