@@ -18,5 +18,8 @@ export const environment = {
   },
   media: {
     images: '/assets/'
+  },
+  social: {
+    prefix: 'http://www.gpu.audio/sb/'
   }
 };

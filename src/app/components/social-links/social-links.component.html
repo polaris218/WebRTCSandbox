@@ -1,0 +1,24 @@
+<div class="shares">
+    <div class="shareItems">
+        <a class="shareItem" href="#" (click)="copyLink()">
+            <span class="shareItemIcon shareItemIconCopy"></span>
+            <span class="shareItemTitle">Copy link to<br> clipboard</span>
+        </a>
+        <a class="shareItem" href="#" (click)="share()">
+            <span class="shareItemIcon shareItemIconFB"></span>
+            <span class="shareItemTitle">Share to<br> facebook</span>
+        </a>
+        <a class="shareItem" href="#" (click)="tweet()">
+            <span class="shareItemIcon shareItemIconTW"></span>
+            <span class="shareItemTitle">Share to<br> twitter</span>
+        </a>
+    </div>
+    <div class="shareBottom" *ngIf="shareLink">
+        <input type="text"
+               name="shareLink"
+               class="shareWindow"
+               id="copyLink"
+               (focus)="copyLink()"
+               [(ngModel)]="shareLink"/>
+    </div>
+</div>

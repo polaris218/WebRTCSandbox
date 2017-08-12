@@ -94,6 +94,16 @@ export class ApiService extends ServerService {
         );
     }
 
+    public shareSandboxToSocialMedia(msg, cb: any) {
+        return this.postQuery(
+            'service/bo/ProductSandbox/LinkSandboxToSocialMedia/',
+            {},
+            this.dto['LinkSandboxToSocialMediaRqDto'],
+            this.dto['LinkSandboxToSocialMediaRsDto'],
+            cb
+        );
+    }
+
     public addToCart(cb: any) {
         const p1 = {Id: 'd_lay'};
         const p2 = {Id: 'flangeman'};
