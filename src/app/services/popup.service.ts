@@ -59,8 +59,8 @@ export class PopupService {
     }
 
     private hide() {
-        this.keyDownSubscribe.unsubscribe();
-        this.stateChangeSubscribe.unsubscribe();
+        //this.keyDownSubscribe.unsubscribe();
+        //this.stateChangeSubscribe.unsubscribe();
         this.setPopupState({
             show: false
         });

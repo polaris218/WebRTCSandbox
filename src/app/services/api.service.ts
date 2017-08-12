@@ -39,7 +39,7 @@ export class ApiService extends ServerService {
             responseType: 'arraybuffer',
             success: function (data) {
                 if (typeof cb === 'function') {
-                    console.log(rsType.decode(data));
+                    //console.log(rsType.decode(data));
                     cb(rsType.decode(data));
                 }
             }
@@ -47,15 +47,65 @@ export class ApiService extends ServerService {
     }
 
     public GetSandboxState(cb: any) {
-        return this.getQuery('service/bo/ProductSandbox/GetSandboxState/', {SandboxHash: "abcdef"}, this.dto['SandboxStateRsDto'], cb);
+        return this.getQuery(
+            'service/bo/ProductSandbox/GetSandboxState/',
+            {SandboxHash: "abcdef"},
+            this.dto['SandboxStateRsDto'],
+            cb
+        );
     }
 
-    getCartOffer(cb: any) {
+    public getCartOffer(cb: any) {
         const p1 = {Id: 'd_lay'};
         const p2 = {Id: 'flangeman'};
         const msg = {Products: [p1, p2]};
 
-        return this.postQuery('service/bo/ProductSandbox/CartOffer/', msg, this.dto['CartOfferRqDto'], this.dto['CartOfferRsDto'], cb);
+        return this.postQuery(
+            'service/bo/ProductSandbox/CartOffer/',
+            msg,
+            this.dto['CartOfferRqDto'],
+            this.dto['CartOfferRsDto'],
+            cb
+        );
+    }
+
+    public getSocialMediaLinks(cb: any) {
+        const msg = {
+            CurrentSandboxHash: 'ASDF123',
+            SocialMediaLink: 'facebook'
+        };
+
+        return this.postQuery(
+            'service/bo/ProductSandbox/LinkSandboxToSocialMedia/',
+            msg,
+            this.dto['LinkSandboxToSocialMediaRqDto'],
+            this.dto['LinkSandboxToSocialMediaRsDto'],
+            cb
+        );
+    }
+
+    public shareSandbox(cb: any) {
+        return this.postQuery(
+            'service/bo/ProductSandbox/ShareSandbox/',
+            {},
+            this.dto['ShareSandboxRqDto'],
+            this.dto['ShareSandboxRsDto'],
+            cb
+        );
+    }
+
+    public addToCart(cb: any) {
+        const p1 = {Id: 'd_lay'};
+        const p2 = {Id: 'flangeman'};
+        const msg = {Products: [p1, p2]};
+
+        return this.postQuery(
+            'service/bo/ProductSandbox/AddToCart',
+            msg,
+            this.dto['CartOfferRqDto'],
+            this.dto['AddToCartRsDto'],
+            cb
+        );
     }
 
     public isInited() {

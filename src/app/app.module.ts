@@ -3,7 +3,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
-
 import {AppComponent} from './app.component';
 import {ApiService} from "./services/api.service";
 import {FilesListComponent} from "./components/files-list/files-list.component";
@@ -21,6 +20,9 @@ import {UploadService} from "./services/upload.service";
 import {ServerService} from "./services/server.service";
 import {SocketService} from "./services/socket.service";
 import {NouisliderModule} from "ng2-nouislider";
+import {SocialLinksComponent} from "./components/social-links/social-links.component";
+import {CartComponent} from "./components/cart/cart.component";
+import {LoaderComponent} from "./components/loader/loader.component";
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -31,12 +33,17 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AppComponent,
     FilesListComponent,
     ProductsListComponent,
+    UiSliderComponent,
+    FilesControlsComponent,
+    SocialLinksComponent,
+    CartComponent,
+    LoaderComponent,
+
     Popup,
-    NgHide,
     TestPopup,
     FileUploadPopup,
-    UiSliderComponent,
-    FilesControlsComponent
+
+    NgHide
   ],
   imports: [
     CommonModule,
