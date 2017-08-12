@@ -54,6 +54,7 @@
     opacity: 0;
     visibility: hidden;
     transition: all 0.4px;
+    cursor: pointer;
 }
 
 .trackDelete:hover {

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {ApiService} from "../../services/api.service";
 import {ProductModel} from "../../../../src/app/models/product.model";
 import {environment} from "../../../environments/environment";
@@ -15,8 +15,8 @@ import {environment} from "../../../environments/environment";
  * */
 
 export class ProductsListComponent {
-    initApiInterval: any = 0;
-    OfferState: any = {
+    @Input() OfferState: any;
+    /*OfferState: any = {
         BaseTotalPrice: 0,
         DiscountedTotalPrice: 0,
         IsSuccess: true,
@@ -25,28 +25,9 @@ export class ProductsListComponent {
             ProductList: []
         },
         TotalDiscount: 0
-    };
+    };*/
 
     constructor(private api: ApiService) {
-        this.checkIfApiInited();
-    }
-
-    checkIfApiInited() {
-        clearInterval(this.initApiInterval);
-
-        this.initApiInterval = window.setInterval(() => {
-            if (this.api.isInited()) {
-                this.getProductsList();
-
-                clearInterval(this.initApiInterval);
-            }
-        }, 250);
-    }
-
-    getProductsList() {
-        this.api.getCartOffer(res => {
-            this.OfferState = res;
-        });
     }
 
     /**
