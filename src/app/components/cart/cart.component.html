@@ -1,0 +1,25 @@
+<div class="cart">
+    <div class="cartOffer">
+        <div class="cartOfferSlider">
+            <div class="cartOfferSliderLeft"></div>
+            <div class="cartOfferSliderSlideWrap">
+                <div class="cartOfferSliderSlide">Special Offer:<span>{{ OfferState.Offer.Id }}</span>
+                </div>
+            </div>
+            <div class="cartOfferSliderRight"></div>
+        </div>
+    </div>
+    <div class="cartTotals">
+        <div class="cartTotalSubtotal">
+            <div class="cartTotalSubtotalTitle">Subtotal:</div>
+            <div class="cartTotalSubtotalValue">{{ OfferState.BaseTotalPrice }}<span>$</span></div>
+        </div>
+        <div class="cartTotal">
+            <div class="cartTotalTitle">Estimated Order Total:</div>
+            <div class="cartTotalValue">{{ OfferState.BaseTotalPrice - OfferState.TotalDiscount }} $</div>
+        </div>
+    </div>
+    <div class="cartButtonAdd">
+        <button class="cartButton" (click)="addToCart()">Add current FX Chain to cart</button>
+    </div>
+</div>

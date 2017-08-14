@@ -15,34 +15,28 @@ import {Observable} from "rxjs";
 export class FileUploadPopup extends PopupContent {
     protected data: any;
     protected submitState = new LoadState();
-    public item: UploadItem;
 
     constructor(popupService: PopupService, private uploadService: UploadService) {
         super(popupService);
 
-        this.item = new UploadItem();
+        this.checkFileDuration();
     }
 
-    getUploadedPercent() {
+    public getUploadedPercent() {
         return this.uploadService.getProgress();
     }
 
-    getUploadedPart() {
-        return Math.round(this.item.duration * this.uploadService.getProgress() / 100) || 0;
-    }
-
-    prepareToUploadFile($event) {
-        this.item.file = $event.srcElement.files[0];
-
-        this.checkFileDuration();
+    public getUploadedPart() {
+        return Math.round(this.data.duration * this.uploadService.getProgress() / 100) || 0;
     }
 
     private checkFileDuration() {
         let audio = new Audio();
-        audio.src = URL.createObjectURL(this.item.file);
+        audio.src = URL.createObjectURL(this.data.file);
 
         audio.addEventListener("loadedmetadata", () => {
-            this.item.duration = Math.round(audio.duration);
+            this.data.duration = Math.round(audio.duration);
+            this.uploadFile();
         });
     }
 
@@ -50,13 +44,16 @@ export class FileUploadPopup extends PopupContent {
         return true;
     }
 
-    uploadFile(f: NgForm) {
+    private uploadFile() {
         if (this.isUploadable()) {
-            this.uploadService.upload(this.item);
+            this.uploadService.upload(this.data);
 
             this.uploadService.onProgressUpload = (item, percentComplete) => {
-                console.log(item, percentComplete);
             };
         }
+    }
+
+    public close() {
+        this.popupService.close();
     }
 }

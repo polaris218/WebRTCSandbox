@@ -9,7 +9,8 @@ export const environment = {
     host: 'http://localhost:3005/'
   },
   upload: {
-    url: 'http://localhost:3005/upload',
+    //url: 'http://localhost:3005/upload',
+    url: 'http://yes.tomatl.org:3005/upload',
     method: 'POST'
   },
   socket: {
@@ -17,5 +18,8 @@ export const environment = {
   },
   media: {
     images: '/assets/'
+  },
+  social: {
+    prefix: 'http://www.gpu.audio/sb/'
   }
 };

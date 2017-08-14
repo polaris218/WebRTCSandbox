@@ -1,25 +1,46 @@
 <div class="sidebarFooter">
-    <div class="trackMemory">
+    <div class="trackMemory" *ngIf="!isUploading && gpuServerLoad">
         <div class="trackMemoryBar">
             <div class="trackMemoryBarProgress"></div>
-            <div class="trackMemoryBarProgressActive" style="width: 60%">
-                <div class="trackMemoryBarProgressActiveTooltip">60</div>
+            <div class="trackMemoryBarProgressActive" [ngStyle]="{'width.%': getBusySpace()}">
+                <div class="trackMemoryBarProgressActiveTooltip">{{ getBusySpace() }}</div>
             </div>
         </div>
         <div class="trackMemoryBarValue">
             <div class="trackMemoryBarValueMin">0</div>
-            <div class="trackMemoryBarValueMax">44 of 100 Mb</div>
+            <div class="trackMemoryBarValueMax">{{ gpuServerLoad.TotalSpace - gpuServerLoad.FreeSpace }} of {{ gpuServerLoad.TotalSpace }} Mb</div>
         </div>
     </div>
+    <div class="trackMemory" *ngIf="isUploading">
+        <div class="trackMemoryBar">
+            <div class="trackMemoryBarProgress"></div>
+            <div class="trackMemoryBarProgressActive"
+                 [class.isComplete]="uploadIsComplete"
+                 [ngStyle]="{'width.%': getUploadedPercent()}">
+                <div class="trackMemoryBarProgressActiveTooltip">{{getUploadedPercent()}}</div>
+            </div>
+        </div>
+        <div class="trackMemoryBarValue">
+            <div class="trackMemoryBarValueMin">0</div>
+            <div class="trackMemoryBarValueMax">{{ getUploadedPart() }} of {{ getFileSize() }}</div>
+        </div>
+    </div>
+
     <div class="trackControls">
         <div class="trackControl">
             <div class="trackControlIcon trackControlIconPlay"></div>
             <div class="trackControlText">Play</div>
         </div>
-        <div class="trackControl" (click)="uploadFile()">
-            <div class="trackControlIcon trackControlIconUpload"></div>
-            <div class="trackControlText">Upload</div>
-        </div>
+        <label class="trackControl">
+            <span class="trackControlIcon trackControlIconUpload"></span>
+            <span class="trackControlText">Upload</span>
+            <input type="file"
+                   multiple
+                   name="filetoupload"
+                   (change)="prepareToUploadFile($event)"
+                   style="display: none"
+                   [(ngModel)]="filetoupload" />
+        </label>
         <div class="trackControl">
             <div class="trackControlIcon trackControlIconMixdown">
                 <div class="trackControlIconCount">

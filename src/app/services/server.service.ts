@@ -32,14 +32,12 @@ export class ServerService {
             context: document.body
         }).done(function (data) {
             self.ProtoBuf.loadJson(JSON.stringify(data), self.builder);
-            self.dto['CartOfferRqDto'] = self.builder.build('CartOfferRqDto');
-            self.dto['CartOfferRsDto'] = self.builder.build('CartOfferRsDto');
-            self.dto['SandboxStateRqDto'] = self.builder.build('SandboxStateRqDto');
-            self.dto['SandboxStateRsDto'] = self.builder.build('SandboxStateRsDto');
-            self.dto['BounceCounterRqDto'] = self.builder.build('BounceCounterRqDto');
-            self.dto['BounceCounterRsDto'] = self.builder.build('BounceCounterRsDto');
-            self.dto['StorageLimitsRsDto'] = self.builder.build('StorageLimitsRsDto');
-            self.dto['SandboxPageSocketProto'] = self.builder.build('SandboxPageSocketProto');
+
+            console.log('Proto JSON: ', data);
+
+            data.messages.forEach(type => {
+                self.dto[type.name] = self.builder.build(type.name);
+            });
 
             self.inited = true;
         });

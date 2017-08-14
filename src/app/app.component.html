@@ -192,27 +192,15 @@
         </aside>
         <main class="main">
             <div class="mainContent mainContentDemo">
-                <button class="buttonLight" (click)="openPopup()">Modal short</button>
-                <br/>
-                <br/>
-                <button class="buttonLight" data-modal="#modal-short-long">Modal short with long header</button>
-                <br/>
-                <br/>
-                <button class="buttonLight" data-modal="#modal-short-scroll">Modal short with scroll</button>
-                <br/>
-                <br/>
-                <button class="buttonLight" data-modal="#modal-wide">Modal wide</button>
-                <br/>
-                <br/>
-                <button class="buttonLight" data-modal="#modal-wide-long">Modal wide with long header</button>
-                <br/>
-                <br/>
-                <button class="buttonLight" data-modal="#modal-wide-scroll">Modal wide with scroll</button>
-                <br/>
-                <br/>
-                <button class="buttonLight" data-modal="#modal-progress">Modal progress</button>
-                <br/>
-                <br/>
+                <iframe width="100%"
+                        height="100%"
+                        src="https://www.youtube.com/embed/0qF4DFiy_Jw"
+                        frameborder="0"
+                        #myIframe
+                        id="myIframe"
+                        (load)="onFrameLoad(myIframe)"
+                        allowfullscreen></iframe>
+                <loader class="loader-container" *ngIf="!frameIsLoaded"></loader>
             </div>
             <div class="mainFooter">
                 <div class="productDropdownControl">
@@ -228,7 +216,14 @@
             </div>
         </main>
 
-        <products-list class="sidebar"></products-list>
+        <aside class="sidebar">
+            <products-list [OfferState]="OfferState" class="sidebarContent" [perfect-scrollbar]="scrollBarConfig"></products-list>
+            <div class="sidebarFooter">
+                <cart [OfferState]="OfferState"></cart>
+                <social-links></social-links>
+            </div>
+        </aside>
+
 
     </div>
 </div>

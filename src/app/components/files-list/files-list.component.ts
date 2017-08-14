@@ -66,6 +66,8 @@ export class FilesListComponent {
             }
         };
         this.socket.send(msg);
+
+        this.getFilesList();
     }
 
     /**
