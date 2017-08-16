@@ -1903,6 +1903,7 @@ url
     -ms-flex-pack: center;
     justify-content: center;
     cursor: copy;
+    text-align: center;
 }
 
 .shareWindow span {

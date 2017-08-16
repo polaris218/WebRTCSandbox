@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {ApiService} from "../../services/api.service";
-import {ProductModel} from "../../../../src/app/models/product.model";
 import {environment} from "../../../environments/environment";
 
 @Component({
@@ -10,26 +9,13 @@ import {environment} from "../../../environments/environment";
 
 
 export class SocialLinksComponent {
-    private initApiInterval: any = 0;
     public shareLink: string = '';
 
-    constructor(private api: ApiService) {
-        this.checkIfApiInited();
-    }
-
-    checkIfApiInited() {
-        clearInterval(this.initApiInterval);
-
-        this.initApiInterval = window.setInterval(() => {
-            if (this.api.isInited()) {
-
-
-                clearInterval(this.initApiInterval);
-            }
-        }, 250);
-    }
+    constructor(private api: ApiService) {}
 
     private getShareLink() {
+        this.shareLink = '';
+
         return this.api.shareSandbox(res => {
             return this.shareLink += environment.social.prefix + res.HashForLink;
         });
@@ -47,7 +33,6 @@ export class SocialLinksComponent {
 
             this.openShareWindow('https://www.facebook.com/sharer/sharer.php?u=' + fbShareUrl, 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
         });
-
 
         return false;
     }
