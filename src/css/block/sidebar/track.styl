@@ -1,59 +1,63 @@
 .track
     box horizontal top space-between
-    padding 10px
     position relative
-    transition all .4s
     margin-bottom 1px
-
-    &Active, &:hover
-        border-radius 6px
+    padding 10px
+    transition all .4s
+    &Active,
+    &:hover
         background-color #2e3232
+        border-radius 6px
         .trackDelete
             opacity 1
             visibility visible
         .trackVolumeSliderBarTrack
             background-color #2e3232
+
 .trackLine
     display block
     position absolute
-    content ''
+    bottom -1px
+    left 10px
     width calc(100% - 20px)
     height 1px
-    left 10px
-    bottom -1px
     background-color #262828
+    content ''
+
 .trackDelete
     display block
     position absolute
-    size 8px
-    right 11px
     top 11px
-    background-repeat no-repeat
-    background-position center center
-    background-image url('../img/track/delete.png')
+    right 11px
     opacity 0
     visibility hidden
+    background-image url('../img/track/delete.png')
+    background-repeat no-repeat
     transition all .4
+    size 8px
+    background-position center center
     &:hover
         background-image url('../img/track/delete-hover.png')
+
 .trackLeft
     flex 0 1 30px
     width 30px
 
 .trackNumber
+    box vertical middle center
     width 18px
     height 18px
-    border 1px solid #3c4444
     background-color rgba(60, 68, 68, 0)
-    box vertical middle center
+    border 1px solid #3c4444
     border-radius 50%
-    padding-top 2px
     span
         flex 0 1 auto
+        padding-top 1px
         color #6a7777
         font-family 'Circe', sans-serif
         font-size 10px
         font-weight 700
+
 .trackMiddle
     box vertical top left
     flex 1 1 calc(100% - 102px)
@@ -64,13 +68,13 @@
     width calc(100% - 20px)
     max-width 100%
     overflow hidden
+    margin-bottom 15px
     color #aebaba
     font-family 'Circe', sans-serif
     font-size 14px
     font-weight 400
-    white-space nowrap
     text-overflow ellipsis
-    margin-bottom 15px
+    white-space nowrap
 
 .trackVolume
     box horizontal middle space-between
@@ -85,30 +89,33 @@
             background-color #3ab0e1
         .trackVolumeSliderBarTrack
             border 1px solid #3ab0e1
+
 .trackVolumeSliderMin
     flex 1 1 auto
-    size 13px
     min-width 13px
-    background-repeat no-repeat
-    background-position center center
-    background-image url('../img/track/volume-min.png')
-    transition all .4s
     margin-right 10px
+    background-image url('../img/track/volume-min.png')
+    background-repeat no-repeat
+    transition all .4s
+    size 13px
+    background-position center center
     &:hover
         background-image url('../img/track/volume-min-hover.png')
+
 .trackVolumeSliderBar
     flex 1 1 auto
-    size 100% 1px
+    position relative
     height 1px
     background-color #3c4444
-    position relative
     font-size 1px
+    size 100% 1px
 
 .trackVolumeSliderBarActive
     display block
     position absolute
-    size 60% 1px
     background-color #aebaba
+    size 60% 1px
+
 .trackVolumeSliderBarTrack
     display block
     position absolute
@@ -116,48 +123,52 @@
     left calc(50% + 3.5em)
     width 9px
     height 9px
-    border-radius 50%
-    border 1px solid #aebaba
     background-color #333535
+    border 1px solid #aebaba
+    border-radius 50%
+
 .trackVolumeSliderMax
     flex 1 1 auto
-    size 15px
     min-width 15px
-    background-repeat no-repeat
-    background-position center center
-    background-image url('../img/track/volume-max.png')
-    transition all .4s
     margin-left 10px
+    background-image url('../img/track/volume-max.png')
+    background-repeat no-repeat
+    transition all .4s
+    size 15px
+    background-position center center
     &:hover
         background-image url('../img/track/volume-max-hover.png')
 
 .trackVolumeValue
+    padding-top 2px
     color #aebaba
     font-family 'Circe', sans-serif
     font-size 14px
     font-weight 400
-    padding-top 2px
+
 .trackRight
+    box vertical top left
     flex 0 1 72px
     width 72px
-    box vertical top left
+
 .trackTime
+    margin-bottom 12px
     color #aebaba
     font-family 'Circe', sans-serif
     font-size 14px
     font-weight 400
-    margin-bottom 12px
+
 .trackControlButton
     box horizontal middle space-between
 
 .trackFX
+    box vertical middle center
     width 34px
     height 24px
-    border-radius 3px
-    background-color #343a39
-    box vertical middle center
-    padding-top 2px
     margin-right 4px
+    padding-top 2px
+    background-color #343a39
+    border-radius 3px
     transition all .4s
     span
         display block
@@ -175,13 +186,14 @@
         background-color #505c5b
         span
             color #fff
+
 .trackB
+    box vertical middle center
     width 34px
     height 24px
-    border-radius 3px
-    background-color #343a39
-    box vertical middle center
     padding-top 2px
+    background-color #343a39
+    border-radius 3px
     transition all .4s
     span
         display block
