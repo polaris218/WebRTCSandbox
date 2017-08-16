@@ -72,7 +72,7 @@ export class FilesControlsComponent {
     }
 
     public getUploadedPercent() {
-        return this.uploadService.getProgress();
+        return this.uploadService.getProgress() || 0;
     }
 
     public getUploadedPart() {

@@ -1449,9 +1449,6 @@ url
     height: 1px;
     background-color: #484E4E;
 }
-.trackMemoryBarProgress.isComplete {
-    background-color: #3d8944;
-}
 
 .trackMemoryBarProgressActive {
     display: block;
@@ -1460,6 +1457,9 @@ url
     width: 40%;
     height: 1px;
     background-color: #849393;
+}
+.trackMemoryBarProgressActive.isComplete {
+    background-color: #3d8944;
 }
 
 .trackMemoryBarProgressActiveTooltip {
@@ -1924,7 +1924,7 @@ url
 }
 
 .trackControl {
-    cursor: default;
+    cursor: pointer;
     -js-display: flex;
     display: -ms-flexbox;
     display: flex;
