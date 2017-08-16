@@ -1,6 +1,7 @@
 import {Component, Input, Output, EventEmitter} from "@angular/core";
 import {UploadItem} from "../../interface";
 import {UploadService} from "../../services/upload.service";
+import {ApiService} from "../../services/api.service";
 
 @Component({
     selector: 'files-controls',
@@ -13,14 +14,40 @@ export class FilesControlsComponent {
     public item: UploadItem;
     public isUploading: boolean = false;
     public uploadIsComplete: boolean = false;
+    public storageLimits: any;
+    private initApiInterval: any = 0;
 
     @Input() gpuServerLoad: any;
 
-    constructor(private uploadService: UploadService) {
+    constructor(private uploadService: UploadService, private api: ApiService) {
         this.init();
     }
 
     private init() {
+        this.checkIfApiInited();
+
+        this.initUpload();
+    }
+
+    private checkIfApiInited() {
+        clearInterval(this.initApiInterval);
+
+        this.initApiInterval = window.setInterval(() => {
+            if (this.api.isInited()) {
+                this.getStorageLimits();
+
+                clearInterval(this.initApiInterval);
+            }
+        }, 250);
+    }
+
+    private getStorageLimits() {
+        this.api.getStorageLimits(res => {
+            this.storageLimits = res;
+        });
+    }
+
+    private initUpload() {
         this.item = new UploadItem();
 
         this.uploadService.onCompleteUpload = () => {
@@ -77,6 +104,6 @@ export class FilesControlsComponent {
     }
 
     public getBusySpace() {
-        return Math.round((this.gpuServerLoad.TotalSpace - this.gpuServerLoad.FreeSpace) / this.gpuServerLoad.TotalSpace);
+        return Math.round(this.storageLimits.SpaceUsedInBytes / this.storageLimits.SpaceTotalInBytes * 100);
     }
 }

@@ -1,5 +1,5 @@
 <div class="sidebarFooter">
-    <div class="trackMemory" *ngIf="!isUploading && gpuServerLoad">
+    <div class="trackMemory" *ngIf="!isUploading && storageLimits">
         <div class="trackMemoryBar">
             <div class="trackMemoryBarProgress"></div>
             <div class="trackMemoryBarProgressActive" [ngStyle]="{'width.%': getBusySpace()}">
@@ -8,7 +8,7 @@
         </div>
         <div class="trackMemoryBarValue">
             <div class="trackMemoryBarValueMin">0</div>
-            <div class="trackMemoryBarValueMax">{{ gpuServerLoad.TotalSpace - gpuServerLoad.FreeSpace }} of {{ gpuServerLoad.TotalSpace }} Mb</div>
+            <div class="trackMemoryBarValueMax">{{ storageLimits.SpaceUsedInBytes }} of {{ storageLimits.SpaceTotalInBytes }} B</div>
         </div>
     </div>
     <div class="trackMemory" *ngIf="isUploading">

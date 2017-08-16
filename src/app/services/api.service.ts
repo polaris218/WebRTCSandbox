@@ -9,6 +9,7 @@ export class ApiService extends ServerService {
     }
 
     private getQuery(uri, msg, rsType, cb) {
+        console.log(this);
         return window['jQuery'].ajax({
             url: this.getUrl(uri),
             type: "GET",
@@ -114,6 +115,15 @@ export class ApiService extends ServerService {
             msg,
             this.dto['CartOfferRqDto'],
             this.dto['AddToCartRsDto'],
+            cb
+        );
+    }
+
+    public getStorageLimits(cb: any) {
+        return this.getQuery(
+            'service/bo/ProductSandbox/GetStorageLimits/',
+            {},
+            this.dto['StorageLimitsRsDto'],
             cb
         );
     }
