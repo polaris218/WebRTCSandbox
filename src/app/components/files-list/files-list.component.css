@@ -73,25 +73,12 @@
     border: 1px solid #3C4444;
     background-color: rgba(60, 68, 68, 0);
     border-radius: 50%;
-    padding-top: 2px;
-    -js-display: flex;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -ms-flex-align: center;
-    align-items: center;
-}
-
-.trackNumber span {
-    -ms-flex: 0 1 auto;
-    flex: 0 1 auto;
     color: #6A7777;
     font-family: 'Circe', sans-serif;
     font-size: 10px;
     font-weight: 700;
+    text-align: center;
+    line-height: 18px;
 }
 
 .trackMiddle {
