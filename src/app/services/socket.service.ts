@@ -26,6 +26,7 @@ export class SocketService extends ServerService {
         fileReader.onload = function() {
             arrayBuffer = this.result;
             self.gpuServerLoad = self.dto.SandboxPageSocketProto.decode(arrayBuffer);
+            console.log(self);
         };
         fileReader.readAsArrayBuffer(evt.data);
     }

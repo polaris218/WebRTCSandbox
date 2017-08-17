@@ -49,6 +49,10 @@ export class FilesControlsComponent {
         });
     }
 
+    /**
+     * Upload item
+     *
+     * */
     private initUpload() {
         this.item = new UploadItem();
 
@@ -105,10 +109,18 @@ export class FilesControlsComponent {
         return size + ' B';
     }
 
+    /**
+     * Storage limits
+     *
+     * */
     public getBusySpace() {
         return Math.round(this.storageLimits.SpaceUsedInBytes / this.storageLimits.SpaceTotalInBytes * 100);
     }
 
+    /**
+     * Play buttons
+     *
+     * */
     public streamingAudio() {
         this.isPlaying = !this.isPlaying;
 
@@ -116,6 +128,20 @@ export class FilesControlsComponent {
 
         this.socketService.send({
             StreamingEvents: msg
+        });
+    }
+
+    /**
+     * Mixdown
+     *
+     * */
+    public mixDown() {
+        let msg = {
+            BounceStarted: true
+        };
+
+        this.socketService.send({
+            BounceEvents: msg
         });
     }
 }
