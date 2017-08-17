@@ -9,7 +9,6 @@ export class ApiService extends ServerService {
     }
 
     private getQuery(uri, msg, rsType, cb) {
-        console.log(this);
         return window['jQuery'].ajax({
             url: this.getUrl(uri),
             type: "GET",
