@@ -19,7 +19,6 @@ export class ApiService extends ServerService {
             responseType: 'arraybuffer',
             success: function (data) {
                 if (typeof cb === 'function') {
-                    //console.log(rsType.decode(data));
                     cb(rsType.decode(data));
                 }
             }
@@ -44,6 +43,10 @@ export class ApiService extends ServerService {
                 }
             }
         });
+    }
+
+    public isInited() {
+        return this.inited;
     }
 
     public GetSandboxState(cb: any) {
@@ -127,7 +130,12 @@ export class ApiService extends ServerService {
         );
     }
 
-    public isInited() {
-        return this.inited;
+    public getAvailableSandboxList(cb: any) {
+        return this.getQuery(
+            'service/bo/ProductSandbox/GetAvailableSandboxList/',
+            {},
+            this.dto['GetAvailableSandboxListRsDto'],
+            cb
+        );
     }
 }

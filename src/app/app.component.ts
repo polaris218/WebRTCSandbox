@@ -46,6 +46,7 @@ export class AppComponent {
         this.initApiInterval = window.setInterval(() => {
             if (this.api.isInited()) {
                 this.getProductsList();
+                this.getAvailableSandboxList();
 
                 clearInterval(this.initApiInterval);
             }
@@ -60,5 +61,11 @@ export class AppComponent {
 
     onFrameLoad(myIframe) {
         this.frameIsLoaded = true;
+    }
+
+    getAvailableSandboxList() {
+        this.api.getAvailableSandboxList(res => {
+            console.log(res);
+        });
     }
 }
