@@ -2506,17 +2506,17 @@ body {
 }
 
 .window {
+  position: relative;
+  z-index: 100;
+  overflow: hidden;
+  background-color: #2d2f2f;
   width: 100%;
   height: 100vh;
-  background-color: #2d2f2f;
-  position: relative;
-  overflow: hidden;
-  z-index: 100;
 }
 .windowContent {
+  border-top: 1px solid rgba(0,0,0,0.1);
   width: 100%;
   height: calc(100vh - 44px);
-  border-top: 1px solid rgba(0,0,0,0.1);
   -js-display: flex;
   display: -ms-flexbox;
   display: flex;
@@ -2527,11 +2527,19 @@ body {
   -ms-flex-pack: justify;
       justify-content: space-between;
 }
+.windowLogo {
+  position: absolute;
+  top: 10px;
+  left: 16px;
+}
+.windowLogo img {
+  height: 24px;
+}
 .windowTitleBar {
-  background-color: #2f3232;
   height: 44px;
   padding: 0 16px;
   padding-top: 2px;
+  background-color: #2f3232;
   border-bottom: 1px solid rgba(255,255,255,0.02);
   -js-display: flex;
   display: -ms-flexbox;
