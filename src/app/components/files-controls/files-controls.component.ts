@@ -2,6 +2,7 @@ import {Component, Input, Output, EventEmitter} from "@angular/core";
 import {UploadItem} from "../../interface";
 import {UploadService} from "../../services/upload.service";
 import {ApiService} from "../../services/api.service";
+import {SocketService} from "../../services/socket.service";
 
 @Component({
     selector: 'files-controls',
@@ -16,10 +17,11 @@ export class FilesControlsComponent {
     public uploadIsComplete: boolean = false;
     public storageLimits: any;
     private initApiInterval: any = 0;
+    public isPlaying: boolean = false;
 
     @Input() gpuServerLoad: any;
 
-    constructor(private uploadService: UploadService, private api: ApiService) {
+    constructor(private uploadService: UploadService, private apiService: ApiService, private socketService: SocketService) {
         this.init();
     }
 
@@ -33,7 +35,7 @@ export class FilesControlsComponent {
         clearInterval(this.initApiInterval);
 
         this.initApiInterval = window.setInterval(() => {
-            if (this.api.isInited()) {
+            if (this.apiService.isInited()) {
                 this.getStorageLimits();
 
                 clearInterval(this.initApiInterval);
@@ -42,7 +44,7 @@ export class FilesControlsComponent {
     }
 
     private getStorageLimits() {
-        this.api.getStorageLimits(res => {
+        this.apiService.getStorageLimits(res => {
             this.storageLimits = res;
         });
     }
@@ -105,5 +107,15 @@ export class FilesControlsComponent {
 
     public getBusySpace() {
         return Math.round(this.storageLimits.SpaceUsedInBytes / this.storageLimits.SpaceTotalInBytes * 100);
+    }
+
+    public streamingAudio() {
+        this.isPlaying = !this.isPlaying;
+
+        let msg = this.isPlaying ? { PlayStream: true} : { PauseStream: true };
+
+        this.socketService.send({
+            StreamingEvents: msg
+        });
     }
 }

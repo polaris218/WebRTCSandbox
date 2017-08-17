@@ -27,9 +27,12 @@
     </div>
 
     <div class="trackControls">
-        <div class="trackControl">
-            <div class="trackControlIcon trackControlIconPlay"></div>
-            <div class="trackControlText">Play</div>
+        <div class="trackControl" (click)="streamingAudio()">
+            <div class="trackControlIcon"
+                 [class.trackControlIconStop]="isPlaying"
+                 [class.trackControlIconPlay]="!isPlaying"></div>
+            <div class="trackControlText" *ngIf="!isPlaying">Play</div>
+            <div class="trackControlText" *ngIf="isPlaying">Stop</div>
         </div>
         <label class="trackControl">
             <span class="trackControlIcon trackControlIconUpload"></span>
