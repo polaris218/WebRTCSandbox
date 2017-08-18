@@ -32,19 +32,19 @@ export class AppComponent {
         TotalDiscount: 0
     };
 
-    constructor(private popupService: PopupService, private socket: SocketService, private api: ApiService) {
+    constructor(private popupService: PopupService, private socketService: SocketService, private apiService: ApiService) {
         this.checkIfApiInited();
     }
 
-    getGpuServerLoad() {
-        return this.socket.getGpuServerLoad();
+    public getSocketData() {
+        return this.socketService.getSocketData();
     }
 
     checkIfApiInited() {
         clearInterval(this.initApiInterval);
 
         this.initApiInterval = window.setInterval(() => {
-            if (this.api.isInited()) {
+            if (this.apiService.isInited()) {
                 this.getProductsList();
                 this.getAvailableSandboxList();
 
@@ -54,7 +54,7 @@ export class AppComponent {
     }
 
     getProductsList() {
-        this.api.getCartOffer(res => {
+        this.apiService.getCartOffer(res => {
             this.OfferState = res;
         });
     }
@@ -64,7 +64,7 @@ export class AppComponent {
     }
 
     getAvailableSandboxList() {
-        this.api.getAvailableSandboxList(res => {
+        this.apiService.getAvailableSandboxList(res => {
             console.log(res);
         });
     }

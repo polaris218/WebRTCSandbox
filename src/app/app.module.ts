@@ -10,9 +10,7 @@ import {ProductsListComponent} from "./components/products-list/products-list.co
 import {Popup} from "./modules/popup/popup.module";
 import {PopupService} from "./services/popup.service";
 import {NgHide} from "./directives/ng-hide.directive";
-import {TestPopup} from "./popups/popup-test/popup-test.content";
 import {UiSliderComponent} from "./components/_ui-components/ui-slider/ui-slider.component";
-import {FileUploadPopup} from "./popups/file-upload-popup/file-upload-popup";
 import {PerfectScrollbarModule} from 'angular2-perfect-scrollbar';
 import {PerfectScrollbarConfigInterface} from 'angular2-perfect-scrollbar';
 import {FilesControlsComponent} from "./components/files-controls/files-controls.component";
@@ -23,6 +21,7 @@ import {NouisliderModule} from "ng2-nouislider";
 import {SocialLinksComponent} from "./components/social-links/social-links.component";
 import {CartComponent} from "./components/cart/cart.component";
 import {LoaderComponent} from "./components/loader/loader.component";
+import {MixDownPopup} from "./popups/mixdown-progress/mixdown-progress.popup";
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -40,8 +39,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     LoaderComponent,
 
     Popup,
-    TestPopup,
-    FileUploadPopup,
+    MixDownPopup,
 
     NgHide
   ],
@@ -61,8 +59,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     UploadService
   ],
   entryComponents: [
-    TestPopup,
-    FileUploadPopup
+    MixDownPopup
   ],
   bootstrap: [AppComponent]
 })

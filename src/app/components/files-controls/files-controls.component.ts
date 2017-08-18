@@ -3,6 +3,8 @@ import {UploadItem} from "../../interface";
 import {UploadService} from "../../services/upload.service";
 import {ApiService} from "../../services/api.service";
 import {SocketService} from "../../services/socket.service";
+import {PopupService} from "../../services/popup.service";
+import {MixDownPopup} from "../../popups/mixdown-progress/mixdown-progress.popup";
 
 @Component({
     selector: 'files-controls',
@@ -19,9 +21,14 @@ export class FilesControlsComponent {
     private initApiInterval: any = 0;
     public isPlaying: boolean = false;
 
-    @Input() gpuServerLoad: any;
+    @Input() socketData: any;
 
-    constructor(private uploadService: UploadService, private apiService: ApiService, private socketService: SocketService) {
+    constructor(
+        private uploadService: UploadService,
+        private apiService: ApiService,
+        private socketService: SocketService,
+        private popupService: PopupService) {
+
         this.init();
     }
 
@@ -143,5 +150,7 @@ export class FilesControlsComponent {
         this.socketService.send({
             BounceEvents: msg
         });
+
+        this.popupService.open(MixDownPopup, {});
     }
 }

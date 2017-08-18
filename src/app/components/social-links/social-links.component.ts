@@ -11,18 +11,18 @@ import {environment} from "../../../environments/environment";
 export class SocialLinksComponent {
     public shareLink: string = '';
 
-    constructor(private api: ApiService) {}
+    constructor(private apiService: ApiService) {}
 
     private getShareLink() {
         this.shareLink = '';
 
-        return this.api.shareSandbox(res => {
+        return this.apiService.shareSandbox(res => {
             return this.shareLink += environment.social.prefix + res.HashForLink;
         });
     }
 
     private openShareWindow(url, params) {
-        this.api.shareSandboxToSocialMedia(this.shareLink, res => {
+        this.apiService.shareSandboxToSocialMedia(this.shareLink, res => {
             window.open(url, '', params);
         });
     }

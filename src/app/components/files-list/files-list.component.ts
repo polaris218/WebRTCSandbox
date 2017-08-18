@@ -25,7 +25,7 @@ export class FilesListComponent {
         wheelSpeed: 1
     };
 
-    constructor(private api: ApiService, private socket: SocketService) {
+    constructor(private apiService: ApiService, private socketService: SocketService) {
         this.checkIfApiInited();
     }
 
@@ -33,7 +33,7 @@ export class FilesListComponent {
         clearInterval(this.initApiInterval);
 
         this.initApiInterval = window.setInterval(() => {
-            if (this.api.isInited()) {
+            if (this.apiService.isInited()) {
                 this.getFilesList();
 
                 clearInterval(this.initApiInterval);
@@ -42,7 +42,7 @@ export class FilesListComponent {
     }
 
     getFilesList() {
-        this.api.GetSandboxState(res => {
+        this.apiService.GetSandboxState(res => {
             this.filesState = res.State;
 
             this.filesState.FileList.sort((a, b) => {
@@ -65,7 +65,7 @@ export class FilesListComponent {
                 }
             }
         };
-        this.socket.send(msg);
+        this.socketService.send(msg);
 
         this.getFilesList();
     }
@@ -91,7 +91,7 @@ export class FilesListComponent {
                 FxFileChangedId: this.filesState.FxAudioFileId
             }
         };
-        this.socket.send(msg);
+        this.socketService.send(msg);
     }
 
     selectB(file) {
@@ -111,7 +111,7 @@ export class FilesListComponent {
                 BackgroundFileChangedId: this.filesState.BackgroundAudioFileId
             }
         };
-        this.socket.send(msg);
+        this.socketService.send(msg);
     }
 
     /**
@@ -139,6 +139,6 @@ export class FilesListComponent {
                 }
             }
         };
-        this.socket.send(msg);
+        this.socketService.send(msg);
     }
 }

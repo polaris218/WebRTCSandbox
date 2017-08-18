@@ -6,16 +6,7 @@ export class ServerService {
     public inited: boolean = false;
     public ProtoBuf: any;
     public builder: any;
-    public dto: any = {
-        SandboxPageSocketProto: Object,
-        CartOfferRqDto: Object,
-        CartOfferRsDto: Object,
-        SandboxStateRqDto: Object,
-        SandboxStateRsDto: Object,
-        BounceCounterRqDto: Object,
-        BounceCounterRsDto: Object,
-        StorageLimitsRsDto: Object
-    };
+    public dto: any = {};
 
     constructor() {
         this.ProtoBuf = window['dcodeIO'].ProtoBuf;

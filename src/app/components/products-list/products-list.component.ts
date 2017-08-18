@@ -27,7 +27,7 @@ export class ProductsListComponent {
         TotalDiscount: 0
     };*/
 
-    constructor(private api: ApiService) {
+    constructor(private apiService: ApiService) {
     }
 
     /**

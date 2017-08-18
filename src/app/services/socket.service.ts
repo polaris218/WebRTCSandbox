@@ -5,7 +5,7 @@ import {ServerService} from "./server.service";
 @Injectable()
 export class SocketService extends ServerService {
     private ws: WebSocket;
-    public gpuServerLoad: any = {};
+    public socketData: any = {};
 
     constructor() {
         super();
@@ -25,19 +25,15 @@ export class SocketService extends ServerService {
         let self = this;
         fileReader.onload = function() {
             arrayBuffer = this.result;
-            self.gpuServerLoad = self.dto.SandboxPageSocketProto.decode(arrayBuffer);
-            console.log(self);
+            self.socketData = self.dto.SandboxPageSocketProto.decode(arrayBuffer);
+            //console.log(self);
         };
         fileReader.readAsArrayBuffer(evt.data);
     }
 
-    getGpuServerLoad() {
-        for (let i in this.gpuServerLoad.GpuServerLoad) {
-            if (this.gpuServerLoad.GpuServerLoad.hasOwnProperty(i)) {
-                this.gpuServerLoad.GpuServerLoad[i] = Math.round(this.gpuServerLoad.GpuServerLoad[i]);
-            }
-        }
-        return this.gpuServerLoad.GpuServerLoad;
+    getSocketData() {
+        //console.log(this.socketData);
+        return this.socketData;
     }
 
     send(msg) {

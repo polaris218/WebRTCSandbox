@@ -53,18 +53,18 @@
             <div class="trackControlText">Mixdown</div>
         </div>
     </div>
-    <div class="meters" *ngIf="gpuServerLoad">
+    <div class="meters" *ngIf="socketData">
         <div class="meter">
             <div class="meterTitle">Load</div>
-            <div class="meterValue">{{ gpuServerLoad.GpuServerLoad }}<span>%</span></div>
+            <div class="meterValue">{{ socketData.GpuServerLoad }}<span>%</span></div>
         </div>
         <div class="meter">
             <div class="meterTitle">Clients</div>
-            <div class="meterValue">{{ gpuServerLoad.GpuServerConnectedClients }}</div>
+            <div class="meterValue">{{ socketData.GpuServerConnectedClients }}</div>
         </div>
         <div class="meter">
             <div class="meterTitle">Pings</div>
-            <div class="meterValue">{{ gpuServerLoad.GpuServerPingInMs }}<span>&nbsp;ms</span></div>
+            <div class="meterValue">{{ socketData.GpuServerPingInMs }}<span>&nbsp;ms</span></div>
         </div>
     </div>
 </div>
