@@ -48,10 +48,34 @@ export class MixDownPopup extends PopupContent {
     }
 
     public cancelMixdown() {
+        let msg = {
+            BounceCancelledEvent: true
+        };
 
+        this.socketService.send({
+            BounceEvents: msg
+        });
+
+        this.close();
+    }
+
+    public closeMixdownPopup() {
+        let msg = {
+            BounceDialogClosedEvent: true
+        };
+
+        this.socketService.send({
+            BounceEvents: msg
+        });
+
+        this.close();
     }
 
     private completeMixDown() {
+        //
+    }
 
+    public close() {
+        this.popupService.close();
     }
 }
