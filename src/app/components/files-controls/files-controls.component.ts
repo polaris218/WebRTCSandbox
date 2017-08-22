@@ -33,6 +33,7 @@ export class FilesControlsComponent {
     }
 
     private init() {
+        console.log(this);
         this.checkIfApiInited();
 
         this.initUpload();
