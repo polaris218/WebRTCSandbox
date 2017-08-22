@@ -60,9 +60,7 @@ export class FilesListComponent {
     deleteFile(file) {
         let msg = {
             AudioFileListEvents: {
-                FileDelete: {
-                    FileId: file.FileId
-                }
+                FileDeletedId: file.FileId
             }
         };
         this.socketService.send(msg);
