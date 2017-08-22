@@ -41,10 +41,13 @@ export class MixDownPopup extends PopupContent {
     }
 
     public getProgress() {
-        return Math.round(
-            this.mixDownProgress.CurrentProgress /
-            this.mixDownProgress.TotalToProcess * 100
-        );
+        let progress = this.mixDownProgress.CurrentProgress / this.mixDownProgress.TotalToProcess;
+
+        if (progress >= 1) {
+            this.completeMixDown();
+        }
+
+        return Math.round(progress * 100);
     }
 
     public cancelMixdown() {
@@ -52,9 +55,7 @@ export class MixDownPopup extends PopupContent {
             BounceCancelledEvent: true
         };
 
-        this.socketService.send({
-            BounceEvents: msg
-        });
+        this.senSocketMessage(msg);
 
         this.close();
     }
@@ -64,15 +65,25 @@ export class MixDownPopup extends PopupContent {
             BounceDialogClosedEvent: true
         };
 
-        this.socketService.send({
-            BounceEvents: msg
-        });
+        this.senSocketMessage(msg);
 
         this.close();
     }
 
     private completeMixDown() {
-        //
+        let msg = {
+            BounceCompleteEvent: true
+        };
+
+        this.senSocketMessage(msg);
+
+        this.close();
+    }
+
+    private senSocketMessage(msg) {
+        this.socketService.send({
+            BounceEvents: msg
+        });
     }
 
     public close() {
