@@ -20,8 +20,8 @@ export class AppComponent {
     @Output() onClose: EventEmitter<any> = new EventEmitter();
     @Output() onReject: EventEmitter<any> = new EventEmitter();
 
-    initApiInterval: any = 0;
-    OfferState: any = {
+    private initApiInterval: any = 0;
+    public OfferState: any = {
         BaseTotalPrice: 0,
         DiscountedTotalPrice: 0,
         IsSuccess: true,
@@ -31,6 +31,9 @@ export class AppComponent {
         },
         TotalDiscount: 0
     };
+    public SandboxList: any;
+    public ActiveSandBox: any;
+    public sandboxListShown: boolean = false;
 
     constructor(private popupService: PopupService, private socketService: SocketService, private apiService: ApiService) {
         this.checkIfApiInited();
@@ -40,7 +43,7 @@ export class AppComponent {
         return this.socketService.getSocketData();
     }
 
-    checkIfApiInited() {
+    private checkIfApiInited() {
         clearInterval(this.initApiInterval);
 
         this.initApiInterval = window.setInterval(() => {
@@ -53,23 +56,34 @@ export class AppComponent {
         }, 250);
     }
 
-    getProductsList() {
+    private getProductsList() {
         this.apiService.getCartOffer(res => {
             this.OfferState = res;
         });
     }
 
-    onFrameLoad(myIframe) {
+    public onFrameLoad(myIframe) {
         this.frameIsLoaded = true;
     }
 
-    getAvailableSandboxList() {
+    private getAvailableSandboxList() {
         this.apiService.getAvailableSandboxList(res => {
             console.log(res);
+            this.SandboxList = res.SandboxList;
+            this.ActiveSandBox = this.SandboxList[0];
         });
     }
 
-    showLegendPopup() {
+    public setActiveSandbox(sandbox: any) {
+        this.ActiveSandBox = sandbox;
+        this.sandboxListShown = false;
+    }
+
+    public showLegendPopup() {
         this.popupService.open(LegendPopup, {});
+    }
+
+    public toggleSandboxList() {
+        this.sandboxListShown = !this.sandboxListShown;
     }
 }
