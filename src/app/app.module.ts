@@ -22,6 +22,7 @@ import {SocialLinksComponent} from "./components/social-links/social-links.compo
 import {CartComponent} from "./components/cart/cart.component";
 import {LoaderComponent} from "./components/loader/loader.component";
 import {MixDownPopup} from "./popups/mixdown-progress/mixdown-progress.popup";
+import {LegendPopup} from "./popups/legend/legend.popup";
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -40,6 +41,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 
     Popup,
     MixDownPopup,
+    LegendPopup,
 
     NgHide
   ],
@@ -59,7 +61,8 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     UploadService
   ],
   entryComponents: [
-    MixDownPopup
+    MixDownPopup,
+    LegendPopup
   ],
   bootstrap: [AppComponent]
 })

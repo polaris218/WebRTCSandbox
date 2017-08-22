@@ -85,8 +85,4 @@ export class MixDownPopup extends PopupContent {
             BounceEvents: msg
         });
     }
-
-    public close() {
-        this.popupService.close();
-    }
 }

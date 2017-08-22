@@ -6,4 +6,8 @@ export abstract class PopupContent {
     constructor(protected popupService: PopupService) {
         this.data = this.popupService.state.data;
     }
+
+    public close() {
+        this.popupService.close();
+    }
 }

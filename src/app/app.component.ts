@@ -1,9 +1,9 @@
 import {Component, EventEmitter, Output} from "@angular/core";
 import {PopupService} from "./services/popup.service";
-import {TestPopup} from "./popups/popup-test/popup-test.content";
 import {LoadState} from "./state/load.state";
 import {SocketService} from "./services/socket.service";
 import {ApiService} from "./services/api.service";
+import {LegendPopup} from "./popups/legend/legend.popup";
 
 @Component({
     selector: 'app',
@@ -67,5 +67,9 @@ export class AppComponent {
         this.apiService.getAvailableSandboxList(res => {
             console.log(res);
         });
+    }
+
+    showLegendPopup() {
+        this.popupService.open(LegendPopup, {});
     }
 }
