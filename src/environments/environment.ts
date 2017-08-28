@@ -21,5 +21,8 @@ export const environment = {
   },
   social: {
     prefix: 'http://www.gpu.audio/sb/'
+  },
+  postmessage: {
+    origin: ['http://localhost:8081']
   }
 };

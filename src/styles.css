@@ -739,6 +739,18 @@ body {
     width: 768px;
 }
 
+.modalFullScreen {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    z-index: 100000;
+}
+
 .modalMiddle {
     position: relative;
     border-top: 1px solid rgba(255, 255, 255, 0.02);
@@ -999,7 +1011,7 @@ body {
     position: relative;
 }
 
-.productDropdownControlIsOpen .productDropdown background-image
+/*.productDropdownControlIsOpen .productDropdown background-image
 url
 
 (
@@ -1007,7 +1019,7 @@ url
 )
 :hover {
     background-image: url("/assets/img/product-dropdown/down-hover.png");
-}
+}*/
 
 .productDropdownControlIsOpen .productDropdownPanel {
     opacity: 1;

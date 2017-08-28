@@ -1,0 +1,4 @@
+.window.blured {
+    filter: url("#blur");
+    filter: blur(9px);
+}
