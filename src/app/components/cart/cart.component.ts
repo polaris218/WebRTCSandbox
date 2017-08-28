@@ -36,7 +36,6 @@ export class CartComponent {
     }
 
     private checkPmOrigin(msg) {
-        console.log(environment.postmessage.origin.indexOf(msg.origin) >= 0);
         return environment.postmessage.origin.indexOf(msg.origin) >= 0;
     }
 

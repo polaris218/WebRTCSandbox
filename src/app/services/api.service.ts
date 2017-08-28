@@ -138,4 +138,13 @@ export class ApiService extends ServerService {
             cb
         );
     }
+
+    public getBounceCounter(cb: any) {
+        return this.getQuery(
+            'service/bo/ProductSandbox/GetBounceCounter/',
+            {},
+            this.dto['BounceCounterRsDto'],
+            cb
+        );
+    }
 }

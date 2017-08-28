@@ -47,7 +47,7 @@
         <div class="trackControl">
             <div class="trackControlIcon trackControlIconMixdown" (click)="mixDown()">
                 <div class="trackControlIconCount">
-                    <div class="trackControlIconCountText">18</div>
+                    <div class="trackControlIconCountText" *ngIf="bounceCounter">{{ bounceCounter }}</div>
                 </div>
             </div>
             <div class="trackControlText">Mixdown</div>

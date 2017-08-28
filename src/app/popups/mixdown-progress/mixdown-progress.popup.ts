@@ -15,6 +15,7 @@ export class MixDownPopup extends PopupContent {
         CurrentProgress: 0,
         TotalToProcess: 100
     };
+    public progress: number;
 
     constructor(popupService: PopupService, private socketService: SocketService) {
         super(popupService);
@@ -34,20 +35,19 @@ export class MixDownPopup extends PopupContent {
         this.sInt = setInterval(() => {
             if (this.socketService.getSocketData().MixdownProgress) {
                 this.mixDownProgress = this.socketService.getSocketData().MixdownProgress;
+                this.getProgress();
                 clearInterval(this.sInt);
                 this.renderSocketData();
             }
         }, 100);
     }
 
-    public getProgress() {
-        let progress = this.mixDownProgress.CurrentProgress / this.mixDownProgress.TotalToProcess;
+    private getProgress() {
+        this.progress = Math.round(this.mixDownProgress.CurrentProgress / this.mixDownProgress.TotalToProcess * 100);
 
-        if (progress >= 1) {
+        if (this.progress >= 100) {
             this.completeMixDown();
         }
-
-        return Math.round(progress * 100);
     }
 
     public cancelMixdown() {

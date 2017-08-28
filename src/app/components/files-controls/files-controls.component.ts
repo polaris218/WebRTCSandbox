@@ -5,6 +5,7 @@ import {ApiService} from "../../services/api.service";
 import {SocketService} from "../../services/socket.service";
 import {PopupService} from "../../services/popup.service";
 import {MixDownPopup} from "../../popups/mixdown-progress/mixdown-progress.popup";
+import {LoadState} from "../../state/load.state";
 
 @Component({
     selector: 'files-controls',
@@ -20,8 +21,15 @@ export class FilesControlsComponent {
     public storageLimits: any;
     private initApiInterval: any = 0;
     public isPlaying: boolean = false;
+    public bounceCounter: number;
 
     @Input() socketData: any;
+
+    protected rejectState = new LoadState();
+    protected submitState = new LoadState();
+    protected rejected = false;
+    @Output() onClose: EventEmitter<any> = new EventEmitter();
+    @Output() onReject: EventEmitter<any> = new EventEmitter();
 
     constructor(
         private uploadService: UploadService,
@@ -33,7 +41,6 @@ export class FilesControlsComponent {
     }
 
     private init() {
-        console.log(this);
         this.checkIfApiInited();
 
         this.initUpload();
@@ -45,6 +52,7 @@ export class FilesControlsComponent {
         this.initApiInterval = window.setInterval(() => {
             if (this.apiService.isInited()) {
                 this.getStorageLimits();
+                this.getBounceCounter();
 
                 clearInterval(this.initApiInterval);
             }
@@ -152,6 +160,16 @@ export class FilesControlsComponent {
             BounceEvents: msg
         });
 
-        this.popupService.open(MixDownPopup, {});
+        this.popupService.open(MixDownPopup, {}).subscribe(() => {
+            console.log('asdasdasdasd');
+            this.rejected = true;
+            this.onReject.emit();
+        });
+    }
+
+    private getBounceCounter() {
+        this.apiService.getBounceCounter(res => {
+            this.bounceCounter = res.Value;
+        });
     }
 }
