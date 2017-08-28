@@ -1,6 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, OnInit} from '@angular/core';
 import {ApiService} from "../../services/api.service";
 import {SocketService} from "../../../../src/app/services/socket.service";
+import {ShareData} from "../../state/share.data";
 
 @Component({
     selector: 'files-list',
@@ -14,7 +15,7 @@ import {SocketService} from "../../../../src/app/services/socket.service";
  *
  * */
 
-export class FilesListComponent {
+export class FilesListComponent implements OnInit {
     initApiInterval: any = 0;
     filesState: any = {
         FileList: [],
@@ -25,8 +26,24 @@ export class FilesListComponent {
         wheelSpeed: 1
     };
 
-    constructor(private apiService: ApiService, private socketService: SocketService) {
+    loadStateChanged: EventEmitter<any> = new EventEmitter();
+    subscription: any;
+
+    constructor(
+        private apiService: ApiService,
+        private socketService: SocketService,
+        private shareService: ShareData
+    ) {
         this.checkIfApiInited();
+    }
+
+    ngOnInit() {
+        this.subscription = this.shareService.getData()
+            .subscribe(data => {
+                if (data === 'load' && this.shareService[data]) {
+                    this.getFilesList();
+                }
+            });
     }
 
     checkIfApiInited() {

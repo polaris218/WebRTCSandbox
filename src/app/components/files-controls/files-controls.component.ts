@@ -6,6 +6,7 @@ import {SocketService} from "../../services/socket.service";
 import {PopupService} from "../../services/popup.service";
 import {MixDownPopup} from "../../popups/mixdown-progress/mixdown-progress.popup";
 import {LoadState} from "../../state/load.state";
+import {ShareData} from "../../state/share.data";
 
 @Component({
     selector: 'files-controls',
@@ -29,7 +30,9 @@ export class FilesControlsComponent {
         private uploadService: UploadService,
         private apiService: ApiService,
         private socketService: SocketService,
-        private popupService: PopupService) {
+        private popupService: PopupService,
+        private shareData: ShareData
+    ) {
 
         this.init();
     }
@@ -71,6 +74,7 @@ export class FilesControlsComponent {
             setTimeout(() => {
                 this.uploadIsComplete = false;
                 this.showProgressBar(false);
+                this.shareData.setData('upload', true);
             }, 2000);
         };
     }

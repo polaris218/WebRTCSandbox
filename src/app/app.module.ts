@@ -23,6 +23,7 @@ import {LoaderComponent} from "./components/loader/loader.component";
 import {MixDownPopup} from "./popups/mixdown-progress/mixdown-progress.popup";
 import {LegendPopup} from "./popups/legend/legend.popup";
 import {BasketPopup} from "./popups/basket/basket.popup";
+import {ShareData} from "./state/share.data";
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
@@ -59,7 +60,8 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         ApiService,
         PopupService,
         SocketService,
-        UploadService
+        UploadService,
+        ShareData
     ],
     entryComponents: [
         MixDownPopup,
