@@ -42,14 +42,9 @@
                     <div class="productDropdown" (click)="toggleSandboxList()">{{ ActiveSandBox.Caption }}</div>
                     <div class="productDropdownPanel">
                         <div class="productDropdownPanelItem"
-                             [class.active]="true"
+                             [class.productDropdownPanelItemActive]="sandbox.Current"
                              *ngFor="let sandbox of SandboxList"
                              (click)="setActiveSandbox(sandbox)">{{ sandbox.Caption }}</div>
-                        <!-- <div class="productDropdownPanelItem">Name product 01</div>
-                        <div class="productDropdownPanelItem productDropdownPanelItemActive">Name product 09</div>
-                        <div class="productDropdownPanelItem">Name product 02</div>
-                        <div class="productDropdownPanelItem">Name product 03</div>
-                        <div class="productDropdownPanelItem">Name product 03</div> -->
                     </div>
                 </div>
             </div>

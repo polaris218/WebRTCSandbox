@@ -25,12 +25,6 @@ export class FilesControlsComponent {
 
     @Input() socketData: any;
 
-    protected rejectState = new LoadState();
-    protected submitState = new LoadState();
-    protected rejected = false;
-    @Output() onClose: EventEmitter<any> = new EventEmitter();
-    @Output() onReject: EventEmitter<any> = new EventEmitter();
-
     constructor(
         private uploadService: UploadService,
         private apiService: ApiService,
@@ -160,11 +154,7 @@ export class FilesControlsComponent {
             BounceEvents: msg
         });
 
-        this.popupService.open(MixDownPopup, {}).subscribe(() => {
-            console.log('asdasdasdasd');
-            this.rejected = true;
-            this.onReject.emit();
-        });
+        this.popupService.open(MixDownPopup, {});
     }
 
     private getBounceCounter() {

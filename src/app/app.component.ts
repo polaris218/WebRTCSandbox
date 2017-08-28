@@ -68,9 +68,15 @@ export class AppComponent {
 
     private getAvailableSandboxList() {
         this.apiService.getAvailableSandboxList(res => {
-            console.log(res);
             this.SandboxList = res.SandboxList;
             this.ActiveSandBox = this.SandboxList[0];
+            this.SandboxList.forEach(s => {
+                s.Current = false;
+                if (s.UniqueHash === res.ActiveSandboxUniqueHash) {
+                    s.Current = true;
+                    this.ActiveSandBox = s;
+                }
+            });
         });
     }
 
