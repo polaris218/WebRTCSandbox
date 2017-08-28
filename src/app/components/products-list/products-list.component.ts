@@ -34,7 +34,7 @@ export class ProductsListComponent {
      * TODO: пока что на скорую руку, потом уйти в строну геттера в модели
      *
      * */
-    getDiscount(product) {
+    public getDiscount(product) {
         if ( product.CutOffFlat > 0 ) {
             return product.Product.Price - product.CutOffFlat;
         }
@@ -46,7 +46,7 @@ export class ProductsListComponent {
         return 0;
     }
 
-    getImage(product) {
+    public getImage(product) {
 
 
         return '/assets/img/product/product.png';

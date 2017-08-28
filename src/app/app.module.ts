@@ -24,6 +24,7 @@ import {MixDownPopup} from "./popups/mixdown-progress/mixdown-progress.popup";
 import {LegendPopup} from "./popups/legend/legend.popup";
 import {BasketPopup} from "./popups/basket/basket.popup";
 import {ShareData} from "./state/share.data";
+import {PageSliderModule} from 'ng2-page-slider';
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
@@ -53,7 +54,8 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         FormsModule,
         HttpModule,
         PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG),
-        NouisliderModule
+        NouisliderModule,
+        PageSliderModule,
     ],
     providers: [
         ServerService,
