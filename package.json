@@ -25,6 +25,7 @@
     "core-js": "^2.4.1",
     "ng2-nouislider": "^1.6.1",
     "ng2-page-slider": "^0.10.1",
+    "ngx-clipboard": "^8.0.4",
     "nouislider": "^10.1.0",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.4"

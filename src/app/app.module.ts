@@ -25,6 +25,7 @@ import {LegendPopup} from "./popups/legend/legend.popup";
 import {BasketPopup} from "./popups/basket/basket.popup";
 import {ShareData} from "./state/share.data";
 import {PageSliderModule} from 'ng2-page-slider';
+import {ClipboardModule} from "ngx-clipboard/dist";
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
@@ -56,6 +57,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG),
         NouisliderModule,
         PageSliderModule,
+        ClipboardModule
     ],
     providers: [
         ServerService,

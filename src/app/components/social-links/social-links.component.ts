@@ -13,7 +13,7 @@ export class SocialLinksComponent {
 
     constructor(private apiService: ApiService) {}
 
-    private getShareLink() {
+    public getShareLink() {
         this.shareLink = '';
 
         return this.apiService.shareSandbox(res => {

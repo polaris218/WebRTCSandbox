@@ -1,6 +1,6 @@
-<div class="shares">
+<div class="shares" (mouseover)="getShareLink()">
     <div class="shareItems">
-        <a class="shareItem" href="#" (click)="copyLink()">
+        <a class="shareItem" href="#" ngxClipboard [cbContent]="shareLink">
             <span class="shareItemIcon shareItemIconCopy"></span>
             <span class="shareItemTitle">Copy link to<br> clipboard</span>
         </a>
