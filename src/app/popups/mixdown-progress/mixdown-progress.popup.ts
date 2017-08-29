@@ -61,8 +61,6 @@ export class MixDownPopup extends PopupContent {
         };
 
         this.senSocketMessage(msg);
-
-        this.closePopup();
     }
 
     public closeMixdownPopup() {
@@ -89,6 +87,10 @@ export class MixDownPopup extends PopupContent {
         this.socketService.send({
             BounceEvents: msg
         });
+    }
+
+    public downloadMixdown() {
+
     }
 
     public closePopup() {

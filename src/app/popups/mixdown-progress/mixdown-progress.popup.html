@@ -22,6 +22,11 @@
         </div>
     </div>
     <div class="modalFooter">
-        <button class="buttonLight" (click)="cancelMixdown()">Cancel</button>
+        <button class="buttonLight"
+                *ngIf="progress < 100"
+                (click)="cancelMixdown()">Cancel</button>
+        <button class="buttonLight"
+                *ngIf="progress >= 100"
+                (click)="downloadMixdown()">Download</button>
     </div>
 </div>
