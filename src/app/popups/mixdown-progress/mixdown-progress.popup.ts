@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import {PopupService} from "../../services/popup.service";
 import {PopupContent} from "../../modules/popup/popup.content.module";
 import {SocketService} from "../../services/socket.service";
+import {ShareData} from "../../state/share.data";
 
 @Component({
     selector: 'mixdown-progress',
@@ -17,7 +18,11 @@ export class MixDownPopup extends PopupContent {
     };
     public progress: number;
 
-    constructor(popupService: PopupService, private socketService: SocketService) {
+    constructor(
+        public popupService: PopupService,
+        private socketService: SocketService,
+        private shareData: ShareData
+    ) {
         super(popupService);
 
         this.renderSocketData();
@@ -57,7 +62,7 @@ export class MixDownPopup extends PopupContent {
 
         this.senSocketMessage(msg);
 
-        this.close();
+        this.closePopup();
     }
 
     public closeMixdownPopup() {
@@ -67,7 +72,7 @@ export class MixDownPopup extends PopupContent {
 
         this.senSocketMessage(msg);
 
-        this.close();
+        this.closePopup();
     }
 
     private completeMixDown() {
@@ -77,12 +82,18 @@ export class MixDownPopup extends PopupContent {
 
         this.senSocketMessage(msg);
 
-        this.close();
+        this.closePopup();
     }
 
     private senSocketMessage(msg) {
         this.socketService.send({
             BounceEvents: msg
         });
+    }
+
+    public closePopup() {
+        this.shareData.setData('mixdown', true);
+
+        this.close();
     }
 }

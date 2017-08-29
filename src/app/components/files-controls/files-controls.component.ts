@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter} from "@angular/core";
+import {Component, Input, Output, EventEmitter, OnInit} from "@angular/core";
 import {UploadItem} from "../../interface";
 import {UploadService} from "../../services/upload.service";
 import {ApiService} from "../../services/api.service";
@@ -14,7 +14,7 @@ import {ShareData} from "../../state/share.data";
     styleUrls: ['./files-controls.component.css']
 })
 
-export class FilesControlsComponent {
+export class FilesControlsComponent implements OnInit {
     public filetoupload: any;
     public item: UploadItem;
     public isUploading: boolean = false;
@@ -23,6 +23,7 @@ export class FilesControlsComponent {
     private initApiInterval: any = 0;
     public isPlaying: boolean = false;
     public bounceCounter: number;
+    private subscription: any;
 
     @Input() socketData: any;
 
@@ -31,10 +32,19 @@ export class FilesControlsComponent {
         private apiService: ApiService,
         private socketService: SocketService,
         private popupService: PopupService,
-        private shareData: ShareData
+        private shareService: ShareData
     ) {
 
         this.init();
+    }
+
+    ngOnInit() {
+        this.subscription = this.shareService.getData()
+            .subscribe(data => {
+                if (data === 'mixdown' && this.shareService[data]) {
+                    this.getBounceCounter();
+                }
+            });
     }
 
     private init() {
@@ -74,7 +84,7 @@ export class FilesControlsComponent {
             setTimeout(() => {
                 this.uploadIsComplete = false;
                 this.showProgressBar(false);
-                this.shareData.setData('upload', true);
+                this.shareService.setData('upload', true);
             }, 2000);
         };
     }

@@ -3,6 +3,7 @@ import {ApiService} from "../../services/api.service";
 import {PopupService} from "../../services/popup.service";
 import {BasketPopup} from "../../popups/basket/basket.popup";
 import {environment} from "../../../environments/environment";
+import {PageSliderModule} from 'ng2-page-slider';
 
 @Component({
     selector: 'cart',
