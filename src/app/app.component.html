@@ -12,7 +12,7 @@
             <div class="windowControlHelp" (click)="showLegendPopup()">
                 <div class="windowControlTooltip">Help</div>
             </div>
-            <div class="windowControlZoom">
+            <div class="windowControlZoom" [class.windowControlZoomActive]="fullZoom == true" (click)="zoomIFrameContent()">
                 <div class="windowControlTooltip">Zoom</div>
             </div>
             <div class="windowControlClose">
@@ -29,10 +29,10 @@
             <div class="mainContent mainContentDemo">
                 <iframe width="100%"
                         height="100%"
-                        src="https://www.youtube.com/embed/uT3SBzmDxGk"
+                        src="http://localhost:3000/alex"
                         frameborder="0"
-                        #myIframe
                         id="myIframe"
+                        name="myIframe"
                         (load)="onFrameLoad(myIframe)"
                         allowfullscreen></iframe>
                 <loader class="loader-container" *ngIf="!frameIsLoaded"></loader>

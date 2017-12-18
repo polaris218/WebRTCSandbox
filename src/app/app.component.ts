@@ -4,6 +4,7 @@ import {LoadState} from "./state/load.state";
 import {SocketService} from "./services/socket.service";
 import {ApiService} from "./services/api.service";
 import {LegendPopup} from "./popups/legend/legend.popup";
+import {PostMessageService} from "./services/postmessage.service";
 
 @Component({
     selector: 'app',
@@ -16,6 +17,7 @@ export class AppComponent {
     protected rejectState = new LoadState();
     protected submitState = new LoadState();
     public frameIsLoaded: boolean = false;
+    public fullZoom: boolean = false;
 
     @Output() onClose: EventEmitter<any> = new EventEmitter();
     @Output() onReject: EventEmitter<any> = new EventEmitter();
@@ -35,7 +37,12 @@ export class AppComponent {
     public ActiveSandBox: any;
     public sandboxListShown: boolean = false;
 
-    constructor(private popupService: PopupService, private socketService: SocketService, private apiService: ApiService) {
+    constructor(
+        private popupService: PopupService,
+        private socketService: SocketService,
+        private apiService: ApiService,
+        private postMessageService: PostMessageService
+    ) {
         this.checkIfApiInited();
     }
 
@@ -91,5 +98,22 @@ export class AppComponent {
 
     public toggleSandboxList() {
         this.sandboxListShown = !this.sandboxListShown;
+    }
+
+    public zoomIFrameContent() {
+        const myIframe = document.getElementById('myIframe');
+
+        this.fullZoom = !this.fullZoom;
+        this.postMessageService.sendMessage(
+            0,
+            {
+                zoom: this.fullZoom,
+                size: {
+                    width: myIframe.offsetWidth,
+                    height: myIframe.offsetHeight
+                }
+            },
+            'http://localhost:3000'
+        );
     }
 }

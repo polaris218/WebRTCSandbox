@@ -26,6 +26,7 @@ import {BasketPopup} from "./popups/basket/basket.popup";
 import {ShareData} from "./state/share.data";
 import {PageSliderModule} from 'ng2-page-slider';
 import {ClipboardModule} from "ngx-clipboard/dist";
+import {PostMessageService} from "./services/postmessage.service";
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
@@ -65,7 +66,8 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         PopupService,
         SocketService,
         UploadService,
-        ShareData
+        ShareData,
+        PostMessageService
     ],
     entryComponents: [
         MixDownPopup,

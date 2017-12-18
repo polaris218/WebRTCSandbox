@@ -14,10 +14,10 @@ export class SocialLinksComponent {
     constructor(private apiService: ApiService) {}
 
     public getShareLink() {
-        this.shareLink = '';
+        this.shareLink = ' ';
 
         return this.apiService.shareSandbox(res => {
-            return this.shareLink += environment.social.prefix + res.HashForLink;
+            return this.shareLink = environment.social.prefix + res.HashForLink;
         });
     }
 
@@ -28,20 +28,36 @@ export class SocialLinksComponent {
     }
 
     public share() {
-        this.getShareLink().then(() => {
+
+        window['FB'].ui(
+            {
+                method: 'feed',
+                name: 'Facebook Dialogs',
+                link: 'https://developers.facebook.com/docs/dialogs/',
+                picture: 'http://fbrell.com/f8.jpg',
+                caption: 'Reference Documentation',
+                description: 'Dialogs provide a simple, consistent interface for applications to interface with users.'
+            }
+        );
+
+        return false;
+        /*this.getShareLink().then(() => {
             const fbShareUrl = this.shareLink + '&description=' + encodeURIComponent('Description will be here, also image. Coming soon.');
 
             this.openShareWindow('https://www.facebook.com/sharer/sharer.php?u=' + fbShareUrl, 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
         });
 
-        return false;
+        return false;*/
     }
 
     public tweet() {
-        this.getShareLink().then(() => {
+        window['twttr'].events.bind('tweet', event => {
+
+        });
+        /*this.getShareLink().then(() => {
             const tweetUrl = 'url=' + this.shareLink + '&text=' + encodeURIComponent('Some text will be here') + '&hashtags=tag1,tag2';
             this.openShareWindow('https://twitter.com/share?url=' + tweetUrl, 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
-        });
+        });*/
 
         return false;
     }

@@ -1,21 +1,62 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>SandboxUi</title>
-  <base href="/">
+    <meta charset="utf-8">
+    <title>SandboxUi</title>
+    <base href="/">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-  <script type="text/javascript" src="http://localhost:3005/static/js/proto/Long.js"></script>
-  <script type="text/javascript" src="http://localhost:3005/static/js/proto/ByteBufferAB.js"></script>
-  <script type="text/javascript" src="http://localhost:3005/static/js/proto/ProtoBuf.js"></script>
-  <script type="text/javascript" src="//code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="http://localhost:3005/static/js/jquery.binarytransport.js"></script>
+    <script type="text/javascript" src="http://localhost:3005/static/js/proto/Long.js"></script>
+    <script type="text/javascript" src="http://localhost:3005/static/js/proto/ByteBufferAB.js"></script>
+    <script type="text/javascript" src="http://localhost:3005/static/js/proto/ProtoBuf.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="http://localhost:3005/static/js/jquery.binarytransport.js"></script>
 </head>
 <body>
-  <app>Loading...</app>
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '530175420667024',
+            autoLogAppEvents: true,
+            xfbml: true,
+            version: 'v2.10'
+        });
+        FB.AppEvents.logPageView();
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<script>
+    window.twttr = (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+                t = window.twttr || {};
+        if (d.getElementById(id)) return t;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
+
+        t._e = [];
+        t.ready = function (f) {
+            t._e.push(f);
+        };
+
+        return t;
+    }(document, "script", "twitter-wjs"));</script>
+
+<app>Loading...</app>
 
 <!--
     TODO:

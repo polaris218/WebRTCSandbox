@@ -2439,6 +2439,7 @@ url
     opacity: 1;
 }
 
+
 .windowControlTemplate .windowControlTooltip,
 .windowControlBack .windowControlTooltip,
 .windowControlHelp .windowControlTooltip,
@@ -2511,7 +2512,7 @@ url
     background-image: url("/assets/img/window/control/zoom.png");
 }
 
-.windowControlZoom:hover {
+.windowControlZoom:hover, .windowControlZoomActive {
     background-image: url("/assets/img/window/control/zoom-hover.png");
 }
 
