@@ -113,7 +113,7 @@ export class AppComponent {
                     height: myIframe.offsetHeight
                 }
             },
-            'http://localhost:3000'
+            '*'
         );
     }
 }

@@ -10,7 +10,6 @@ export class PostMessageService {
     }
 
     public sendMessage(targetName, msg, origin) {
-        console.log('targetName: ', targetName);
         window.frames[targetName].postMessage(JSON.stringify(msg), origin);
     }
 
