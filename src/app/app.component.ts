@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from "@angular/core";
+import {Component, EventEmitter, Output, HostListener} from "@angular/core";
 import {PopupService} from "./services/popup.service";
 import {LoadState} from "./state/load.state";
 import {SocketService} from "./services/socket.service";
@@ -37,6 +37,11 @@ export class AppComponent {
     public ActiveSandBox: any;
     public sandboxListShown: boolean = false;
 
+    @HostListener('window:resize', ['$event'])
+    onResize(event) {
+        this._sendPostMessage();
+    }
+
     constructor(
         private popupService: PopupService,
         private socketService: SocketService,
@@ -71,6 +76,8 @@ export class AppComponent {
 
     public onFrameLoad(myIframe) {
         this.frameIsLoaded = true;
+
+
     }
 
     private getAvailableSandboxList() {
@@ -101,9 +108,14 @@ export class AppComponent {
     }
 
     public zoomIFrameContent() {
+        this.fullZoom = !this.fullZoom;
+
+        this._sendPostMessage();
+    }
+
+    private _sendPostMessage() {
         const myIframe = document.getElementById('myIframe');
 
-        this.fullZoom = !this.fullZoom;
         this.postMessageService.sendMessage(
             0,
             {
