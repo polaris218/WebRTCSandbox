@@ -77,8 +77,9 @@
     font-family: 'Circe', sans-serif;
     font-size: 10px;
     font-weight: 700;
-    text-align: center;
-    line-height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .trackMiddle {
@@ -154,7 +155,6 @@
     height: 24px;
     border-radius: 3px;
     background-color: #343A39;
-    padding-top: 2px;
     margin-right: 4px;
     transition: all 0.4s;
     -js-display: flex;
@@ -173,7 +173,9 @@
 }
 
 .trackFX span {
-    display: block;
+    display: flex;
+    align-items: center;
+    height: 24px;
     color: #B7D0D0;
     font-family: 'Circe', sans-serif;
     font-size: 13px;
@@ -199,7 +201,6 @@
     height: 24px;
     border-radius: 3px;
     background-color: #343A39;
-    padding-top: 2px;
     transition: all 0.4s;
     -js-display: flex;
     display: -ms-flexbox;
@@ -215,7 +216,9 @@
 }
 
 .trackB span {
-    display: block;
+    display: flex;
+    align-items: center;
+    height: 24px;
     color: #B7D0D0;
     font-family: 'Circe', sans-serif;
     font-size: 13px;
