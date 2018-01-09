@@ -9,8 +9,8 @@ export class PostMessageService {
         this.subscribe();
     }
 
-    public sendMessage(targetName, msg, origin) {
-        window.frames[targetName].postMessage(JSON.stringify(msg), origin);
+    public sendMessage(msg) {
+        window.frames[0].postMessage(JSON.stringify(msg), '*');
     }
 
     private subscribe() {

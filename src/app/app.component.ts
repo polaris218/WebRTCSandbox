@@ -77,7 +77,12 @@ export class AppComponent {
     public onFrameLoad(myIframe) {
         this.frameIsLoaded = true;
 
-
+        this.postMessageService.sendMessage(
+            {
+                zoom: this.fullZoom,
+                type: 'frameMode'
+            }
+        );
     }
 
     private getAvailableSandboxList() {
@@ -117,15 +122,14 @@ export class AppComponent {
         const myIframe = document.getElementById('myIframe');
 
         this.postMessageService.sendMessage(
-            0,
             {
                 zoom: this.fullZoom,
+                type: 'zoom',
                 size: {
                     width: myIframe.offsetWidth,
                     height: myIframe.offsetHeight
                 }
-            },
-            '*'
+            }
         );
     }
 }
