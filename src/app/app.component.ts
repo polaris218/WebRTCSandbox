@@ -77,12 +77,7 @@ export class AppComponent {
     public onFrameLoad(myIframe) {
         this.frameIsLoaded = true;
 
-        this.postMessageService.sendMessage(
-            {
-                zoom: this.fullZoom,
-                type: 'frameMode'
-            }
-        );
+        this._sendPostMessage();
     }
 
     private getAvailableSandboxList() {
