@@ -24,8 +24,6 @@ export class ServerService {
         }).done(function (data) {
             self.ProtoBuf.loadJson(JSON.stringify(data), self.builder);
 
-            console.log('Proto JSON: ', data);
-
             data.messages.forEach(type => {
                 self.dto[type.name] = self.builder.build(type.name);
             });

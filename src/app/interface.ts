@@ -8,7 +8,7 @@ export interface popupState {
 }
 
 export class UploadItem {
-    method: string = environment.upload.method;
+    method: string = 'POST';
     url: string = environment.upload.url;
     headers: any = {};
     formData: any = {};

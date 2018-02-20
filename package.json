@@ -8,7 +8,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build-with-env": "node builder.js"
   },
   "private": true,
   "dependencies": {
@@ -48,6 +49,7 @@
     "protractor": "~5.1.0",
     "ts-node": "~2.0.0",
     "tslint": "~4.5.0",
-    "typescript": "~2.2.0"
+    "typescript": "~2.2.0",
+    "yargs": "^11.0.0"
   }
 }
