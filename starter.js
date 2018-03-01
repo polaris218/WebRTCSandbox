@@ -1,7 +1,7 @@
 const argv = require('yargs').argv;
 const fs = require('fs');
 const exec = require('child_process').exec;
-const variables = require('./src/environments/variables.json');
+const variables = require('./src/environments/defaults.json');
 const result = {};
 
 for (let i in argv) {
@@ -10,8 +10,6 @@ for (let i in argv) {
   }
 }
 
-console.log('process: ', argv);
-
 fs.writeFileSync('./src/environments/variables.json', JSON.stringify( Object.assign(variables, result) ));
 
-exec('ng serve --port 8080');
+exec('ng serve --environment=dev --port 8080');

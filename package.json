@@ -9,7 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-with-env": "node builder.js"
+    "build-with-env": "node builder.js",
+    "start-with-env": "node starter.js"
   },
   "private": true,
   "dependencies": {
