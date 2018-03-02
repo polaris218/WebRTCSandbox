@@ -5,6 +5,7 @@ import {SocketService} from "./services/socket.service";
 import {ApiService} from "./services/api.service";
 import {LegendPopup} from "./popups/legend/legend.popup";
 import {PostMessageService} from "./services/postmessage.service";
+import {environment} from "../environments/environment";
 
 @Component({
     selector: 'app',

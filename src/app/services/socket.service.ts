@@ -10,7 +10,15 @@ export class SocketService extends ServerService {
     constructor() {
         super();
 
-        this.init();
+        let initApiInterval;
+
+        clearInterval(initApiInterval);
+
+        initApiInterval = window.setInterval(() => {
+            if (this.dto && Object.keys(this.dto).length > 0) {
+                this.init();
+            }
+        }, 250);
     }
 
     init() {
@@ -26,7 +34,6 @@ export class SocketService extends ServerService {
         fileReader.onload = function() {
             arrayBuffer = this.result;
             self.socketData = self.dto.SandboxPageSocketProto.decode(arrayBuffer);
-            //console.log(self);
         };
         fileReader.readAsArrayBuffer(evt.data);
     }

@@ -9,10 +9,41 @@ export class ServerService {
     public dto: any = {};
 
     constructor() {
-        this.ProtoBuf = window['dcodeIO'].ProtoBuf;
-        this.builder = this.ProtoBuf.newBuilder({convertFieldsToCamelCase: false});
 
-        this.initProtoBuf();
+
+        const files = [
+            'static/js/proto/Long.js',
+            'static/js/proto/ByteBufferAB.js',
+            'static/js/proto/ProtoBuf.js',
+            'static/js/jquery.binarytransport.js'
+        ];
+
+        this.getProtoScript(files);
+    }
+
+    private getProtoScript(files) {
+        if (files && files.length > 0) {
+            const f = files.shift();
+
+            const script = document.createElement('script');
+            script.src = environment.api.host + f;
+            script.type = 'text/javascript';
+
+            script.onload = () => {
+                this.getProtoScript(files);
+            };
+
+            script.onerror = () => {
+                this.getProtoScript(files);
+            };
+
+            document.head.appendChild(script);
+        } else {
+            this.ProtoBuf = window['dcodeIO'].ProtoBuf;
+            this.builder = this.ProtoBuf.newBuilder({convertFieldsToCamelCase: false});
+
+            this.initProtoBuf();
+        }
     }
 
     initProtoBuf() {
