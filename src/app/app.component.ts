@@ -98,6 +98,8 @@ export class AppComponent {
                     this.ActiveSandBox = s;
                 }
             });
+
+            this._sendPostMessage();
         });
     }
 
@@ -122,6 +124,8 @@ export class AppComponent {
 
     private _sendPostMessage() {
         const myIframe = document.getElementById('myIframe');
+
+        console.log({ width: myIframe.offsetWidth, height: myIframe.offsetHeight});
 
         this.postMessageService.sendMessage(
             {
