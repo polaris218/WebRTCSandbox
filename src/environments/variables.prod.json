@@ -1,0 +1,1 @@
+{"api":{"host":"http://protobuf-rest:3005/"},"socket":{"url":"ws://protobuf-socket:3005/"},"upload":{"url":"http://yes.tomatl.org:3005/upload"},"media":{"images":"/assets/"},"social":{"prefix":"http://www.gpu.audio/sb/"},"postmessage":{"origin":["http://localhost:8081"]}}

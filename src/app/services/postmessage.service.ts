@@ -10,7 +10,7 @@ export class PostMessageService {
     }
 
     public sendMessage(msg) {
-        window.frames[0].postMessage(JSON.stringify(msg), '*');
+        window.frames['myIframe'].contentWindow.postMessage(JSON.stringify(msg), '*');
     }
 
     private subscribe() {

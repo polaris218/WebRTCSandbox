@@ -1,5 +1,6 @@
 const argv = require('yargs').argv;
 const fs = require('fs');
+const http = require('http');
 const exec = require('child_process').exec;
 const variables = require('./src/environments/defaults.json');
 const result = {};

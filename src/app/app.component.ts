@@ -77,7 +77,13 @@ export class AppComponent {
 
     public onFrameLoad(myIframe) {
         this.frameIsLoaded = true;
+        let r = 0;
 
+        clearTimeout(r);
+
+        r = window.setTimeout(() => {
+            this._sendPostMessage();
+        }, 250);
         this._sendPostMessage();
     }
 
