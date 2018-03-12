@@ -1,9 +1,11 @@
-import {Injectable} from "@angular/core";
+import {Injectable, EventEmitter} from "@angular/core";
 import {environment} from "../../environments/environment";
 
 @Injectable()
 export class PostMessageService {
     private msg: any;
+
+    public onMessage: EventEmitter<any> = new EventEmitter();
 
     constructor() {
         this.subscribe();
@@ -15,7 +17,11 @@ export class PostMessageService {
 
     private subscribe() {
         window.addEventListener('message', msg => {
-            this.msg = msg;
+            try {
+                this.msg = JSON.parse(msg.data);
+
+                this.onMessage.emit(this.msg);
+            } catch(err) {}
         });
     }
 

@@ -22,6 +22,7 @@ export class AppComponent {
 
     @Output() onClose: EventEmitter<any> = new EventEmitter();
     @Output() onReject: EventEmitter<any> = new EventEmitter();
+    @Output() postMessage: EventEmitter<any> = new EventEmitter();
 
     private initApiInterval: any = 0;
     public OfferState: any = {
@@ -50,6 +51,21 @@ export class AppComponent {
         private postMessageService: PostMessageService
     ) {
         this.checkIfApiInited();
+
+        this.postMessageService.onMessage.subscribe({
+            next: (event: any) => {
+                if (event['productFrame']) {
+                    switch(event['type']) {
+                        case 'frameLoaded':
+                            this._sendPostMessage();
+                            break;
+                        case 'resizeFrame':
+                            this._sendPostMessage();
+                            break;
+                    }
+                }
+            }
+        });
     }
 
     public getSocketData() {
@@ -124,8 +140,6 @@ export class AppComponent {
 
     private _sendPostMessage() {
         const myIframe = document.getElementById('myIframe');
-
-        console.log({ width: myIframe.offsetWidth, height: myIframe.offsetHeight});
 
         this.postMessageService.sendMessage(
             {
