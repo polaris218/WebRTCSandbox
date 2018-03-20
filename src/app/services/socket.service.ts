@@ -17,6 +17,8 @@ export class SocketService extends ServerService {
         initApiInterval = window.setInterval(() => {
             if (this.dto && Object.keys(this.dto).length > 0) {
                 this.init();
+
+                clearInterval(initApiInterval);
             }
         }, 250);
     }
