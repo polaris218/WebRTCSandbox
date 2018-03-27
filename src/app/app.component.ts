@@ -41,7 +41,7 @@ export class AppComponent {
 
     @HostListener('window:resize', ['$event'])
     onResize(event) {
-        this._sendPostMessage();
+        this.sendPmRequest('resize');
     }
 
     constructor(
@@ -57,10 +57,10 @@ export class AppComponent {
                 if (event['productFrame']) {
                     switch(event['type']) {
                         case 'frameLoaded':
-                            this._sendPostMessage();
+                            this.sendPmRequest('init');
                             break;
                         case 'resizeFrame':
-                            this._sendPostMessage();
+                            this.sendPmRequest('resize');
                             break;
                     }
                 }
@@ -95,12 +95,7 @@ export class AppComponent {
         this.frameIsLoaded = true;
         let r = 0;
 
-        clearTimeout(r);
-
-        r = window.setTimeout(() => {
-            this._sendPostMessage();
-        }, 250);
-        this._sendPostMessage();
+        this.sendPmRequest('init');
     }
 
     private getAvailableSandboxList() {
@@ -115,7 +110,7 @@ export class AppComponent {
                 }
             });
 
-            this._sendPostMessage();
+            this.sendPmRequest('init');
         });
     }
 
@@ -135,21 +130,23 @@ export class AppComponent {
     public zoomIFrameContent() {
         this.fullZoom = !this.fullZoom;
 
-        this._sendPostMessage();
+        this.sendPmRequest('zoom');
     }
 
-    private _sendPostMessage() {
+    private sendPmRequest(type) {
         const myIframe = document.getElementById('myIframe');
 
-        this.postMessageService.sendMessage(
-            {
-                zoom: this.fullZoom,
-                type: 'zoom',
-                size: {
-                    width: myIframe.offsetWidth,
-                    height: myIframe.offsetHeight
-                }
+        this._sendPostMessage({
+            type: type,
+            zoom: this.fullZoom,
+            size: {
+                width: myIframe.offsetWidth,
+                height: myIframe.offsetHeight
             }
-        );
+        });
+    }
+
+    private _sendPostMessage(msg) {
+        this.postMessageService.sendMessage(msg);
     }
 }
