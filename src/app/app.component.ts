@@ -54,12 +54,12 @@ export class AppComponent {
 
         this.postMessageService.onMessage.subscribe({
             next: (event: any) => {
-                if (event['productFrame']) {
+                if (!!event['type']) {
                     switch(event['type']) {
                         case 'frameLoaded':
                             this.sendPmRequest('init');
                             break;
-                        case 'resizeFrame':
+                        case 'resize':
                             this.sendPmRequest('resize');
                             break;
                     }
@@ -134,6 +134,7 @@ export class AppComponent {
     }
 
     private sendPmRequest(type) {
+        console.log('this.fullZoom: ', this.fullZoom);
         const myIframe = document.getElementById('myIframe');
 
         this._sendPostMessage({
@@ -145,6 +146,8 @@ export class AppComponent {
             }
         });
     }
+
+
 
     private _sendPostMessage(msg) {
         this.postMessageService.sendMessage(msg);
