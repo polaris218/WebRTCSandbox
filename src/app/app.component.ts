@@ -1,11 +1,11 @@
-import {Component, EventEmitter, Output, HostListener} from "@angular/core";
-import {PopupService} from "./services/popup.service";
-import {LoadState} from "./state/load.state";
-import {SocketService} from "./services/socket.service";
-import {ApiService} from "./services/api.service";
-import {LegendPopup} from "./popups/legend/legend.popup";
-import {PostMessageService} from "./services/postmessage.service";
-import {environment} from "../environments/environment";
+import { Component, EventEmitter, Output, HostListener } from '@angular/core';
+import { PopupService } from './services/popup.service';
+import { LoadState } from './state/load.state';
+import { SocketService } from './services/socket.service';
+import { ApiService } from './services/api.service';
+import { LegendPopup } from './popups/legend/legend.popup';
+import { PostMessageService } from './services/postmessage.service';
+import { environment } from '../environments/environment';
 
 @Component({
     selector: 'app',
@@ -44,23 +44,27 @@ export class AppComponent {
         this.sendPmRequest('resize');
     }
 
-    constructor(
-        private popupService: PopupService,
-        private socketService: SocketService,
-        private apiService: ApiService,
-        private postMessageService: PostMessageService
-    ) {
+    constructor(private popupService: PopupService,
+                private socketService: SocketService,
+                private apiService: ApiService,
+                private postMessageService: PostMessageService) {
         this.checkIfApiInited();
 
         this.postMessageService.onMessage.subscribe({
             next: (event: any) => {
                 if (!!event['type']) {
-                    switch(event['type']) {
+                    switch (event['type']) {
                         case 'frameLoaded':
                             this.sendPmRequest('init');
                             break;
                         case 'resize':
                             this.sendPmRequest('resize');
+                            break;
+                        case 'showPreloader':
+                            this.frameIsLoaded = false;
+                            break;
+                        case 'hidePreloader':
+                            this.frameIsLoaded = true;
                             break;
                     }
                 }
@@ -134,7 +138,6 @@ export class AppComponent {
     }
 
     private sendPmRequest(type) {
-        console.log('this.fullZoom: ', this.fullZoom);
         const myIframe = document.getElementById('myIframe');
 
         this._sendPostMessage({
@@ -146,7 +149,6 @@ export class AppComponent {
             }
         });
     }
-
 
 
     private _sendPostMessage(msg) {
