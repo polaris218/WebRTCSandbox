@@ -1,1 +1,1 @@
-{"api":{"host":"http://localhost:3005/"},"socket":{"url":"ws://localhost:3005/"},"upload":{"url":"http://yes.tomatl.org:3005/upload"},"media":{"images":"/assets/"},"social":{"prefix":"http://www.gpu.audio/sb/"},"postmessage":{"origin":["http://localhost:8081"]}}
+{"api":{"host":"http://repo.braingines.com:3678/"},"socket":{"url":"ws://repo.braingines.com:3678/"},"upload":{"url":"http://yes.tomatl.org:3005/upload"},"media":{"images":"/assets/"},"social":{"prefix":"http://www.gpu.audio/sb/"},"postmessage":{"origin":["http://localhost:8081"]}}

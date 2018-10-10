@@ -13,4 +13,4 @@ for (let i in argv) {
 
 fs.writeFileSync('./src/environments/variables.json', JSON.stringify( Object.assign(variables, result) ));
 
-exec('ng serve --environment=dev --port 8080');
+exec('ng serve --host 0.0.0.0 --environment=dev --port 3680 --disable-host-check --public-host repo.braingines.com:3680');
