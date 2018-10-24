@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output, HostListener } from '@angular/core';
+import { DomSanitizer } from "@angular/platform-browser";
 import { PopupService } from './services/popup.service';
 import { LoadState } from './state/load.state';
 import { SocketService } from './services/socket.service';
@@ -39,6 +40,8 @@ export class AppComponent {
     public ActiveSandBox: any;
     public sandboxListShown: boolean = false;
 
+    public FrameSrc: any;
+
     @HostListener('window:resize', ['$event'])
     onResize(event) {
         this.sendPmRequest('resize');
@@ -47,7 +50,8 @@ export class AppComponent {
     constructor(private popupService: PopupService,
                 private socketService: SocketService,
                 private apiService: ApiService,
-                private postMessageService: PostMessageService) {
+                private postMessageService: PostMessageService,
+                private sanitizer: DomSanitizer) {
         this.checkIfApiInited();
 
         this.postMessageService.onMessage.subscribe({
@@ -70,6 +74,10 @@ export class AppComponent {
                 }
             }
         });
+
+        this.FrameSrc = this.sanitizer.bypassSecurityTrustResourceUrl(
+            `${environment.webdev.host}alex?supercontroller=1&sessionid=75dfa020-b343-11e7-ba29-c53da046d358`
+        );
     }
 
     public getSocketData() {

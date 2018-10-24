@@ -6,6 +6,9 @@ import * as data from './variables.json';
 
 export const environment = {
     production: false,
+    webdev: {
+        host: data['webdev'].host
+    },
     api: {
         host: data['api'].host
     },
