@@ -1336,16 +1336,10 @@ url
     flex: 0 1 320px;
     width: 320px;
     background-color: #2A2C2C;
-    -ms-flex-item-align: stretch;
     align-self: stretch;
-    -js-display: flex;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-direction: column;
     flex-direction: column;
-    -ms-flex-pack: start;
-    justify-content: flex-start;
-    -ms-flex-align: start;
+    justify-content: flex-end;
     align-items: flex-start;
 }
 
