@@ -1983,32 +1983,27 @@ url
 
 .trackControlIconCount {
     position: absolute;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    overflow: hidden;
     background-color: #AEBABA;
-    padding-top: 1px;
     right: -8px;
     top: -8px;
     transition: all 0.4s;
-    -js-display: flex;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: column;
+    display: inline-flex;
     flex-direction: column;
-    -ms-flex-align: center;
     align-items: center;
-    -ms-flex-pack: center;
     justify-content: center;
-}
-
-.trackControlIconCount .trackControlIconCountText {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
     color: #010101;
     font-family: 'Circe', sans-serif;
     font-size: 9px;
-    line-height: 9px;
     font-weight: 700;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
+}
+
+.trackControlIconCount .trackControlIconCountText {
+
 }
 
 .trackControlIconPlay {
