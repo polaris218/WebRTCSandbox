@@ -61,6 +61,8 @@ export class MixDownPopup extends PopupContent {
         };
 
         this.senSocketMessage(msg);
+
+        this.closePopup();
     }
 
     public closeMixdownPopup() {
