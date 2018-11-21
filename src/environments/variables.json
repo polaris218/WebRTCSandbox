@@ -1,12 +1,12 @@
 {
   "webdev": {
-    "host": "http://localhost:3679/"
+    "host": "http://192.168.0.103:3679/"
   },
   "api": {
-    "host": "http://localhost:3678/"
+    "host": "http://192.168.0.103:3678/"
   },
   "socket": {
-    "url": "ws://localhost:3678/"
+    "url": "ws://192.168.0.103:3678/"
   },
   "upload": {
     "url": "http://yes.tomatl.org:3005/upload"

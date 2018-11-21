@@ -72,7 +72,7 @@
     height: 18px;
     border: 1px solid #3C4444;
     background-color: rgba(60, 68, 68, 0);
-    border-radius: 50%;
+    border-radius: 10px;
     color: #6A7777;
     font-family: 'Circe', sans-serif;
     font-size: 10px;
@@ -173,9 +173,10 @@
 }
 
 .trackFX span {
-    display: flex;
-    align-items: center;
+    display: block;
     height: 24px;
+    line-height: 24px;
+    padding-top: 1px;
     color: #B7D0D0;
     font-family: 'Circe', sans-serif;
     font-size: 13px;
@@ -216,9 +217,10 @@
 }
 
 .trackB span {
-    display: flex;
-    align-items: center;
+    display: block;
     height: 24px;
+    line-height: 24px;
+    padding-top: 1px;
     color: #B7D0D0;
     font-family: 'Circe', sans-serif;
     font-size: 13px;
