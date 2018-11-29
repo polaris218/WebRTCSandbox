@@ -7,6 +7,7 @@ import { ApiService } from './services/api.service';
 import { LegendPopup } from './popups/legend/legend.popup';
 import { PostMessageService } from './services/postmessage.service';
 import { environment } from '../environments/environment';
+import {ShareData} from "./state/share.data";
 
 @Component({
     selector: 'app',
@@ -51,7 +52,8 @@ export class AppComponent {
                 private socketService: SocketService,
                 private apiService: ApiService,
                 private postMessageService: PostMessageService,
-                private sanitizer: DomSanitizer) {
+                private sanitizer: DomSanitizer,
+                private shareData: ShareData) {
         this.checkIfApiInited();
 
         this.postMessageService.onMessage.subscribe({
@@ -129,6 +131,8 @@ export class AppComponent {
     public setActiveSandbox(sandbox: any) {
         this.ActiveSandBox = sandbox;
         this.sandboxListShown = false;
+
+        this.shareData.setData('changeSandbox', true);
     }
 
     public showLegendPopup() {

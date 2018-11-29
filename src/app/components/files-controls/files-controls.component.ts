@@ -44,6 +44,10 @@ export class FilesControlsComponent implements OnInit {
                 if (data === 'mixdown' && this.shareService[data]) {
                     this.getBounceCounter();
                 }
+
+                if (data === 'changeSandbox' && this.shareService[data]) {
+                    this.streamingAudio(false);
+                }
             });
     }
 
@@ -145,8 +149,12 @@ export class FilesControlsComponent implements OnInit {
      * Play buttons
      *
      * */
-    public streamingAudio() {
-        this.isPlaying = !this.isPlaying;
+    public streamingAudio(isPlaying?: boolean) {
+        if (typeof isPlaying !== 'undefined') {
+            this.isPlaying = isPlaying;
+        } else {
+            this.isPlaying = !this.isPlaying;
+        }
 
         let msg = this.isPlaying ? { PlayStream: true} : { PauseStream: true };
 
@@ -163,6 +171,8 @@ export class FilesControlsComponent implements OnInit {
         let msg = {
             BounceStarted: true
         };
+
+        this.streamingAudio(false);
 
         this.socketService.send({
             BounceEvents: msg
