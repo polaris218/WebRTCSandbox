@@ -149,7 +149,7 @@ export class AppComponent {
         this.sendPmRequest('zoom');
     }
 
-    public goBack() {
+    public close() {
         window.location.href = 'https://gpu.audio';
     }
 
