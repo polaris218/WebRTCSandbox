@@ -1012,7 +1012,6 @@ body {
     width: 100%;
     max-width: 480px;
     margin: 0 auto;
-    padding: 0 20px;
 }
 
 @media screen and (max-width: 1000px) {
@@ -1049,7 +1048,7 @@ url
     text-transform: uppercase;
     z-index: 10;
     border-radius: 3px;
-    background: #343A39 url("/assets/img/product-dropdown/up.png") no-repeat right 18px center;
+    background: #343A39;
     transition: all 0.3s;
     cursor: default;
     display: inline-flex;
@@ -1061,11 +1060,29 @@ url
     overflow: hidden;
 }
 
+.productDropdown:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 38px;
+    width: 12px;
+    height: 7px;
+    margin-top: -3px;
+    background: url("/assets/img/product-dropdown/up.png") no-repeat 0 0;
+    transition: transform 200ms 0ms linear;
+}
+
 .productDropdown:hover {
-    background-image: url("/assets/img/product-dropdown/up-hover.png");
+    /*background-image: url("/assets/img/product-dropdown/up-hover.png");*/
     color: #FFF;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
 }
+
+.productDropdownControlIsOpen .productDropdown:before {
+    transform: rotate(180deg);
+}
+
 
 .productDropdownPanel {
     display: block;
