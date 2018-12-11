@@ -149,6 +149,10 @@ export class AppComponent {
         this.sendPmRequest('zoom');
     }
 
+    public goBack() {
+        window.location.href = 'https://gpu.audio';
+    }
+
     private sendPmRequest(type) {
         const myIframe = document.getElementById('myIframe');
 
