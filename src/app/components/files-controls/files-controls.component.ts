@@ -93,12 +93,20 @@ export class FilesControlsComponent implements OnInit {
         };
     }
 
+    private isAbleToUploadFile(file) {
+        const ex = ['audio/mp3', 'audio/flac'];
+
+        return ex.indexOf(file.type.toLowerCase()) >= 0;
+    }
+
     public prepareToUploadFile($event) {
         this.item.file = $event.srcElement.files[0];
 
-        this.uploadService.upload(this.item);
+        if (this.isAbleToUploadFile(this.item.file)) {
+            this.uploadService.upload(this.item);
 
-        this.showProgressBar(true);
+            this.showProgressBar(true);
+        }
     }
 
     private showProgressBar(loop) {
