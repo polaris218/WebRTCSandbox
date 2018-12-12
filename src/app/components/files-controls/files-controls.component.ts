@@ -94,7 +94,7 @@ export class FilesControlsComponent implements OnInit {
     }
 
     private isAbleToUploadFile(file) {
-        const ex = ['audio/mp3', 'audio/flac'];
+        const ex = ['audio/mp3', 'audio/flac', 'audio/wav', 'audio/ogg', 'audio/aiff'];
 
         return ex.indexOf(file.type.toLowerCase()) >= 0;
     }
