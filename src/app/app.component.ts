@@ -110,6 +110,7 @@ export class AppComponent {
         let r = 0;
 
         this.sendPmRequest('init');
+        this.zoomIFrameContent();
     }
 
     private getAvailableSandboxList() {
