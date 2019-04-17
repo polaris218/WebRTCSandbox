@@ -2,7 +2,9 @@
 
 <div class="window">
     <div class="windowTitleBar">
-        <div class="windowTitleHeader">
+					<svg width="48px" height="48px" viewbox="0 0 32 32"><use xlink:href='/assets/img/window/logo.svg'/></svg>
+			<div class="windowTitleHeader">
+				
             <h1 *ngIf="ActiveSandBox">{{ ActiveSandBox.Caption }}</h1>
         </div>
         <div class="windowControl">
@@ -15,8 +17,8 @@
             <div class="windowControlZoom" [class.windowControlZoomActive]="fullZoom == true" (click)="zoomIFrameContent()">
                 <div class="windowControlTooltip">Zoom</div>
             </div>
-            <div class="windowControlClose" (click)="close()">
-                <div class="windowControlTooltip">Close</div>
+            <div class="windowControlMax" (click)="close()"><!--- TODO: assign side panels sliding--->
+                <div class="windowControlTooltip">Max</div>
             </div>
         </div>
     </div>

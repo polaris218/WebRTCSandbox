@@ -1,0 +1,17 @@
+<svg id="Play" xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: none;
+        stroke: #484e4e;
+        stroke-width: 16px;
+      }
+
+      .cls-2 {
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <circle id="Ellipse_1_copy_2" data-name="Ellipse 1 copy 2" class="cls-1" cx="128" cy="128" r="96"/>
+  <path id="Polygon_1_copy" data-name="Polygon 1 copy" class="cls-2" d="M183.884,128.047l-96,48v-96Z"/>
+</svg>

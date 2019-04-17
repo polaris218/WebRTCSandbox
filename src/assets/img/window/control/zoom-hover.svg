@@ -1,0 +1,14 @@
+<svg id="Zoom_out_hover" data-name="Zoom out hover" xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path class="cls-1" d="M104,76.408L66,39S77.661,26.656,104,0H0V104L39,66.75,76.41,104Z"/>
+  <path id="Shape_2_copy" data-name="Shape 2 copy" class="cls-1" d="M179.592,104L217,66s12.344,11.661,39,38V0H152l37.25,39L152,76.41Z"/>
+  <path id="Shape_2_copy_2" data-name="Shape 2 copy 2" class="cls-1" d="M76.408,152L39,190S26.656,178.339,0,152V256H104L66.75,217,104,179.59Z"/>
+  <path id="Shape_2_copy_3" data-name="Shape 2 copy 3" class="cls-1" d="M152,179.592L190,217s-11.661,12.344-38,39H256V152l-39,37.25L179.59,152Z"/>
+</svg>

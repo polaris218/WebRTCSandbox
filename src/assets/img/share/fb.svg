@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1024 1024" style="enable-background:new 0 0 1024 1024;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;}
+	.st1{fill:#484E4E;}
+</style>
+<title>flogo-RGB-HEX-Blk-1024</title>
+<path class="st0" d="M967.5,0h-911C25.3,0,0,25.3,0,56.5v911c0,31.2,25.3,56.5,56.5,56.5H547V628H414V473h133V358.9
+	c0-132.3,80.8-204.3,198.8-204.3c56.5,0,105.1,4.2,119.2,6.1V299h-81.4c-64.2,0-76.6,30.5-76.6,75.3V473h153.5l-20,155H707v396
+	h260.5c31.2,0,56.5-25.3,56.5-56.5c0,0,0,0,0,0v-911C1024,25.3,998.7,0,967.5,0z"/>
+<path id="f" class="st1" d="M707,1024V628h133.5l20-155H707v-98.7c0-44.8,12.4-75.3,76.6-75.3H865V160.7
+	c-14.2-1.9-62.7-6.1-119.2-6.1c-118,0-198.8,72-198.8,204.3V473H414v155h133v396H707z"/>
+</svg>

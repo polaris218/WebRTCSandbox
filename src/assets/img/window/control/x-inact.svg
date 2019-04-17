@@ -1,0 +1,12 @@
+<svg id="X_hover" data-name="X hover" xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #818181;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path class="cls-1" d="M0,34.764L34.764,0,256,221.236,221.236,256Z"/>
+  <path id="Rectangle_3_copy" data-name="Rectangle 3 copy" class="cls-1" d="M221.236,0L256,34.764,34.764,256,0,221.236Z"/>
+</svg>

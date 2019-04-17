@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="256.125" height="256" viewBox="0 0 256.125 256">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        fill-rule: evenodd;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <rect x="0.063" width="256" height="256"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#clip-path)">
+    <path id="back_hover" data-name="back hover" class="cls-1" d="M256.065,147.184H68.007l71.131,76.779H88.855L-0.065,128,88.855,32.037h50.283L68.007,108.81H256.065v38.374Z" transform="translate(0.063 0)"/>
+  </g>
+</svg>
