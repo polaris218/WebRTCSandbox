@@ -1337,7 +1337,7 @@ url
 }
 
 .cartButtonAdd {
-    padding: 0 22px 20px;
+    padding: 10px 12px;
 }
 
 .cartButton {
@@ -1355,16 +1355,17 @@ url
     padding: 0 32px 0 65px;
     text-align: center;
     white-space: nowrap;
-    background-image: url("/assets/img/cart/cart.png");
+    background-image: url("/assets/img/cart/cart.svg");
     background-repeat: no-repeat;
     background-position: left 28px center;
+	background-size: 7%;
     transition: all 0.4s;
 }
 
 .cartButton:hover {
     color: #FFF;
     background-color: #44504F;
-    background-image: url("/assets/img/cart/cart-hover.png");
+    background-image: url("/assets/img/cart/cart-hover.svg");
 }
 
 .cartButton:active {
@@ -1881,7 +1882,7 @@ url
 }
 
 .shareItem:hover .shareItemIconCopy {
-    background-image: url("/assets/img/share/copy-hover.png");
+    background-image: url("/assets/img/share/copy-hover.svg");
 }
 
 .shareItem:hover .shareItemIconTW {
@@ -1903,7 +1904,7 @@ url
 }
 
 .shareItemIconCopy {
-    background-image: url("/assets/img/share/copy.png");
+    background-image: url("/assets/img/share/copy.svg");
 }
 
 .shareItemIconTW {
