@@ -1257,6 +1257,7 @@ url
     justify-content: flex-start;
     -ms-flex-align: start;
     align-items: flex-start;
+	display: none; /*removed due to subscription model */
 }
 
 .cartTotalSubtotal {
