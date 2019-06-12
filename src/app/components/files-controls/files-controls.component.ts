@@ -7,6 +7,7 @@ import {PopupService} from "../../services/popup.service";
 import {MixDownPopup} from "../../popups/mixdown-progress/mixdown-progress.popup";
 import {LoadState} from "../../state/load.state";
 import {ShareData} from "../../state/share.data";
+import { Howl } from 'howler';
 
 @Component({
     selector: 'files-controls',
@@ -24,6 +25,12 @@ export class FilesControlsComponent implements OnInit {
     public isPlaying: boolean = false;
     public bounceCounter: number;
     private subscription: any;
+
+    bgMusicPlayer1 = new Howl({
+        src: 'http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio1_mf_q',
+        html5: true,
+        format: ['mp3', 'aac']
+      });
 
     @Input() socketData: any;
 
@@ -49,6 +56,7 @@ export class FilesControlsComponent implements OnInit {
                     this.streamingAudio(false);
                 }
             });
+        this.isPlaying = false;
     }
 
     private init() {
@@ -158,11 +166,17 @@ export class FilesControlsComponent implements OnInit {
      *
      * */
     public streamingAudio(isPlaying?: boolean) {
-        if (typeof isPlaying !== 'undefined') {
+        /* if (typeof isPlaying !== 'undefined') {
             this.isPlaying = isPlaying;
         } else {
             this.isPlaying = !this.isPlaying;
-        }
+        } */
+
+        if ( this.isPlaying )
+            this.bgMusicPlayer1.pause();
+        else
+        this.bgMusicPlayer1.play();
+        this.isPlaying = !this.isPlaying;
 
         let msg = this.isPlaying ? { PlayStream: true} : { PauseStream: true };
 

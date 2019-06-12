@@ -48,7 +48,9 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         LegendPopup,
         BasketPopup,
 
-        NgHide
+        NgHide,
+
+      
     ],
     imports: [
         CommonModule,
