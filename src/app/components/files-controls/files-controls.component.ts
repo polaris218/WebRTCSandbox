@@ -27,7 +27,7 @@ export class FilesControlsComponent implements OnInit {
     private subscription: any;
 
     bgMusicPlayer1 = new Howl({
-        src: 'http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio1_mf_q',
+        src: 'http://localhost:3000/audio',
         html5: true,
         format: ['mp3', 'aac']
       });
