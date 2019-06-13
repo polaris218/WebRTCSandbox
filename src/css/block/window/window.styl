@@ -1,0 +1,35 @@
+.window
+    position relative
+    z-index 100
+    overflow hidden
+    background-color #2d2f2f
+    size 100% 100vh
+
+.windowContent
+    box horizontal top space-between
+    border-top 1px solid rgba(0, 0, 0, .1)
+    size 100% calc(100vh - 44px)
+
+.windowLogo
+    position absolute
+    top 10px
+    left 16px
+    img
+        height 24px
+
+.windowTitleBar
+    box horizontal middle center
+    height 44px
+    padding 0 16px
+    padding-top 2px
+    background-color #2f3232
+    border-bottom 1px solid rgba(255, 255, 255, .02)
+
+.windowTitleHeader
+    align-self center
+    h1
+        color #aebaba
+        font-family 'Circe', sans-serif
+        font-size 16px
+        font-weight 700
+        text-transform uppercase
