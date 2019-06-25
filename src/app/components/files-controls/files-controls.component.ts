@@ -25,11 +25,26 @@ export class FilesControlsComponent implements OnInit {
     public isPlaying: boolean = false;
     public bounceCounter: number;
     private subscription: any;
+    public selectid: string = '41';
 
     bgMusicPlayer1 = new Howl({
-        src: 'http://localhost:3000/audio',
+        src: 'http://localhost:3000/audio/' + this.selectid,
+        //src: 'http://localhost:3000/video/' ,
         html5: true,
-        format: ['mp3', 'aac']
+        format: ['flac', 'aac','mp3'],
+        onplay: () => {
+            
+            console.log("playing");
+            
+          },
+        onseeek:( ) => {
+
+        },
+        onend: () => {
+            console.log("end");
+            this.isPlaying = false;
+          }
+        
       });
 
     @Input() socketData: any;
@@ -44,7 +59,7 @@ export class FilesControlsComponent implements OnInit {
 
         this.init();
     }
-
+    
     ngOnInit() {
         this.subscription = this.shareService.getData()
             .subscribe(data => {
@@ -57,6 +72,9 @@ export class FilesControlsComponent implements OnInit {
                 }
             });
         this.isPlaying = false;
+        const  seektime  = parseFloat( localStorage.getItem('memory'));
+        console.log("loading"+seektime);
+        this.bgMusicPlayer1.seek(seektime)
     }
 
     private init() {
@@ -158,6 +176,8 @@ export class FilesControlsComponent implements OnInit {
      *
      * */
     public getBusySpace() {
+        localStorage.setItem('memory', <string>this.bgMusicPlayer1.seek());
+        //return Math.round(this.getCurrentDuration() / this.getMaxDuration() * 100);
         return Math.round(this.storageLimits.SpaceUsedInBytes / this.storageLimits.SpaceTotalInBytes * 100);
     }
 
@@ -171,13 +191,29 @@ export class FilesControlsComponent implements OnInit {
         } else {
             this.isPlaying = !this.isPlaying;
         } */
+       // console.log(<number>this.bgMusicPlayer1.seek());
+       
 
-        if ( this.isPlaying )
+       
+       
+      
+        if ( this.isPlaying ) {
             this.bgMusicPlayer1.pause();
-        else
-        this.bgMusicPlayer1.play();
+          
+        
+    }
+        else {
+        this.bgMusicPlayer1.play(); 
+       
+        
+        
+        }
+       
+        
+        //console.log("dragon"+dragon);
+        
         this.isPlaying = !this.isPlaying;
-
+    
         let msg = this.isPlaying ? { PlayStream: true} : { PauseStream: true };
 
         this.socketService.send({
@@ -208,4 +244,17 @@ export class FilesControlsComponent implements OnInit {
             this.bounceCounter = res.Value;
         });
     }
+
+    public getCurrentDuration(): number {
+        
+
+        return <number>this.bgMusicPlayer1.seek();
+       
+      
+    }
+
+    public getMaxDuration(): number {
+        return <number>this.bgMusicPlayer1.duration();
+    }
+
 }
