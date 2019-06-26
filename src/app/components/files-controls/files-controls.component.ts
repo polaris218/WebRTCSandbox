@@ -28,7 +28,7 @@ export class FilesControlsComponent implements OnInit {
     public selectid: string = '41';
 
     bgMusicPlayer1 = new Howl({
-        src: 'http://localhost:3000/audio/' + this.selectid,
+        src: 'https://audiostram0626.herokuapp.com/audio/' + this.selectid,
         //src: 'http://localhost:3000/video/' ,
         html5: true,
         format: ['flac', 'aac','mp3'],
