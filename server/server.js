@@ -2,7 +2,6 @@ const express = require('express')
 const fs = require('fs');
 const path = require('path');
 const app = express();
-var sox = require('sox-stream');
 
 //audio stream 
 /* var src = fs.createReadStream('assets/03Boyfriend.flac')

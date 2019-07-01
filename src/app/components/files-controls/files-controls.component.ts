@@ -28,8 +28,8 @@ export class FilesControlsComponent implements OnInit {
     public selectid: string = Math.floor(Math.random()*100).toString();
 
     bgMusicPlayer1 = new Howl({
-       // src: 'https://audiostram0626.herokuapp.com/audio/' + this.selectid,
-        src: 'http://localhost:3000/audio/' + this.selectid ,
+        src: 'https://audiostram0626.herokuapp.com/audio/' + this.selectid,
+        //src: 'http://localhost:3000/audio/' + this.selectid ,
         html5: false,
         _webAudio :true,
         format: ['flac', 'aac','mp3'],

@@ -14,7 +14,7 @@
   "dependencies": {
     "express": "^4.15.3",
     "node-lame": "^1.2.0",
-    "nodemon": "^1.11.0",
+    "nodemon": "^1.19.1",
     "sox": "^0.1.0",
     "sox-stream": "^2.0.3",
     "sox.js": "^2.1.0"
