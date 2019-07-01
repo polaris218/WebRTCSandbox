@@ -7,7 +7,7 @@ import {PopupService} from "../../services/popup.service";
 import {MixDownPopup} from "../../popups/mixdown-progress/mixdown-progress.popup";
 import {LoadState} from "../../state/load.state";
 import {ShareData} from "../../state/share.data";
-import { Howl } from 'howler';
+import { Howl,Howler } from 'howler';
 
 @Component({
     selector: 'files-controls',
@@ -25,24 +25,35 @@ export class FilesControlsComponent implements OnInit {
     public isPlaying: boolean = false;
     public bounceCounter: number;
     private subscription: any;
-    public selectid: string = '41';
+    public selectid: string = Math.floor(Math.random()*100).toString();
 
     bgMusicPlayer1 = new Howl({
-        src: 'https://audiostram0626.herokuapp.com/audio/' + this.selectid,
-        //src: 'http://localhost:3000/video/' ,
-        html5: true,
+       // src: 'https://audiostram0626.herokuapp.com/audio/' + this.selectid,
+        src: 'http://localhost:3000/audio/' + this.selectid ,
+        html5: false,
+        _webAudio :true,
         format: ['flac', 'aac','mp3'],
         onplay: () => {
             
+            console.log( this.bgMusicPlayer1.state())
             console.log("playing");
-            
-          },
-        onseeek:( ) => {
-
         },
+        onplayerror: () => {
+            console.log("palyerror!!!");
+        },
+        onstop: () => {
+           
+            console.log("stop!!!");
+        },  
+        onloaderror : () => {
+            this.bgMusicPlayer1.unload();
+              console.log("load error!!!");
+          },
         onend: () => {
-            console.log("end");
-            this.isPlaying = false;
+        console.log("end");
+        this.isPlaying = false;
+       // this.bgMusicPlayer1.unload();
+        console.log( this.bgMusicPlayer1.state());
           }
         
       });
@@ -74,6 +85,9 @@ export class FilesControlsComponent implements OnInit {
         this.isPlaying = false;
         const  seektime  = parseFloat( localStorage.getItem('memory'));
         console.log("loading"+seektime);
+        Howler.usingWebAudio = true;
+        this.bgMusicPlayer1._webAudio = true;
+        this.bgMusicPlayer1._html5 = false;
         this.bgMusicPlayer1.seek(seektime)
     }
 
@@ -177,6 +191,7 @@ export class FilesControlsComponent implements OnInit {
      * */
     public getBusySpace() {
         localStorage.setItem('memory', <string>this.bgMusicPlayer1.seek());
+      
         //return Math.round(this.getCurrentDuration() / this.getMaxDuration() * 100);
         return Math.round(this.storageLimits.SpaceUsedInBytes / this.storageLimits.SpaceTotalInBytes * 100);
     }
