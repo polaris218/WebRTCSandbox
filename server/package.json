@@ -7,17 +7,21 @@
     "node": ">=6.2.0"
   },
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon app.js"
   },
   "author": "daspinola",
   "license": "MIT",
   "dependencies": {
+    "audio-context": "^1.0.3",
     "express": "^4.15.3",
     "node-lame": "^1.2.0",
     "nodemon": "^1.19.1",
+    "socket.io": "^2.2.0",
+    "socket.io-stream": "^0.9.1",
     "sox": "^0.1.0",
     "sox-stream": "^2.0.3",
-    "sox.js": "^2.1.0"
+    "sox.js": "^2.1.0",
+    "web-audio-stream": "^3.0.1"
   },
   "devDependencies": {}
 }

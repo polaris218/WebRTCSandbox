@@ -7,7 +7,15 @@ import {PopupService} from "../../services/popup.service";
 import {MixDownPopup} from "../../popups/mixdown-progress/mixdown-progress.popup";
 import {LoadState} from "../../state/load.state";
 import {ShareData} from "../../state/share.data";
-import { Howl,Howler } from 'howler';
+import { Howl, Howler } from 'howler';
+import ss from 'socket.io-stream';
+import * as io from "socket.io-client";
+import { HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+
+
+
+
 
 @Component({
     selector: 'files-controls',
@@ -17,6 +25,9 @@ import { Howl,Howler } from 'howler';
 
 export class FilesControlsComponent implements OnInit {
     public filetoupload: any;
+    private url = 'http://localhost:3000';
+    private herokuurl = 'https://audiostram0626.herokuapp.com';
+    private socket;
     public item: UploadItem;
     public isUploading: boolean = false;
     public uploadIsComplete: boolean = false;
@@ -25,37 +36,14 @@ export class FilesControlsComponent implements OnInit {
     public isPlaying: boolean = false;
     public bounceCounter: number;
     private subscription: any;
+    private isConnected: boolean = false;
+    private source : any;
     public selectid: string = Math.floor(Math.random()*100).toString();
-
+    public soundPlayer: any;
     bgMusicPlayer1 = new Howl({
         src: 'https://audiostram0626.herokuapp.com/audio/' + this.selectid,
-        //src: 'http://localhost:3000/audio/' + this.selectid ,
-        html5: false,
-        _webAudio :true,
+        //src: 'http://localhost:3000/audio/'+ this.selectid ,
         format: ['flac', 'aac','mp3'],
-        onplay: () => {
-            
-            console.log( this.bgMusicPlayer1.state())
-            console.log("playing");
-        },
-        onplayerror: () => {
-            console.log("palyerror!!!");
-        },
-        onstop: () => {
-           
-            console.log("stop!!!");
-        },  
-        onloaderror : () => {
-            this.bgMusicPlayer1.unload();
-              console.log("load error!!!");
-          },
-        onend: () => {
-        console.log("end");
-        this.isPlaying = false;
-       // this.bgMusicPlayer1.unload();
-        console.log( this.bgMusicPlayer1.state());
-          }
-        
       });
 
     @Input() socketData: any;
@@ -69,6 +57,52 @@ export class FilesControlsComponent implements OnInit {
     ) {
 
         this.init();
+        this.socket = io(this.url);
+        //this.socket = io(this.herokuurl)
+        let urlarray = [];
+        this.socket.emit('track', () => { console.log("emit track");
+        });
+        this.socket.on('hello', () => {  
+            this.isConnected = true;
+            console.log(this.isConnected);
+         });
+        ss(this.socket).on('track-stream', (stream, { stat }) => {
+            console.log("tracking stream from server");
+            let rate = 0;
+            let isData = false;
+            this.source = null;
+            this.isConnected = true;
+            stream.on('data', async (data) => {
+                const loadRate = (data.length * 100 ) / stat.size;
+                rate = rate + loadRate;
+                
+                let blob = new Blob([data], { type: 'audio/flac' })
+                let url = window.URL.createObjectURL(blob);
+                //console.log(url);
+                urlarray.push(url);
+                console.log(urlarray.length);
+                console.log(rate + "%");
+               // console.log(stat.size/data.length+ "times");
+                if(rate > 99.99 ) {
+                    this.soundPlayer = new Howl({
+                        src: urlarray,
+                        format: ['wav','flac', 'aac','mp3'],
+                       
+                    });
+                }
+
+            });
+            
+            
+        })
+        this.socket.on('disconnect',  () => { 
+            //console.log("disconenct");
+            
+            this.soundPlayer.pause();
+            this.isConnected = false;
+            this.isPlaying = false;
+
+        })
     }
     
     ngOnInit() {
@@ -88,7 +122,8 @@ export class FilesControlsComponent implements OnInit {
         Howler.usingWebAudio = true;
         this.bgMusicPlayer1._webAudio = true;
         this.bgMusicPlayer1._html5 = false;
-        this.bgMusicPlayer1.seek(seektime)
+        this.bgMusicPlayer1.seek(seektime);
+        
     }
 
     private init() {
@@ -190,7 +225,7 @@ export class FilesControlsComponent implements OnInit {
      *
      * */
     public getBusySpace() {
-        localStorage.setItem('memory', <string>this.bgMusicPlayer1.seek());
+       // localStorage.setItem('memory', <string>this.bgMusicPlayer1.seek());
       
         //return Math.round(this.getCurrentDuration() / this.getMaxDuration() * 100);
         return Math.round(this.storageLimits.SpaceUsedInBytes / this.storageLimits.SpaceTotalInBytes * 100);
@@ -207,21 +242,21 @@ export class FilesControlsComponent implements OnInit {
             this.isPlaying = !this.isPlaying;
         } */
        // console.log(<number>this.bgMusicPlayer1.seek());
-       
-
-       
-       
-      
+      console.log("IsUsing WebAudio => " +  this.soundPlayer._webAudio);
         if ( this.isPlaying ) {
-            this.bgMusicPlayer1.pause();
-          
-        
-    }
+           // this.bgMusicPlayer1.pause();
+           if( this.isConnected) {
+            this.soundPlayer.pause(); 
+         }
+                
+        }
         else {
-        this.bgMusicPlayer1.play(); 
-       
-        
-        
+         // this.bgMusicPlayer1.play();
+         if( this.isConnected) {
+            this.soundPlayer.play();
+            
+         }
+             
         }
        
         
@@ -231,9 +266,9 @@ export class FilesControlsComponent implements OnInit {
     
         let msg = this.isPlaying ? { PlayStream: true} : { PauseStream: true };
 
-        this.socketService.send({
+        /* this.socketService.send({
             StreamingEvents: msg
-        });
+        }); */
     }
 
     /**
@@ -272,4 +307,5 @@ export class FilesControlsComponent implements OnInit {
         return <number>this.bgMusicPlayer1.duration();
     }
 
+    
 }

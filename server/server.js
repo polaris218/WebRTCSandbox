@@ -121,6 +121,7 @@ console.log("range==================>"+range)
       'Accept-Ranges': 'bytes',
      // 'Content-Length': chunksize,
       'Content-Type': 'audio/flac',
+      'Transfer-Encoding': 'chunked'
     }
 
     res.writeHead(206, head);
@@ -131,6 +132,8 @@ console.log("range==================>"+range)
     const head = {
      // 'Content-Length': fileSize,
       'Content-Type': 'audio/flac',
+      'Transfer-Encoding': 'chunked'
+
     }
     res.writeHead(200, head)
   
