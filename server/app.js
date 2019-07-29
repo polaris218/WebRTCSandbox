@@ -112,6 +112,8 @@ const server = app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'))
 });const io = require('socket.io').listen(server);
 
+const factor = 2.00; // change this number to change buffer size.
+
 io.on('connection', (client) => {
   console.log('web socket '+Math.floor(Math.random()*100).toString() + ' connected');
  
@@ -121,7 +123,7 @@ io.on('connection', (client) => {
     console.log("connected on stream");
     const filePath = 'assets/'+ '10.flac';
     const stat = fs.statSync(filePath);
-    const readStream = fs.createReadStream(filePath, { highWaterMark: 1024 * 1024 * 60 });
+    const readStream = fs.createReadStream(filePath, { highWaterMark: 1024 * 1024 * factor });
     // pipe stream with response stream
     readStream.pipe(stream);
     ss(client).emit('track-stream', stream, { stat });

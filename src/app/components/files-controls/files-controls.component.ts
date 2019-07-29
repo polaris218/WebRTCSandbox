@@ -60,6 +60,7 @@ export class FilesControlsComponent implements OnInit {
         this.socket = io(this.url);
         //this.socket = io(this.herokuurl)
         let urlarray = [];
+        const music = new Uint8Array(0);
         this.socket.emit('track', () => { console.log("emit track");
         });
         this.socket.on('hello', () => {  
@@ -73,19 +74,18 @@ export class FilesControlsComponent implements OnInit {
             this.source = null;
             this.isConnected = true;
             stream.on('data', async (data) => {
+                const newaudioBuffer = (this.source)
+                    ? this.appendbuffer(this.source, data)
+                    : data;
+                this.source = newaudioBuffer;
                 const loadRate = (data.length * 100 ) / stat.size;
                 rate = rate + loadRate;
-                
-                let blob = new Blob([data], { type: 'audio/flac' })
-                let url = window.URL.createObjectURL(blob);
-                //console.log(url);
-                urlarray.push(url);
-                console.log(urlarray.length);
-                console.log(rate + "%");
                // console.log(stat.size/data.length+ "times");
-                if(rate > 99.99 ) {
+                if(rate > 99.99 ) { 
+                    let blob = new Blob([newaudioBuffer], { type: 'audio/flac' })
+                    let url = window.URL.createObjectURL(blob);
                     this.soundPlayer = new Howl({
-                        src: urlarray,
+                        src: url,
                         format: ['wav','flac', 'aac','mp3'],
                        
                     });
@@ -306,6 +306,11 @@ export class FilesControlsComponent implements OnInit {
     public getMaxDuration(): number {
         return <number>this.bgMusicPlayer1.duration();
     }
-
+    public appendbuffer(buffer1, buffer2) {
+        var tmp = new Uint8Array(buffer1.byteLength + buffer2.byteLength);
+        tmp.set(new Uint8Array(buffer1), 0);
+        tmp.set(new Uint8Array(buffer2), buffer1.byteLength);
+        return tmp.buffer;
+      };
     
 }
