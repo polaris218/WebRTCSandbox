@@ -33,6 +33,7 @@
                  [class.trackControlIconPlay]="!isPlaying"></div>
             <div class="trackControlText" *ngIf="!isPlaying">Play</div>
             <div class="trackControlText" *ngIf="isPlaying">Stop</div>
+            
         </div>
         <label class="trackControl">
             <span class="trackControlIcon trackControlIconUpload"></span>
@@ -50,6 +51,11 @@
             </div>
             <div class="trackControlText">Mixdown</div>
         </div>
+       
+    </div>
+    <div id="videos">
+        
+        <video id="remoteVideo" autoplay playsinline  #remoteVideo hidden ></video>
     </div>
     <div class="meters" *ngIf="socketData && socketData.GpuServerLoad">
         <div class="meter">

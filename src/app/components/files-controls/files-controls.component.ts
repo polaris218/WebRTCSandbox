@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter, OnInit} from "@angular/core";
+import {Component, Input, Output, EventEmitter, OnInit, ViewChild, ChangeDetectionStrategy} from "@angular/core";
 import {UploadItem} from "../../interface";
 import {UploadService} from "../../services/upload.service";
 import {ApiService} from "../../services/api.service";
@@ -12,13 +12,30 @@ import ss from 'socket.io-stream';
 import * as io from "socket.io-client";
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { async } from "q";
 
+
+const pcConfig = {
+  'iceServers': [{
+      'urls': 'stun:stun.l.google.com:19302'
+  }]
+  };
+
+  let isChannelReady = false;
+  let isInitiator = false;
+  let isStarted = false;
+  var localStream;
+  let pc ;
+  let turnReady;
+  let socket = io.connect('https://mighty-escarpment-12834.herokuapp.com');
+  //let socket = io.connect('http://localhost:3000');
 
 
 
 
 @Component({
     selector: 'files-controls',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './files-controls.component.html',
     styleUrls: ['./files-controls.component.css']
 })
@@ -26,8 +43,7 @@ import { Observable } from 'rxjs/Observable';
 export class FilesControlsComponent implements OnInit {
     public filetoupload: any;
     private url = 'http://localhost:3000';
-    private herokuurl = 'https://audiostram0626.herokuapp.com';
-    private socket;
+    private herokuurl = 'https://mighty-escarpment-12834.herokuapp.com';
     public item: UploadItem;
     public isUploading: boolean = false;
     public uploadIsComplete: boolean = false;
@@ -40,69 +56,25 @@ export class FilesControlsComponent implements OnInit {
     private source : any;
     public selectid: string = Math.floor(Math.random()*100).toString();
     public soundPlayer: any;
-    bgMusicPlayer1 = new Howl({
-        src: 'https://audiostram0626.herokuapp.com/audio/' + this.selectid,
-        //src: 'http://localhost:3000/audio/'+ this.selectid ,
-        format: ['flac', 'aac','mp3'],
-      });
+    WS_URL = 'http://localhost:3000'.replace(/^http/, 'ws');
+    public remoteStream : MediaStream;
 
     @Input() socketData: any;
-
+    @ViewChild("localVideo") localVideo;
+    @ViewChild("remoteVideo") remoteVideo;
     constructor(
         private uploadService: UploadService,
         private apiService: ApiService,
         private socketService: SocketService,
         private popupService: PopupService,
-        private shareService: ShareData
+        private shareService: ShareData,
     ) {
 
         this.init();
-        this.socket = io(this.url);
-        //this.socket = io(this.herokuurl)
-        let urlarray = [];
-        const music = new Uint8Array(0);
-        this.socket.emit('track', () => { console.log("emit track");
-        });
-        this.socket.on('hello', () => {  
-            this.isConnected = true;
-            console.log(this.isConnected);
-         });
-        ss(this.socket).on('track-stream', (stream, { stat }) => {
-            console.log("tracking stream from server");
-            let rate = 0;
-            let isData = false;
-            this.source = null;
-            this.isConnected = true;
-            stream.on('data', async (data) => {
-                const newaudioBuffer = (this.source)
-                    ? this.appendbuffer(this.source, data)
-                    : data;
-                this.source = newaudioBuffer;
-                const loadRate = (data.length * 100 ) / stat.size;
-                rate = rate + loadRate;
-               // console.log(stat.size/data.length+ "times");
-                if(rate > 99.99 ) { 
-                    let blob = new Blob([newaudioBuffer], { type: 'audio/flac' })
-                    let url = window.URL.createObjectURL(blob);
-                    this.soundPlayer = new Howl({
-                        src: url,
-                        format: ['wav','flac', 'aac','mp3'],
-                       
-                    });
-                }
+        
 
-            });
-            
-            
-        })
-        this.socket.on('disconnect',  () => { 
-            //console.log("disconenct");
-            
-            this.soundPlayer.pause();
-            this.isConnected = false;
-            this.isPlaying = false;
 
-        })
+      
     }
     
     ngOnInit() {
@@ -117,13 +89,9 @@ export class FilesControlsComponent implements OnInit {
                 }
             });
         this.isPlaying = false;
-        const  seektime  = parseFloat( localStorage.getItem('memory'));
-        console.log("loading"+seektime);
         Howler.usingWebAudio = true;
-        this.bgMusicPlayer1._webAudio = true;
-        this.bgMusicPlayer1._html5 = false;
-        this.bgMusicPlayer1.seek(seektime);
-        
+       
+  
     }
 
     private init() {
@@ -225,7 +193,6 @@ export class FilesControlsComponent implements OnInit {
      *
      * */
     public getBusySpace() {
-       // localStorage.setItem('memory', <string>this.bgMusicPlayer1.seek());
       
         //return Math.round(this.getCurrentDuration() / this.getMaxDuration() * 100);
         return Math.round(this.storageLimits.SpaceUsedInBytes / this.storageLimits.SpaceTotalInBytes * 100);
@@ -242,21 +209,22 @@ export class FilesControlsComponent implements OnInit {
             this.isPlaying = !this.isPlaying;
         } */
        // console.log(<number>this.bgMusicPlayer1.seek());
-      console.log("IsUsing WebAudio => " +  this.soundPlayer._webAudio);
+       
         if ( this.isPlaying ) {
            // this.bgMusicPlayer1.pause();
-           if( this.isConnected) {
-            this.soundPlayer.pause(); 
-         }
-                
+           if(pc) {
+           isStarted = false;
+           pc.close();
+           pc = null;
+           isInitiator = false;
+          
+            
+           }
+           
         }
         else {
+          this.startStreaming();
          // this.bgMusicPlayer1.play();
-         if( this.isConnected) {
-            this.soundPlayer.play();
-            
-         }
-             
         }
        
         
@@ -295,22 +263,266 @@ export class FilesControlsComponent implements OnInit {
         });
     }
 
-    public getCurrentDuration(): number {
-        
+   
 
-        return <number>this.bgMusicPlayer1.seek();
-       
-      
-    }
-
-    public getMaxDuration(): number {
-        return <number>this.bgMusicPlayer1.duration();
-    }
+    
     public appendbuffer(buffer1, buffer2) {
         var tmp = new Uint8Array(buffer1.byteLength + buffer2.byteLength);
         tmp.set(new Uint8Array(buffer1), 0);
         tmp.set(new Uint8Array(buffer2), buffer1.byteLength);
         return tmp.buffer;
       };
+    public addremote(stream) {
+        this.remoteVideo.nativeElement.srcObject = stream;
+    }
     
+    public startStreaming() {
+      
+      let remoteVideo = this.remoteVideo.nativeElement
+        
+
+      // Set up audio and video regardless of what devices are present.
+      var sdpConstraints = {
+        offerToReceiveAudio: true,
+        offerToReceiveVideo: true
+      };
+         
+      ///////////////////////////
+      
+      var room = 'foo';
+      // Could prompt for room name:
+       //window.room = prompt('Enter room name:');
+      
+      
+      
+      if (room !== '') {
+        socket.emit('create or join', room);
+        console.log('Attempted to create or  join room', room);
+      }
+      
+      socket.on('created', function(room) {
+        console.log('Created room ' + room);
+        isInitiator = true;
+      });
+      
+      socket.on('full', function(room) {
+        console.log('Room ' + room + ' is full');
+      });
+      
+      socket.on('join', function (room){
+        console.log('Another peer made a request to join room ' + room);
+        console.log('This peer is the initiator of room ' + room + '!');
+        isChannelReady = true;
+      });
+      
+      socket.on('joined', function(room) {
+        console.log('joined: ' + room);
+        isChannelReady = true;
+      });
+      
+      socket.on('log', function(array) {
+        console.log.apply(console, array);
+      });
+      
+      /////////////////////////////////////
+      
+      function sendMessage(message) {
+        console.log('Client sending message: ', message);
+        socket.emit('message', message);
+      }
+      //Dragonks
+      // This client receives a message
+      socket.on('message',  function (message) {
+        console.log('Client received message:', message);
+        if (message === 'got user media') {
+          console.log(1000);
+           maybeStart();
+        } else if (message.type === 'offer') {
+          if (!isInitiator && !isStarted) {
+             maybeStart();
+          }
+           pc.setRemoteDescription(new RTCSessionDescription(message));
+          doAnswer();
+        } else if (message.type === 'answer' && isStarted) {
+           pc.setRemoteDescription(new RTCSessionDescription(message));
+        } else if (message.type === 'candidate' && isStarted) {
+          var candidate = new RTCIceCandidate({
+            sdpMLineIndex: message.label,
+            candidate: message.candidate
+          });
+         pc.addIceCandidate(candidate);
+        } else if (message === 'bye' && isStarted) {
+          
+           handleRemoteHangup();
+        }
+      });
+      
+      ////////////////////////////////////////////////////
+      
+      if (isInitiator) {
+        maybeStart();
+      }
+      sendMessage('got user media');
+      
+      var constraints = {
+        video: false,
+        audio: true
+      };
+      
+      console.log('Getting user media with constraints', constraints);
+      
+      if (location.hostname !== 'localhost') {
+        requestTurn(
+          'https://computeengineondemand.appspot.com/turn?username=41784574&key=4080218913'
+        );
+      }
+      
+      function maybeStart() {
+        console.log('>>>>>>> maybeStart() ', isStarted, localStream, isChannelReady);
+        if (!isStarted && typeof localStream === 'undefined' && isChannelReady) {
+          console.log('>>>>>> creating peer connection');
+          createPeerConnection();
+         // pc.addStream(localStream);
+          isStarted = true;
+          console.log('isInitiator', isInitiator);
+          if (isInitiator) {
+            doCall();
+          }
+        }
+      }
+      
+      window.onbeforeunload = function() {
+        sendMessage('bye');
+      };
+      
+      /////////////////////////////////////////////////////////
+      
+      function createPeerConnection() {
+        
+          pc = new RTCPeerConnection(null);
+          pc.onicecandidate = handleIceCandidate;
+          pc.onaddstream = handleRemoteStreamAdded;
+          pc.onremovestream = handleRemoteStreamRemoved;
+          console.log('Created RTCPeerConnnection');
+        
+      }
+      
+      function handleIceCandidate(event) {
+        console.log('icecandidate event: ', event);
+        if (event.candidate) {
+          sendMessage({
+            type: 'candidate',
+            label: event.candidate.sdpMLineIndex,
+            id: event.candidate.sdpMid,
+            candidate: event.candidate.candidate
+          });
+        } else {
+          console.log('End of candidates.');
+        }
+      }
+      
+      function handleCreateOfferError(event) {
+        console.log('createOffer() error: ', event);
+      }
+      
+      function doCall() {
+        console.log('Sending offer to peer');
+        pc.createOffer(setLocalAndSendMessage, handleCreateOfferError);
+      }
+      
+      function doAnswer() {
+        console.log('Sending answer to peer.');
+        pc.createAnswer().then(
+          setLocalAndSendMessage,
+          onCreateSessionDescriptionError
+        );
+      }
+      
+      function setLocalAndSendMessage(sessionDescription) {
+        pc.setLocalDescription(sessionDescription);
+        console.log('setLocalAndSendMessage sending message', sessionDescription);
+        sendMessage(sessionDescription);
+      }
+      
+      function onCreateSessionDescriptionError(error) {
+        trace('Failed to create session description: ' + error.toString());
+      }
+      
+      function requestTurn(turnURL) {
+        var turnExists = false;
+        for (var i in pcConfig.iceServers) {
+          if (pcConfig.iceServers[i].urls.substr(0, 5) === 'turn:') {
+            turnExists = true;
+            turnReady = true;
+            break;
+          }
+        }
+        if (!turnExists) {
+          console.log('Getting TURN server from ', turnURL);
+          // No TURN server. Get one from computeengineondemand.appspot.com:
+          var xhr = new XMLHttpRequest();
+          xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+              var turnServer = JSON.parse(xhr.responseText);
+              const dragon = {
+                  urls: 'turn:' + turnServer.username + '@' + turnServer.turn,
+                  credential : turnServer.password
+              }
+              console.log('Got TURN server: ', turnServer);
+              pcConfig.iceServers.push( dragon);
+              turnReady = true;
+            }
+          };
+          xhr.open('GET', turnURL, true);
+          xhr.send();
+        }
+      }
+      
+      function handleRemoteStreamAdded(event) {
+        
+        console.log('Remote stream added.');
+        console.log(event);
+        this.remoteStream = event.stream;
+        console.log(event.stream);
+        remoteVideo.srcObject = event.stream
+        if (this.remoteStream.getAudioTracks().length > 0) {
+          console.log('Remote user is sending Audio');
+      } else {
+          console.log('Remote user is not sending Audio');
+      }
+      
+        /* aCtx = new AudioContext();
+        analyser = aCtx.createAnalyser();
+        microphone = aCtx.createMediaStreamSource(event.stream);
+        microphone.connect(analyser);
+        analyser.connect(aCtx.destination);
+       */
+      }
+        
+      function handleRemoteStreamRemoved(event) {
+        console.log('Remote stream removed. Event: ', event);
+      }
+      
+      
+      
+      function handleRemoteHangup() {
+        console.log('Session terminated.');
+        stop();
+        isInitiator = false;
+        
+      }
+      
+      function stop() {
+        isStarted = false;
+        pc.close();
+        pc = null;
+      }
+      function trace(text) {
+          text = text.trim();
+          const now = (window.performance.now() / 1000).toFixed(3);
+        
+          console.log(now, text);
+        }
+    }
+  
 }
