@@ -15,7 +15,7 @@ To run this project successfully,
   - Run 'npm install' to install the packages necessary to run this server
   - Run 'npm start' to start server that powers left and right panels of Sandbox with test data generated
 
-3. Run audio stream server using webui-dev-r2 - cloned folder
+3. Run audio stream server using sandbox-ui - cloned folder
   - In main folder (project folder) run 'cd server' to move to the audio server folder
   - Run 'npm install' to install the packages necessary to run the audio stream server
   - Run 'npm start' to start the audio stream server.
