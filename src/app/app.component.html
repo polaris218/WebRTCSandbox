@@ -2,10 +2,14 @@
 
 <div class="window">
     <div class="windowTitleBar">
+        
+        <a href="#" (click)="sideNavService.toggleSideNav_left()" id="toggle_left" style="justify-content: left;"><i class="fa fa-align-justify" aria-hidden="true"></i></a>
+        
 		<div class="logo">
 			<!---<div class="windowTitleHeader">
             <h1 *ngIf="ActiveSandBox">{{ ActiveSandBox.Caption }}</h1>--->
         </div>
+       
         <div class="windowControl">
             <div class="windowControlBack">
                 <div class="windowControlTooltip">Back</div>
@@ -19,14 +23,15 @@
             <div class="windowControlMax" (click)="close()"><!--- TODO: assign side panels sliding--->
                 <div class="windowControlTooltip">Max</div>
             </div>
+            <a href="#" (click)="sideNavService.toggleSideNav_right()" id="toggle_right"><i class="fa fa-align-justify" aria-hidden="true"></i></a>
         </div>
     </div>
-    <div class="windowContent">
-        <aside class="sidebar">
+    <div class="windowContent" >
+        <aside class="sidebar" id="sidebar_left"   [ngClass]="{'hidden': sideNavService.hideSideNav_left }">
             <files-list class="sidebarContent" [perfect-scrollbar]="scrollBarConfig"></files-list>
             <files-controls [socketData]="getSocketData()"></files-controls>
         </aside>
-        <main class="main">
+        <main class="main ">
             <div class="mainContent mainContentDemo">
                 <iframe width="100%"
                         height="100%"
@@ -51,7 +56,7 @@
             </div>
         </main>
 
-        <aside class="sidebar">
+        <aside class="sidebar" id="sidebar_right" [ngClass]="{'hidden': sideNavService.hideSideNav_right }">
             <!-- <products-list [OfferState]="OfferState" class="sidebarContent" [perfect-scrollbar]="scrollBarConfig"></products-list> -->
             <div class="sidebarFooter">
                 <cart [OfferState]="OfferState"></cart>

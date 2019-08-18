@@ -27,6 +27,7 @@ import {ShareData} from "./state/share.data";
 import {PageSliderModule} from 'ng2-page-slider';
 import {ClipboardModule} from "ngx-clipboard/dist";
 import {PostMessageService} from "./services/postmessage.service";
+import { SidenavService } from "./services/sidenav.service";
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
@@ -60,7 +61,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG),
         NouisliderModule,
         PageSliderModule,
-        ClipboardModule
+        ClipboardModule,
     ],
     providers: [
         ServerService,
@@ -69,7 +70,8 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         SocketService,
         UploadService,
         ShareData,
-        PostMessageService
+        PostMessageService, 
+        SidenavService
     ],
     entryComponents: [
         MixDownPopup,

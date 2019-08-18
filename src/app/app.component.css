@@ -2,3 +2,60 @@
     filter: url("#blur");
     filter: blur(9px);
 }
+#toggle_left{
+    position: fixed;
+    left: 50px;
+}
+
+i.fa.fa-align-justify {
+    font-size: 16px;
+    background: transparent;
+    color: #fff;
+    width: 26px;
+    padding: 5px;
+    margin-bottom: 3px;
+    position: relative;
+}
+#sidebar_left.hidden {
+    margin-left: -320px;
+   
+  }
+  
+#sidebar_left{
+    min-height: 100vh;
+    transition: all 0.3s;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.5;
+  
+ 
+   
+}
+#sidebar_right.hidden {
+    margin-right: -320px;
+   
+  }
+  
+#sidebar_right{
+    min-height: 100vh;
+    transition: all 0.3s;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.5;
+   
+}
+@media (max-width: 1400px) {
+    #sidebar_left {
+        margin-left: -320px;
+    }
+    #sidebar_left.hidden {
+        margin-left: 0px;
+    }
+    #sidebar_right {
+        margin-right: -320px;
+    }
+    #sidebar_right.hidden {
+        margin-right: 0px;
+    }
+}
+

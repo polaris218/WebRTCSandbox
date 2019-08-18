@@ -10,7 +10,6 @@ import {ShareData} from "../../state/share.data";
 import { Howl, Howler } from 'howler';
 import ss from 'socket.io-stream';
 import * as io from "socket.io-client";
-import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { async } from "q";
 

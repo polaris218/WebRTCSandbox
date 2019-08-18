@@ -8,6 +8,8 @@ import { LegendPopup } from './popups/legend/legend.popup';
 import { PostMessageService } from './services/postmessage.service';
 import { environment } from '../environments/environment';
 import {ShareData} from "./state/share.data";
+import { SidenavService } from './services/sidenav.service';
+
 
 @Component({
     selector: 'app',
@@ -53,7 +55,8 @@ export class AppComponent {
                 private apiService: ApiService,
                 private postMessageService: PostMessageService,
                 private sanitizer: DomSanitizer,
-                private shareData: ShareData) {
+                private shareData: ShareData,
+                private sideNavService: SidenavService) {
         this.checkIfApiInited();
 
         this.postMessageService.onMessage.subscribe({
@@ -85,7 +88,7 @@ export class AppComponent {
     public getSocketData() {
         return this.socketService.getSocketData();
     }
-
+    
     private checkIfApiInited() {
         clearInterval(this.initApiInterval);
 
@@ -146,12 +149,13 @@ export class AppComponent {
 
     public zoomIFrameContent() {
         this.fullZoom = !this.fullZoom;
-
         this.sendPmRequest('zoom');
     }
 
     public close() {
-        window.location.href = 'https://gpu.audio';
+        this.sideNavService.toggleSideNav_left();
+        this.sideNavService.toggleSideNav_right();
+       // window.location.href = 'https://gpu.audio';
     }
 
     private sendPmRequest(type) {
