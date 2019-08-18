@@ -312,11 +312,14 @@ export class FilesControlsComponent implements OnInit {
         console.log('Another peer made a request to join room ' + room);
         console.log('This peer is the initiator of room ' + room + '!');
         isChannelReady = true;
+        isInitiator = false;
       });
       
       socket.on('joined', function(room) {
         console.log('joined: ' + room);
         isChannelReady = true;
+        
+        
       });
       
       socket.on('log', function(array) {
@@ -334,7 +337,6 @@ export class FilesControlsComponent implements OnInit {
       socket.on('message',  function (message) {
         console.log('Client received message:', message);
         if (message === 'got user media') {
-          console.log(1000);
            maybeStart();
         } else if (message.type === 'offer') {
           if (!isInitiator && !isStarted) {
@@ -386,7 +388,8 @@ export class FilesControlsComponent implements OnInit {
           console.log('isInitiator', isInitiator);
           if (isInitiator) {
             doCall();
-          }
+          } 
+          
         }
       }
       

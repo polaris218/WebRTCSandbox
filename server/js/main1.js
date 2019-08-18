@@ -105,7 +105,8 @@ navigator.mediaDevices.getUserMedia({
   localStream = stream;
   localVideo.srcObject = stream; 
   sendMessage('got user media');
-  if (isInitiator) {
+  isInitiator = true;
+    if (isInitiator) {
     maybeStart();
   }
 })
@@ -121,6 +122,7 @@ function gotStream(stream) {
   if (isInitiator) {
     maybeStart();
   }
+ 
 }
 
 var constraints = {
