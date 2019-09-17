@@ -22,7 +22,7 @@ i.fa.fa-align-justify {
   }
   
 #sidebar_left{
-    min-height: 100vh;
+    
     transition: all 0.3s;
     font-weight: 300;
     font-size: 1rem;
@@ -31,13 +31,27 @@ i.fa.fa-align-justify {
  
    
 }
+.threebuttons {
+    position: relative;
+    left: -37vw;
+}
+.threebuttons button {
+    margin-left:0.5em;
+}
+.threebuttons a {
+    color: #ffffff;
+}
+#signin {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
 #sidebar_right.hidden {
     margin-right: -320px;
    
   }
   
 #sidebar_right{
-    min-height: 100vh;
+    
     transition: all 0.3s;
     font-weight: 300;
     font-size: 1rem;

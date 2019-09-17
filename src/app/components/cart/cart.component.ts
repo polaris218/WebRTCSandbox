@@ -7,7 +7,8 @@ import {PageSliderModule} from 'ng2-page-slider';
 
 @Component({
     selector: 'cart',
-    templateUrl: './cart.component.html'
+    templateUrl: './cart.component.html',
+    styleUrls: ['./cart.component.css']
 })
 
 

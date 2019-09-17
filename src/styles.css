@@ -1345,13 +1345,13 @@ url
     width: 100%;
     height: 41px;
     border-radius: 3px;
-    background-color: #3C4544;
+    background-color:white;
     border: 0;
     outline: 0;
-    color: #9BB8B8;
+    color:black;
     font-family: 'Circe', sans-serif;
-    font-size: 11px;
-    font-weight: 400;
+    font-size: 17px;
+    font-weight: 600;
     text-transform: uppercase;
     padding: 0 32px 0 65px;
     text-align: center;
@@ -1959,7 +1959,10 @@ url
 }
 
 .trackControls {
-    padding: 24px 38px 20px;
+    position: fixed;
+    margin-top: 8px;
+    top: 0px;
+    right: 400px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.02);
     -js-display: flex;
     display: -ms-flexbox;
@@ -1979,8 +1982,13 @@ url
     justify-content: flex-start;
     align-items: center;
     flex: 1 1 0;
+    margin-left: 0.5em;
+    border-left: 1px grey
 }
 
+.trackControl label {
+    margin: 0px;
+}
 .trackControl:first-child {
    /* align-items: flex-start;*/
 }
@@ -2023,7 +2031,6 @@ url
     height: 24px;
     background-repeat: no-repeat;
     background-position: center center;
-    margin-bottom: 8px;
     transition: all 0.4s;
 }
 
@@ -2641,6 +2648,10 @@ url
     align-items: center;
     -ms-flex-pack: center;
     justify-content: center;
+}
+.windowTitleBar button:hover {
+    background-color:#46B6F7;
+   
 }
 
 .windowTitleHeader {

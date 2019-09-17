@@ -33,9 +33,8 @@
                  [class.trackControlIconPlay]="!isPlaying"></div>
             <div class="trackControlText" *ngIf="!isPlaying">Play</div>
             <div class="trackControlText" *ngIf="isPlaying">Stop</div>
-            
         </div>
-        <label class="trackControl">
+        <div class="trackControl">
             <span class="trackControlIcon trackControlIconUpload"></span>
             <span class="trackControlText">Upload</span>
             <input type="file"
@@ -44,7 +43,7 @@
                    (change)="prepareToUploadFile($event)"
                    style="display: none"
                    [(ngModel)]="filetoupload" />
-        </label>
+        </div>
         <div class="trackControl">
             <div class="trackControlIcon trackControlIconMixdown" (click)="mixDown()">
                 <div class="trackControlIconCount" *ngIf="bounceCounter">{{ bounceCounter }}</div>
@@ -53,10 +52,7 @@
         </div>
        
     </div>
-    <div id="videos">
-        
-        <video id="remoteVideo" autoplay playsinline  #remoteVideo hidden ></video>
-    </div>
+    
     <div class="meters" *ngIf="socketData && socketData.GpuServerLoad">
         <div class="meter">
             <div class="meterTitle">Load</div>
@@ -70,5 +66,8 @@
             <div class="meterTitle">Pings</div>
             <div class="meterValue">{{ (socketData.GpuServerLoad.GpuServerPingInMs).toFixed(2) }}<span>&nbsp;ms</span></div>
         </div>
+    </div>
+    <div id="videos">     
+        <video id="remoteVideo" autoplay playsinline  #remoteVideo hidden ></video>
     </div>
 </div>
