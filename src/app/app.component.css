@@ -49,7 +49,9 @@ i.fa.fa-align-justify {
     margin-right: -320px;
    
   }
-  
+iframe {
+ overflow: hidden;    
+}
 #sidebar_right{
     
     transition: all 0.3s;
@@ -58,6 +60,7 @@ i.fa.fa-align-justify {
     line-height: 1.5;
    
 }
+
 @media (max-width: 1400px) {
     #sidebar_left {
         margin-left: -320px;

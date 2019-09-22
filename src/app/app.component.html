@@ -46,8 +46,8 @@
                         id="myIframe"
                         name="myIframe"
                         (load)="onFrameLoad(myIframe)"
-                        allowfullscreen></iframe>
-                <loader class="loader-container" *ngIf="!frameIsLoaded"></loader>
+                        allowfullscreen scrolling="yes" seamless="seamless" style =" zoom: 1.3;"></iframe>
+                <loader class="loader-container" *ngIf="!frameIsLoaded" ></loader>
             </div>
             <div class="mainFooter" *ngIf="SandboxList">
                 <div class="productDropdownControl" [class.productDropdownControlIsOpen]="sandboxListShown == true">
