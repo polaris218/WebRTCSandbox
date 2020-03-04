@@ -10,6 +10,7 @@ To run this project successfully,
 1. Clone the two other repositories from gitlab
   - `git clone https://git.braingines.com/UI/webui-dev-r2' using 'alex' branch, init submodules
   - `git clone https://git.braingines.com/GPUAUDIO/protobuf-demo' using 'master' branch)
+  - `git clone https://git.braingines.com/GPUAUDIO/sandbox-ui' using 'angularIO' branch)
 
 2. Run Protobuf-Demo server using protobuf-demo - cloned folder
   - Run 'npm install' to install the packages necessary to run this server
