@@ -20,8 +20,8 @@ To run this project successfully,
   - In main folder (project folder) run 'cd server' to move to the audio server folder
   - Run 'npm install' to install the packages necessary to run the audio stream server
   - Run 'npm start' to start the audio stream server.
-    (Navigate to `http://localhost:3000/` to use mic. you should allow your mic access and you can use mic.)
-  * For testing, Open  https://mighty-escarpment-12834.herokuapp.com and allow to access microphone, and you can use mic.
+    //For testing, navigate to `http://localhost:3000/` to use mic. you should allow your mic access and you can use mic.)
+    //For testing, if this service reachable:  https://mighty-escarpment-12834.herokuapp.com and allow to access microphone, and you can use mic.
 
 4. Run sandbox-ui using webui-dev-r2 - cloned folder
   - Regarding step 3, go back into the main folder, run 'npm install' to install necessary packages
