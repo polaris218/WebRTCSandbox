@@ -2,11 +2,8 @@
 
 <div class="window">
     <div class="windowTitleBar">
-        
-        <a href="#" (click)="sideNavService.toggleSideNav_left()" id="toggle_left" style="justify-content: left;"><i class="fa fa-align-justify" aria-hidden="true"></i></a>
-        
-		<div class="logo">
-			<!---<div class="windowTitleHeader">
+        <div class="logo">
+            <!---<div class="windowTitleHeader">
             <h1 *ngIf="ActiveSandBox">{{ ActiveSandBox.Caption }}</h1>--->
         </div>
         <div class="threebuttons">
@@ -14,7 +11,7 @@
             <button type="button" class="btn btn-dark btn-sm"><a href="https://gpu.audio/">COMMUNITY</a></button>
             <button type="button" class="btn btn-dark btn-sm"><a href="https://gpu.audio/">PRODUCTS</a></button>
         </div>
-        
+
         <div class="windowControl">
             <div class="windowControlBack">
                 <div class="windowControlTooltip">Back</div>
@@ -22,41 +19,37 @@
             <div class="windowControlHelp" (click)="showLegendPopup()">
                 <div class="windowControlTooltip">Help</div>
             </div>
-            <div class="windowControlZoom" [class.windowControlZoomActive]="fullZoom == true" (click)="zoomIFrameContent()">
+            <div class="windowControlZoom" [class.windowControlZoomActive]="fullZoom == true"
+                (click)="zoomIFrameContent()">
                 <div class="windowControlTooltip">Zoom</div>
             </div>
-            <div class="windowControlMax" (click)="close()"><!--- TODO: assign side panels sliding--->
+            <div class="windowControlMax" (click)="close()">
+                <!--- TODO: assign side panels sliding--->
                 <div class="windowControlTooltip">Max</div>
             </div>
-            <button type="button" id="signin" class="btn btn-dark btn-sm"><i class="fa fa-user"></i>&nbsp;LOGIN/REGISTER</button>
-            <a href="#" (click)="sideNavService.toggleSideNav_right()" id="toggle_right"><i class="fa fa-align-justify" aria-hidden="true"></i></a>
+            <button type="button" id="signin" class="btn btn-dark btn-sm"><i
+                    class="fa fa-user"></i>&nbsp;LOGIN/REGISTER</button>
         </div>
     </div>
-    <div class="windowContent" >
-        <aside class="sidebar" id="sidebar_left"   [ngClass]="{'hidden': sideNavService.hideSideNav_left }">
+    <div class="windowContent">
+        <aside class="sidebar" id="sidebar_left" [ngClass]="{'hidden': sideNavService.hideSideNav_left }">
             <files-list class="sidebarContent" [perfect-scrollbar]="scrollBarConfig"></files-list>
             <files-controls [socketData]="getSocketData()"></files-controls>
         </aside>
         <main class="main ">
             <div class="mainContent mainContentDemo">
-                <iframe width="100%"
-                        height="100%"
-                        [src]="FrameSrc"
-                        frameborder="0"
-                        id="myIframe"
-                        name="myIframe"
-                        (load)="onFrameLoad(myIframe)"
-                        allowfullscreen scrolling="yes" seamless="seamless" style =" zoom: 1.3;"></iframe>
-                <loader class="loader-container" *ngIf="!frameIsLoaded" ></loader>
+                <iframe width="100%" height="100%" [src]="FrameSrc" frameborder="0" id="myIframe" name="myIframe"
+                    (load)="onFrameLoad(myIframe)" allowfullscreen scrolling="yes" seamless="seamless"
+                    style=" zoom: 1.3;"></iframe>
+                <loader class="loader-container" *ngIf="!frameIsLoaded"></loader>
             </div>
             <div class="mainFooter" *ngIf="SandboxList">
                 <div class="productDropdownControl" [class.productDropdownControlIsOpen]="sandboxListShown == true">
                     <div class="productDropdown" (click)="toggleSandboxList()">{{ ActiveSandBox.Caption }}</div>
                     <div class="productDropdownPanel">
-                        <div class="productDropdownPanelItem"
-                             [class.productDropdownPanelItemActive]="sandbox.Current"
-                             *ngFor="let sandbox of SandboxList"
-                             (click)="setActiveSandbox(sandbox)">{{ sandbox.Caption }}</div>
+                        <div class="productDropdownPanelItem" [class.productDropdownPanelItemActive]="sandbox.Current"
+                            *ngFor="let sandbox of SandboxList" (click)="setActiveSandbox(sandbox)">
+                            {{ sandbox.Caption }}</div>
                     </div>
                 </div>
             </div>
